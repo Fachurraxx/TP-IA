@@ -1,4 +1,4 @@
-package utn.frsf.ia.grupo1;
+package frsf.ia.grupo1;
 
 import frsf.cidisi.faia.state.EnvironmentState;
 
@@ -76,31 +76,7 @@ public class AmbienteEnvironmentState extends EnvironmentState {
     }
     
     
-    public int getRandomNumber(int min, int max) {
-        return (int) ((Math.random() * (max - min)) + min);
-    }
-
-    /**
-     * String representation of the real world state.
-     */
-    @Override
-    public String toString() {
-        String str = "";
-
-        str = str + "[ \n";
-        for (int row = 0; row < world.length; row++) {
-            str = str + "[ ";
-            for (int col = 0; col < world.length; col++) {
-                str = str + world[row][col] + " ";
-            }
-            str = str + " ]\n";
-        }
-        str = str + " ]";
-
-        return str;
-    }
-
-    // The following methods are Pacman-specific:
+    
 
     public String[][] getWorld() {
         return world;
@@ -112,6 +88,23 @@ public class AmbienteEnvironmentState extends EnvironmentState {
 
     public void setWorld(int row, int col, String value) {
         this.world[row][col] = value;
+    }
+    
+    public void setSoles() {
+    	//Check where we have a girasol and generate soles with random function from 1 till 3
+    	
+    	for (int row = 0; row < world.length; row++) {
+            for (int col = 0; col < world.length; col++) {
+            	//basically if we dont have a zombie, the plant or empty then we have a girasol(integer number)
+            	if(!world[row][col].contains("z") || !world[row][col].contains("x") || !world[row][col].contains("e")) {
+            		int numeroDeSoles = Integer.parseInt(world[row][col]);
+            		int nuevosSoles = getRandomNumber(1,3);
+            		
+            		world[row][col]=Integer.toString(numeroDeSoles + nuevosSoles);
+            
+            	}
+            }
+        }
     }
 
     public int[] getAgentPosition() {
@@ -137,33 +130,45 @@ public class AmbienteEnvironmentState extends EnvironmentState {
     public void setTotalZombies(int totalZombies) {
         this.totalZombies = totalZombies;
     }
+    
+    public String [][] getRow(int row) {
+    	String [][] aux = new String[1][8];
+    	for(int i=0;i<8;i++) {
+    		aux[1][i]=world[row][i];
+    	}
+    	return aux;
+	}
+    
+    public String [][] getColumn(int col) {
+    	String [][] aux = new String[5][1];
+    	for(int i=0;i<8;i++) {
+    		aux[i][1]=world[i][col];
+    	}
+    	return aux;
+	}
+    
+    public int getRandomNumber(int min, int max) {
+        return (int) ((Math.random() * (max - min)) + min);
+    }
+    
+    /**
+     * String representation of the real world state.
+     */
+    @Override
+    public String toString() {
+        String str = "";
 
-    //TODO pensar que devolvemos cuando estamos en los bordes
-    public String getTopCell(int row, int col) {
-        if (row == 0) {
-            return world[3][col];
+        str = str + "[ \n";
+        for (int row = 0; row < world.length; row++) {
+            str = str + "[ ";
+            for (int col = 0; col < world.length; col++) {
+                str = str + world[row][col] + " ";
+            }
+            str = str + " ]\n";
         }
-        return world[row - 1][col];
+        str = str + " ]";
+
+        return str;
     }
 
-    public String getLeftCell(int row, int col) {
-        if (col == 0) {
-            return world[row][3];
-        }
-        return world[row][col - 1];
-    }
-
-    public String getRightCell(int row, int col) {
-        if (col == 3) {
-            return world[row][0];
-        }
-        return world[row][col + 1];
-    }
-
-    public String getBottomCell(int row, int col) {
-        if (row == 3) {
-            return world[0][col];
-        }
-        return world[row + 1][col];
-    }
 }

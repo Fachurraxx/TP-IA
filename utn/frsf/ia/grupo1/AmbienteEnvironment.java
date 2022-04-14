@@ -1,4 +1,4 @@
-package utn.frsf.ia.grupo1;
+package frsf.ia.grupo1;
 
 import frsf.cidisi.faia.agent.Action;
 import frsf.cidisi.faia.agent.Perception;
@@ -35,18 +35,16 @@ public class AmbienteEnvironment extends Environment {
         int col = this.getEnvironmentState().getAgentPosition()[1];
 
         // Set the perception sensors
-        perception.setHorizontalSensor(this.getRow(row));
-        perception.setVerticalSensor(this.getColumn(col));
-//        perception.setTopSensor(this.getTopCell(row, col));
-//        perception.setLeftSensor(this.getLeftCell(row, col));
-//        perception.setRightSensor(this.getRightCell(row, col));
-//        perception.setBottomSensor(this.getBottomCell(row, col));
+        perception.setRowSensor(this.getRow(row));
+        perception.setColumnSensor(this.getColumn(col));
 
         // Return the perception
         return perception;
     }
 
-    @Override
+    
+
+	@Override
     public String toString() {
         return environmentState.toString();
     }
@@ -54,38 +52,26 @@ public class AmbienteEnvironment extends Environment {
     @Override
     public boolean agentFailed(Action actionReturned) {
 
-        PacmanEnvironmentState pacmanEnvironmentState =
+        AmbienteEnvironmentState ambienteEnvironmentState =
                 this.getEnvironmentState();
 
-        int agentEnergy = pacmanEnvironmentState.getAgentEnergy();
+        int agentEnergy = ambienteEnvironmentState.getAgentEnergy();
 
-        // FIXME: The pacman agent always has the same energy
         // If the agent has no energy, he failed
-        if (agentEnergy <= 0)
+        if (agentEnergy < 1)
             return true;
 
         return false;
     }
 
-    // The following methods are Pacman-specific:
     
-    public int getTopCell(int row, int col) {
-        return ((PacmanEnvironmentState) this.environmentState)
-                .getTopCell(row, col);
-    }
-
-    public int getLeftCell(int row, int col) {
-        return ((PacmanEnvironmentState) this.environmentState)
-                .getLeftCell(row, col);
-    }
-
-    public int getRightCell(int row, int col) {
-        return ((PacmanEnvironmentState) this.environmentState)
-                .getRightCell(row, col);
-    }
-
-    public int getBottomCell(int row, int col) {
-        return ((PacmanEnvironmentState) this.environmentState)
-                .getBottomCell(row, col);
-    }
+    public String [][] getRow(int row) {
+		return ((AmbienteEnvironmentState) this.environmentState)
+                .getRow(row);
+	}
+    
+    public String [][] getColumn(int col) {
+		return ((AmbienteEnvironmentState) this.environmentState)
+                .getColumn(col);
+	}
 }

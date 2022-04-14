@@ -1,4 +1,4 @@
-package utn.frsf.ia.grupo1;
+package frsf.ia.grupo1;
 
 import frsf.cidisi.faia.agent.Agent;
 import frsf.cidisi.faia.agent.Perception;
@@ -22,14 +22,12 @@ public class PlantaPerception extends Perception {
     public static String EMPTY_PERCEPTION = "e";
     
 
-    private int leftSensor;
-    private int topSensor;
-    private int rightSensor;
-    private int bottomSensor;
     private int energy;
+    private String [][] rowSensor;
+    private String [][] columnSensor;
 
     public PlantaPerception() {
-        energy = 50;
+    	//TODO compare to Pacman where it set the energy to 50
     }
 
     public PlantaPerception(Agent agent, Environment environment) {
@@ -41,52 +39,49 @@ public class PlantaPerception extends Perception {
      */
     @Override
     public void initPerception(Agent agent, Environment environment) {
-        PacmanAgent pacmanAgent = (PacmanAgent) agent;
-        PacmanEnvironment pacmanEnvironment = (PacmanEnvironment) environment;
-        PacmanEnvironmentState environmentState =
-                pacmanEnvironment.getEnvironmentState();
+        PacmanAgent pacmanAgent = (PacmanAgent) agent; //TODO
+        AmbienteEnvironment ambienteEnvironment = (AmbienteEnvironment) environment;
+        AmbienteEnvironmentState environmentState =
+        		ambienteEnvironment.getEnvironmentState();
 
+
+//      Cada girasol genera aleatoriamente entre 1 y 3 soles por cada ciclo de percepción.
+//      Primero actualizamos los soles de los girasoles y despues percibimos la data actualizada
+        environmentState.setSoles();
+        
+//        Hacer avanzar los zombies que esten ya presentes 
+//        Tenemos que ver como modelar esto:
+//        Un zombie puede demorar entre 1 y 3 ciclos de percepción de manera aleatoria para avanzar a la siguiente celda
+//        Como podemos llevar registro de hace cuanto tiempo se movio el zombie???
+       
+        
+//        Hacer aparecer nuevos Zombies unicamente si la ultima columna no esta completa por zombies
+//        podemos hacer aparecer un numero random entre la cantidad de celdas libres en la ultima columna
+//        hasta 5(max numero de filas) o cantidad de zombies que todavia no hicimos aparecer, el numero que sea menor
+//        environmentState.setZombies();
+        
         int row = environmentState.getAgentPosition()[0];
         int col = environmentState.getAgentPosition()[1];
-
-        this.setTopSensor(pacmanEnvironment.getTopCell(row, col));
-        this.setLeftSensor(pacmanEnvironment.getLeftCell(row, col));
-        this.setRightSensor(pacmanEnvironment.getRightCell(row, col));
-        this.setBottomSensor(pacmanEnvironment.getBottomCell(row, col));
+        
+        this.setRowSensor(ambienteEnvironment.getRow(row));
+        this.setColumnSensor(ambienteEnvironment.getColumn(col));
+       
     }
 
-    // The following methods are Pacman-specific:
-
-    public int getLeftSensor() {
-        return leftSensor;
+    public void setRowSensor(String [][] rowSensor) {
+        this.rowSensor = rowSensor;
     }
-
-    public void setLeftSensor(int leftSensor) {
-        this.leftSensor = leftSensor;
+    
+    public String [][] getRowSensor() {
+        return rowSensor;
     }
-
-    public int getTopSensor() {
-        return topSensor;
+    
+    public void setColumnSensor(String [][] columnSensor) {
+        this.columnSensor = columnSensor;
     }
-
-    public void setTopSensor(int topSensor) {
-        this.topSensor = topSensor;
-    }
-
-    public int getRightSensor() {
-        return rightSensor;
-    }
-
-    public void setRightSensor(int rightSensor) {
-        this.rightSensor = rightSensor;
-    }
-
-    public int getBottomSensor() {
-        return bottomSensor;
-    }
-
-    public void setBottomSensor(int bottomSensor) {
-        this.bottomSensor = bottomSensor;
+    
+    public String [][] getColumnSensor() {
+        return columnSensor;
     }
 
     public int getEnergy() {
@@ -97,20 +92,4 @@ public class PlantaPerception extends Perception {
         this.energy = energy;
     }
 
-    @Override
-    public String toString() {
-        StringBuffer str = new StringBuffer();
-
-        str.append("Energy: " + this.energy);
-        str.append("; ");
-        str.append("Left Sensor: " + this.leftSensor);
-        str.append("; ");
-        str.append("Up Sensor: " + this.topSensor);
-        str.append("; ");
-        str.append("Right Sensor: " + this.rightSensor);
-        str.append("; ");
-        str.append("Down Sensor: " + this.bottomSensor);
-
-        return str.toString();
-    }
 }
