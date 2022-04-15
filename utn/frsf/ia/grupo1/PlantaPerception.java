@@ -22,7 +22,7 @@ public class PlantaPerception extends Perception {
     public static String EMPTY_PERCEPTION = "e";
     
 
-    //Prueba rama
+    //Prueba rama 2
     
     private int energy;
     private String [][] rowSensor;
