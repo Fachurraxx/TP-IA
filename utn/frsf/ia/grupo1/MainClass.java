@@ -13,6 +13,7 @@ public class MainClass {
             	
 	     PlantaPerception perception = new PlantaPerception();
 	      
+	     
 	     perception.initPerception(agentePlanta, ambiente);
 	     perception.toString();
       

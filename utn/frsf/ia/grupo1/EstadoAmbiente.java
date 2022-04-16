@@ -5,7 +5,8 @@ import frsf.cidisi.faia.state.EnvironmentState;
 public class EstadoAmbiente extends EnvironmentState {
 
      String[][] tablero;
-     int[] posicionPlanta;
+     int posicionPlantaFila;
+     int posicionPlantaColumna;
      int energiaPlanta;
      int totalZombies;
 
@@ -35,12 +36,7 @@ public class EstadoAmbiente extends EnvironmentState {
         
         for (int row = 0; row < 5; row++) {
                 tablero[row][1] = PlantaPerception.EMPTY_PERCEPTION;
-        }             
-        
-        /* Sets some cells with enemies. */
-//        Los zombies aparecen aleatoriamente en el escenario. La cantidad es aleatoria
-//        entre 5 y 20 y se determina al inicio del juego. - 
-        int numeroInicialDeZombies = getRandomNumber(5, 20);
+        }                     
         
 //      Los zombies siempre inician en la celda mas alejada de la casa, y en el inicio del
 //      juego puede que no estén todos los zombies en el escenario, sino que se van
@@ -50,44 +46,56 @@ public class EstadoAmbiente extends EnvironmentState {
 //        TODO a menos que sea en la celda LIBRE  mas alejada de la casa? pero para mi esto nos complica
         
         int zombiesInicio = getRandomNumber(1,5);
+        agregarZombiesAlTablero(zombiesInicio);
         
-//      Set los primeros x zombies en la ultima columna empezando desde la row 0, el tipo de zombie que toca en casa posicion tambien es random
-        
-        for(int i=0;i<zombiesInicio;i++){
-        	int tipoDeZombie = getRandomNumber(1, 5);
-        	switch(tipoDeZombie) {
-        	case 1:
-        		tablero[i][8] = PlantaPerception.Z1_PERCEPTION;
-        		break;
-        	case 2:
-        		tablero[i][8] = PlantaPerception.Z2_PERCEPTION;
-        		break;
-        	case 3:
-        		tablero[i][8] = PlantaPerception.Z3_PERCEPTION;
-        		break;
-        	case 4:
-        		tablero[i][8] = PlantaPerception.Z4_PERCEPTION;
-        		break;
-        	case 5:
-        		tablero[i][8] = PlantaPerception.Z5_PERCEPTION;
-        		break;
-        	}
-        }
-        
-        this.setTotalZombies(numeroInicialDeZombies);
-        this.setPosicionPlanta(new int[]{2, 1});
+        this.setTotalZombies(getRandomNumber(5, 20));
+        this.setPosicionPlantaFila(2);
+        this.setPosicionPlantaColumna(1);
         
         tablero[2][1] = PlantaPerception.PLANTA_PERCEPTION;
         
 //        En el inicio la planta recibe una cantidad aleatoria de entre 2 y 20 soles. 
-        int energiaInicial = getRandomNumber(2, 20);
-        this.setEnergiaPlanta(energiaInicial);
+        
+        this.setEnergiaPlanta(getRandomNumber(2, 20));
     }
     
     
     
 
-    public String[][] getTablero() {
+    public void agregarZombiesAlTablero(int zombiesInicio) {
+		
+    	
+    	for(int i=0; i<zombiesInicio; i++){
+    		int tipoDeZombie = getRandomNumber(1, 5);
+    		boolean filaVacia = false;
+    		int filaPorDondeCamina = getRandomNumber(0, 4);
+    		while(!filaVacia) {	
+    			if(!tablero[filaPorDondeCamina][8].contains("z")) filaVacia=true; 
+    			else filaPorDondeCamina = getRandomNumber(0, 4);
+    		}
+    		switch(tipoDeZombie) {
+        	case 1:
+        		tablero[filaPorDondeCamina][8] = PlantaPerception.Z1_PERCEPTION;
+        		break;
+        	case 2:
+        		tablero[filaPorDondeCamina][8] = PlantaPerception.Z2_PERCEPTION;
+        		break;
+        	case 3:
+        		tablero[filaPorDondeCamina][8] = PlantaPerception.Z3_PERCEPTION;
+        		break;
+        	case 4:
+        		tablero[filaPorDondeCamina][8] = PlantaPerception.Z4_PERCEPTION;
+        		break;
+        	case 5:
+        		tablero[filaPorDondeCamina][8] = PlantaPerception.Z5_PERCEPTION;
+        		break;
+        	}  		
+    		
+    	}
+	
+	}
+
+	public String[][] getTablero() {
         return tablero;
     }
 
@@ -119,15 +127,25 @@ public class EstadoAmbiente extends EnvironmentState {
         }
     }
 
-    public int[] getPosicionPlanta() {
-        return posicionPlanta;
-    }
+    
 
-    public void setPosicionPlanta(int[] posicionPlanta) {
-        this.posicionPlanta = posicionPlanta;
-    }
+    public int getPosicionPlantaFila() {
+		return posicionPlantaFila;
+	}
 
-    public int getEnergiaPlanta() {
+	public void setPosicionPlantaFila(int posicionPlantaFila) {
+		this.posicionPlantaFila = posicionPlantaFila;
+	}
+
+	public int getPosicionPlantaColumna() {
+		return posicionPlantaColumna;
+	}
+
+	public void setPosicionPlantaColumna(int posicionPlantaColumna) {
+		this.posicionPlantaColumna = posicionPlantaColumna;
+	}
+
+	public int getEnergiaPlanta() {
         return energiaPlanta;
     }
 
@@ -181,6 +199,10 @@ public class EstadoAmbiente extends EnvironmentState {
         str = str + " ";
 
         return str;
+    }
+
+    public void setTableroEnPosicion(int row, int col, String value) {
+        this.tablero[row][col] = value;
     }
 
 }

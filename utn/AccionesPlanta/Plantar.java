@@ -5,75 +5,59 @@ import frsf.cidisi.faia.agent.search.SearchAction;
 import frsf.cidisi.faia.agent.search.SearchBasedAgentState;
 import frsf.cidisi.faia.state.AgentState;
 import frsf.cidisi.faia.state.EnvironmentState;
+import frsf.ia.grupo1.EstadoAmbiente;
+import frsf.ia.grupo1.PlantaPerception;
+import frsf.ia.grupo1.PlantaState;
 
 public class Plantar extends SearchAction {
 
-    /**
-     * See comments in the Eat class.
-     */
-    @Override
-    public SearchBasedAgentState execute(SearchBasedAgentState s) {
+	 @Override
+	    public SearchBasedAgentState execute(SearchBasedAgentState s) {
 
-        PacmanAgentState pacmanState = (PacmanAgentState) s;
+	        PlantaState estadoPlanta = (PlantaState) s;
 
-        pacmanState.increaseVisitedCellsCount();
+	        int posFila = estadoPlanta.getPosicionPlantaFila();
+	        int posColumna = estadoPlanta.getPosicionPlantaFila();
 
-        int row = pacmanState.getRowPosition();
-        int col = pacmanState.getColumnPosition();
+	        /* La planta puede plantar en una posicion distinta a la posicion actual, en una casilla vacia y debe tener 2 soles o mas*/
+	        
+	        if ( estadoPlanta.getEnergia() >=2 ) {
+	        	
+	        	Integer columnaAPlantar = 0;
+	        	
+	        	for(int i=0; i<5; i++){
+	        		
+	        	}
+	        	
+	        	Integer cantSoles = Integer.parseInt(estadoPlanta.getTablero()[posFila-1][posColumna]);	        	    	
+	        	estadoPlanta.setEnergia(estadoPlanta.getEnergia() + cantSoles);
+	        	estadoPlanta.setTableroEnPosicion(posFila-1, posColumna, PlantaPerception.GIRASOLES_PERCEPTION);
+	        	
+	        	
+	        	return estadoPlanta;
+					        	
+	        }
+	        
+	        
+	        return null;
+	    }
 
-        // Check the limits of the world
-        if (row == 0) {
-            row = 3;
-        } else {
-            row = row - 1;
-        }
 
-        pacmanState.setRowPosition(row);
+	    @Override
+	    public EnvironmentState execute(AgentState ast, EnvironmentState est) {
 
-        /* The agent can only go up when the cell is not empty */
-        if (pacmanState.getWorldPosition(row, col) !=
-                PacmanPerception.EMPTY_PERCEPTION) {
+	        EstadoAmbiente estadoAmbiente = (EstadoAmbiente) est;
+	        PlantaState estadoPlanta = (PlantaState) ast;
 
-            pacmanState.setWorldPosition(row, col,
-                    PacmanPerception.EMPTY_PERCEPTION);
+	        int posFila = estadoPlanta.getPosicionPlantaFila();
+	        int posColumna = estadoPlanta.getPosicionPlantaFila();
 
-            return pacmanState;
-        }
-
-        return null;
-    }
-
-    /**
-     * See comments in the Eat class.
-     */
-    @Override
-    public EnvironmentState execute(AgentState ast, EnvironmentState est) {
-
-        PacmanEnvironmentState environmentState = (PacmanEnvironmentState) est;
-        PacmanAgentState pacmanState = ((PacmanAgentState) ast);
-
-        pacmanState.increaseVisitedCellsCount();
-
-        int row = environmentState.getAgentPosition()[0];
-        int col = environmentState.getAgentPosition()[1];
-
-        // Check the limits of the world
-        if (row == 0) {
-            row = 3;
-        } else {
-            row = row - 1;
-        }
-
-        pacmanState.setRowPosition(row);
-
-        environmentState.setAgentPosition(new int[] {row, col});
-        
-        return environmentState;
-    }
-
-    /**
-     * See comments in the Eat class.
-     */
+	        
+	        
+	        return estadoAmbiente;
+	    }
+	    
+	    
     @Override
     public Double getCost() {
         return new Double(0);

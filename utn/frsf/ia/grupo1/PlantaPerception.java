@@ -23,7 +23,6 @@ public class PlantaPerception extends Perception {
     public static String PLANTA_PERCEPTION = "p";
     
  
-    private int energy;
     private String [] rowSensor;
     private String [] columnSensor;
 
@@ -39,35 +38,19 @@ public class PlantaPerception extends Perception {
     @Override
     public void initPerception(Agent agent, Environment environment) {
         
-    	
-    	//PacmanAgent pacmanAgent = (PacmanAgent) agent; //TODO
-        
     	Ambiente ambiente = (Ambiente) environment;
         EstadoAmbiente estadoDelAmbiente = ambiente.getEnvironmentState();
 
 
-//      Cada girasol genera aleatoriamente entre 1 y 3 soles por cada ciclo de percepción.
-//      Primero actualizamos los soles de los girasoles y despues percibimos la data actualizada
-        
-        estadoDelAmbiente.setSoles();
-        
-//        Hacer avanzar los zombies que esten ya presentes 
-        
-        /*Tenemos que ver como modelar esto:
-        Un zombie puede demorar entre 1 y 3 ciclos de percepción de manera aleatoria para avanzar a la siguiente celda
-        Como podemos llevar registro de hace cuanto tiempo se movio el zombie???*/
-       
-        
-//        Hacer aparecer nuevos Zombies unicamente si la ultima columna no esta completa por zombies
-//        podemos hacer aparecer un numero random entre la cantidad de celdas libres en la ultima columna
-//        hasta 5(max numero de filas) o cantidad de zombies que todavia no hicimos aparecer, el numero que sea menor
-//        environmentState.setZombies();
-        
-        int row = estadoDelAmbiente.getPosicionPlanta()[0];
-        int col = estadoDelAmbiente.getPosicionPlanta()[1];
-        
-        this.setRowSensor(ambiente.getRow(row));
-        this.setColumnSensor(ambiente.getColumn(col));
+//      Cada girasol genera aleatoriamente entre 1 y 3 soles por cada ciclo de percepción.  Primero actualizamos los soles de los girasoles y despues percibimos la data actualizada              
+//      Hacer avanzar los zombies que esten ya presentes         
+// 		Tenemos que ver como modelar esto: Un zombie puede demorar entre 1 y 3 ciclos de percepción de manera aleatoria para avanzar a la siguiente celda Como podemos llevar registro de hace cuanto tiempo se movio el zombie???*/               
+//      Hacer aparecer nuevos Zombies unicamente si la ultima columna no esta completa por zombies podemos hacer aparecer un numero random entre la cantidad de celdas libres en la ultima columna hasta 5(max numero de filas) o cantidad de zombies que todavia no hicimos aparecer, el numero que sea menor 
+//		environmentState.setZombies();
+
+        estadoDelAmbiente.setSoles(); 
+        this.setRowSensor(ambiente.getRow(estadoDelAmbiente.getPosicionPlantaFila()));
+        this.setColumnSensor(ambiente.getColumn(estadoDelAmbiente.getPosicionPlantaColumna()));
 
        
     }
@@ -88,33 +71,21 @@ public class PlantaPerception extends Perception {
         return columnSensor;
     }
 
-    public int getEnergy() {
-        return energy;
-    }
-
-    public void setEnergy(int energy) {
-        this.energy = energy;
-    }
-    
     @Override
     public String toString() {
         String str = "";
-
         str = str + " \n";
         str = str + "Fila: [ ";
         
         for (int col = 0; col < 9; col++) {
             str = str + this.getRowSensor()[col] + " ";
-        }
-        
+        }       
         str = str + " ]\n";
         str = str + "Columna: [\n";
         
         for (int row = 0; row < 5; row++) {
-        	str = str + "          " + this.getColumnSensor()[row] + " \n";
-            
-        }
-        
+        	str = str + "          " + this.getColumnSensor()[row] + " \n";           
+        }     
         str = str + "         ]\n";
 
         return str;

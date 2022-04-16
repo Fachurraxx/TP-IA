@@ -11,7 +11,8 @@ package frsf.ia.grupo1;
 	public class PlantaState extends SearchBasedAgentState {
 
 	    private String[][] tablero;
-	    private int[] posicion;
+	    int posicionPlantaFila;
+	    int posicionPlantaColumna;
 	    private int energia;
 	    private int totalZombies;
 	    
@@ -22,7 +23,8 @@ package frsf.ia.grupo1;
 	    
 	    public PlantaState(String[][] t, int row, int col, int e) {
 	        tablero = t;
-	        posicion = new int[] {row, col};
+	        posicionPlantaFila = row;
+	        posicionPlantaColumna = col;
 	        energia = e;
 	    }
 	    
@@ -223,12 +225,24 @@ package frsf.ia.grupo1;
 			this.tablero = tablero;
 		}
 
-		public int[] getPosicion() {
-			return posicion;
+	    public void setTableroEnPosicion(int row, int col, String value) {
+	        this.tablero[row][col] = value;
+	    }
+
+		public int getPosicionPlantaFila() {
+			return posicionPlantaFila;
 		}
 
-		public void setPosicion(int[] posicion) {
-			this.posicion = posicion;
+		public void setPosicionPlantaFila(int posicionPlantaFila) {
+			this.posicionPlantaFila = posicionPlantaFila;
+		}
+
+		public int getPosicionPlantaColumna() {
+			return posicionPlantaColumna;
+		}
+
+		public void setPosicionPlantaColumna(int posicionPlantaColumna) {
+			this.posicionPlantaColumna = posicionPlantaColumna;
 		}
 
 		public int getEnergia() {

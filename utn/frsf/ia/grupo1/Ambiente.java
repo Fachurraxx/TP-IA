@@ -21,24 +21,14 @@ public class Ambiente extends Environment {
 
     @Override
     public Perception getPercept() {
-        // Create a new perception to return
+        
     	PlantaPerception perception = new PlantaPerception();
         
-        // Get the actual position of the agent to be able to create the
-        // perception
+        perception.setRowSensor(this.getRow(this.getEnvironmentState().getPosicionPlantaFila()));
+        perception.setColumnSensor(this.getColumn(this.getEnvironmentState().getPosicionPlantaColumna()));
 
-        int row = this.getEnvironmentState().getPosicionPlanta()[0];
-        int col = this.getEnvironmentState().getPosicionPlanta()[1];
-
-        // Set the perception sensors
-        perception.setRowSensor(this.getRow(row));
-        perception.setColumnSensor(this.getColumn(col));
-
-        // Return the perception
         return perception;
-    }
-
-    
+    }  
 
 	@Override
     public String toString() {
