@@ -20,13 +20,12 @@ public class PlantaPerception extends Perception {
     public static String GIRASOLES_PERCEPTION = "0";
     public static String UNKNOWN_PERCEPTION = "x";
     public static String EMPTY_PERCEPTION = "e";
+    public static String PLANTA_PERCEPTION = "p";
     
-
-    //Prueba rama 2
-    
+ 
     private int energy;
-    private String [][] rowSensor;
-    private String [][] columnSensor;
+    private String [] rowSensor;
+    private String [] columnSensor;
 
     public PlantaPerception() {
     	//TODO compare to Pacman where it set the energy to 50
@@ -36,25 +35,27 @@ public class PlantaPerception extends Perception {
         super(agent, environment);
     }
 
-    /**
-     * This method is used to setup the perception.
-     */
+
     @Override
     public void initPerception(Agent agent, Environment environment) {
-        PacmanAgent pacmanAgent = (PacmanAgent) agent; //TODO
-        Ambiente ambienteEnvironment = (Ambiente) environment;
-        EstadoAmbiente environmentState =
-        		ambienteEnvironment.getEnvironmentState();
+        
+    	
+    	//PacmanAgent pacmanAgent = (PacmanAgent) agent; //TODO
+        
+    	Ambiente ambiente = (Ambiente) environment;
+        EstadoAmbiente estadoDelAmbiente = ambiente.getEnvironmentState();
 
 
 //      Cada girasol genera aleatoriamente entre 1 y 3 soles por cada ciclo de percepción.
 //      Primero actualizamos los soles de los girasoles y despues percibimos la data actualizada
-        environmentState.setSoles();
+        
+        estadoDelAmbiente.setSoles();
         
 //        Hacer avanzar los zombies que esten ya presentes 
-//        Tenemos que ver como modelar esto:
-//        Un zombie puede demorar entre 1 y 3 ciclos de percepción de manera aleatoria para avanzar a la siguiente celda
-//        Como podemos llevar registro de hace cuanto tiempo se movio el zombie???
+        
+        /*Tenemos que ver como modelar esto:
+        Un zombie puede demorar entre 1 y 3 ciclos de percepción de manera aleatoria para avanzar a la siguiente celda
+        Como podemos llevar registro de hace cuanto tiempo se movio el zombie???*/
        
         
 //        Hacer aparecer nuevos Zombies unicamente si la ultima columna no esta completa por zombies
@@ -62,27 +63,28 @@ public class PlantaPerception extends Perception {
 //        hasta 5(max numero de filas) o cantidad de zombies que todavia no hicimos aparecer, el numero que sea menor
 //        environmentState.setZombies();
         
-        int row = environmentState.getPosicionPlanta()[0];
-        int col = environmentState.getPosicionPlanta()[1];
+        int row = estadoDelAmbiente.getPosicionPlanta()[0];
+        int col = estadoDelAmbiente.getPosicionPlanta()[1];
         
-        this.setRowSensor(ambienteEnvironment.getRow(row));
-        this.setColumnSensor(ambienteEnvironment.getColumn(col));
+        this.setRowSensor(ambiente.getRow(row));
+        this.setColumnSensor(ambiente.getColumn(col));
+
        
     }
 
-    public void setRowSensor(String [][] rowSensor) {
+    public void setRowSensor(String [] rowSensor) {
         this.rowSensor = rowSensor;
     }
     
-    public String [][] getRowSensor() {
+    public String [] getRowSensor() {
         return rowSensor;
     }
     
-    public void setColumnSensor(String [][] columnSensor) {
+    public void setColumnSensor(String [] columnSensor) {
         this.columnSensor = columnSensor;
     }
     
-    public String [][] getColumnSensor() {
+    public String [] getColumnSensor() {
         return columnSensor;
     }
 
@@ -92,6 +94,30 @@ public class PlantaPerception extends Perception {
 
     public void setEnergy(int energy) {
         this.energy = energy;
+    }
+    
+    @Override
+    public String toString() {
+        String str = "";
+
+        str = str + " \n";
+        str = str + "Fila: [ ";
+        
+        for (int col = 0; col < 9; col++) {
+            str = str + this.getRowSensor()[col] + " ";
+        }
+        
+        str = str + " ]\n";
+        str = str + "Columna: [\n";
+        
+        for (int row = 0; row < 5; row++) {
+        	str = str + "          " + this.getColumnSensor()[row] + " \n";
+            
+        }
+        
+        str = str + "         ]\n";
+
+        return str;
     }
 
 }

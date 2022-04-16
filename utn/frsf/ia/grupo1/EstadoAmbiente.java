@@ -4,10 +4,10 @@ import frsf.cidisi.faia.state.EnvironmentState;
 
 public class EstadoAmbiente extends EnvironmentState {
 
-    private String[][] tablero;
-    private int[] posicionPlanta;
-    private int energiaPlanta;
-    private int totalZombies;
+     String[][] tablero;
+     int[] posicionPlanta;
+     int energiaPlanta;
+     int totalZombies;
 
     public EstadoAmbiente(String[][] m) {
         tablero = m;
@@ -18,19 +18,25 @@ public class EstadoAmbiente extends EnvironmentState {
         this.initState();
     }
 
-    /**
-     * This method is used to setup the initial real tablero.
-     */
+
     @Override
     public void initState() {
 
         // Sets all cells as empty
-        for (int row = 0; row < tablero.length; row++) {
-            for (int col = 0; col < tablero.length; col++) {
-                tablero[row][col] = PlantaPerception.EMPTY_PERCEPTION;
+        for (int row = 0; row < 5; row++) {
+            for (int col = 0; col < 9; col++) {
+                tablero[row][col] = PlantaPerception.UNKNOWN_PERCEPTION;
             }
         }
-
+                
+        for (int col = 0; col < 9; col++) {
+            tablero[2][col] = PlantaPerception.EMPTY_PERCEPTION;
+        }
+        
+        for (int row = 0; row < 5; row++) {
+                tablero[row][1] = PlantaPerception.EMPTY_PERCEPTION;
+        }             
+        
         /* Sets some cells with enemies. */
 //        Los zombies aparecen aleatoriamente en el escenario. La cantidad es aleatoria
 //        entre 5 y 20 y se determina al inicio del juego. - 
@@ -70,6 +76,9 @@ public class EstadoAmbiente extends EnvironmentState {
         
         this.setTotalZombies(numeroInicialDeZombies);
         this.setPosicionPlanta(new int[]{2, 1});
+        
+        tablero[2][1] = PlantaPerception.PLANTA_PERCEPTION;
+        
 //        En el inicio la planta recibe una cantidad aleatoria de entre 2 y 20 soles. 
         int energiaInicial = getRandomNumber(2, 20);
         this.setEnergiaPlanta(energiaInicial);
@@ -96,12 +105,15 @@ public class EstadoAmbiente extends EnvironmentState {
     	for (int row = 0; row < tablero.length; row++) {
             for (int col = 0; col < tablero.length; col++) {
             	//basically if we dont have a zombie, the plant or empty then we have a girasol(integer number)
-            	if(!tablero[row][col].contains("z") || !tablero[row][col].contains("x") || !tablero[row][col].contains("e")) {
+
+            	
+            	if(tablero[row][col] != "e" && tablero[row][col] != "p" && !tablero[row][col].contains("z") && tablero[row][col] != "x") {
+            	
             		int numeroDeSoles = Integer.parseInt(tablero[row][col]);
             		int nuevosSoles = getRandomNumber(1,3);
-            		
+        		
             		tablero[row][col]=Integer.toString(numeroDeSoles + nuevosSoles);
-            
+            		
             	}
             }
         }
@@ -131,18 +143,18 @@ public class EstadoAmbiente extends EnvironmentState {
         this.totalZombies = totalZombies;
     }
     
-    public String [][] getRow(int row) {
-    	String [][] aux = new String[1][8];
-    	for(int i=0;i<8;i++) {
-    		aux[1][i]=tablero[row][i];
+    public String [] getRow(int row) {
+    	String [] aux = new String[9];
+    	for(int i=0;i<9;i++) {
+    		aux[i]=tablero[row][i];
     	}
     	return aux;
 	}
     
-    public String [][] getColumn(int col) {
-    	String [][] aux = new String[5][1];
-    	for(int i=0;i<8;i++) {
-    		aux[i][1]=tablero[i][col];
+    public String [] getColumn(int col) {
+    	String [] aux = new String[5];
+    	for(int i=0;i<5;i++) {
+    		aux[i]=tablero[i][col];
     	}
     	return aux;
 	}
@@ -158,15 +170,15 @@ public class EstadoAmbiente extends EnvironmentState {
     public String toString() {
         String str = "";
 
-        str = str + "[ \n";
-        for (int row = 0; row < tablero.length; row++) {
+        str = str + " \n";
+        for (int row = 0; row < 5; row++) {
             str = str + "[ ";
-            for (int col = 0; col < tablero.length; col++) {
+            for (int col = 0; col < 9; col++) {
                 str = str + tablero[row][col] + " ";
             }
             str = str + " ]\n";
         }
-        str = str + " ]";
+        str = str + " ";
 
         return str;
     }

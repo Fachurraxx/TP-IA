@@ -12,17 +12,17 @@ package frsf.ia.grupo1;
 
 	    private String[][] tablero;
 	    private int[] posicion;
-	    private int[] posicionInicial;
 	    private int energia;
 	    private int totalZombies;
 	    
 
+	    public PlantaState() {
+	    	
+	    }
+	    
 	    public PlantaState(String[][] t, int row, int col, int e) {
 	        tablero = t;
 	        posicion = new int[] {row, col};
-	        posicionInicial = new int[2];
-	        posicionInicial[0] = row;
-	        posicionInicial[1] = col;
 	        energia = e;
 	    }
 	    
@@ -229,14 +229,6 @@ package frsf.ia.grupo1;
 
 		public void setPosicion(int[] posicion) {
 			this.posicion = posicion;
-		}
-
-		public int[] getPosicionInicial() {
-			return posicionInicial;
-		}
-
-		public void setPosicionInicial(int[] posicionInicial) {
-			this.posicionInicial = posicionInicial;
 		}
 
 		public int getEnergia() {
