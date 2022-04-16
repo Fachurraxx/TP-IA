@@ -8,7 +8,7 @@ import frsf.cidisi.faia.examples.search.pacman.PacmanEnvironment;
 import frsf.cidisi.faia.examples.search.pacman.PacmanEnvironmentState;
 
 public class PlantaPerception extends Perception {
-//matrizPosiciones se representa como una matriz de 5x9. Los zombies se representarán como z1, z2, z3, z4, z5 siendo el subíndice la cantidad de soles que necesita la planta para matar a ese zombie.
+//	matrizPosiciones se representa como una matriz de 5x9. Los zombies se representarán como z1, z2, z3, z4, z5 siendo el subíndice la cantidad de soles que necesita la planta para matar a ese zombie.
 //	Los girasoles se representarán con la cantidad de soles que estén presentes en su celda (0 a 99) donde 0 se refiere a un girasol sin ningún sol producido. La celda donde se encuentra la planta se representa como p. 
 //	La letra x la utilizaremos para representar una celda la cual no tenemos información y la letra e para representar una celda vacía. 
 
@@ -42,8 +42,8 @@ public class PlantaPerception extends Perception {
     @Override
     public void initPerception(Agent agent, Environment environment) {
         PacmanAgent pacmanAgent = (PacmanAgent) agent; //TODO
-        AmbienteEnvironment ambienteEnvironment = (AmbienteEnvironment) environment;
-        AmbienteEnvironmentState environmentState =
+        Ambiente ambienteEnvironment = (Ambiente) environment;
+        EstadoAmbiente environmentState =
         		ambienteEnvironment.getEnvironmentState();
 
 
@@ -62,8 +62,8 @@ public class PlantaPerception extends Perception {
 //        hasta 5(max numero de filas) o cantidad de zombies que todavia no hicimos aparecer, el numero que sea menor
 //        environmentState.setZombies();
         
-        int row = environmentState.getAgentPosition()[0];
-        int col = environmentState.getAgentPosition()[1];
+        int row = environmentState.getPosicionPlanta()[0];
+        int col = environmentState.getPosicionPlanta()[1];
         
         this.setRowSensor(ambienteEnvironment.getRow(row));
         this.setColumnSensor(ambienteEnvironment.getColumn(col));
