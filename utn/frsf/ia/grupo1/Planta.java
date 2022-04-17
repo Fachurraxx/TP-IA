@@ -20,60 +20,65 @@ import frsf.cidisi.faia.solver.search.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import AccionesPlanta.IrAbajo;
+import AccionesPlanta.IrArriba;
+import AccionesPlanta.IrDerecha;
+import AccionesPlanta.IrIzquierda;
+import AccionesPlanta.Pelear;
+import AccionesPlanta.Plantar;
+import AccionesPlanta.Recargar;
+
 public class Planta extends SearchBasedAgent {
 
     public Planta() {
 
     	PlantaGoal goal = new PlantaGoal();
 
-    	PlantaState pacmanState = new PlantaState();
-        this.setAgentState(pacmanState);
+    	PlantaState plantaState = new PlantaState();
+        this.setAgentState(plantaState);
 
-        // Create the operators
-//        Vector<SearchAction> operators = new Vector<SearchAction>();
-//        operators.addElement(new Eat());
-//        operators.addElement(new Fight());
-//        operators.addElement(new GoLeft());
-//        operators.addElement(new GoUp());
-//        operators.addElement(new GoRight());
-//        operators.addElement(new GoDown());
+        //Create the operators
+        Vector<SearchAction> operators = new Vector<SearchAction>();
+        operators.addElement(new IrAbajo());
+        operators.addElement(new IrArriba());
+        operators.addElement(new IrDerecha());
+        operators.addElement(new IrIzquierda());
+        operators.addElement(new Plantar());
+        operators.addElement(new Recargar());
+        operators.addElement(new Pelear());
 
         // Create the Problem which the Pacman will resolve
-//        Problem problem = new Problem(goal, pacmanState, operators);
-//        this.setProblem(problem);
+        Problem problem = new Problem(goal, plantaState, operators);
+        this.setProblem(problem);
     }
 
-    /**
-     * This method is executed by the simulator to ask the agent for an action.
-     */
+
     @Override
     public Action selectAction() {
 
-//        // Create the search strategy
-//        DepthFirstSearch strategy = new DepthFirstSearch();
-//
-//       
-//
-//        // Create a Search object with the strategy
-//        Search searchSolver = new Search(strategy);
-//
-//        /* Generate an XML file with the search tree. It can also be generated
-//         * in other formats like PDF with PDF_TREE */
-//        searchSolver.setVisibleTree(Search.EFAIA_TREE);
-//
-//        // Set the Search searchSolver.
-//        this.setSolver(searchSolver);
-//
-//        // Ask the solver for the best action
+        // Create the search strategy
+        DepthFirstSearch strategy = new DepthFirstSearch();
+
+        // Create a Search object with the strategy
+        Search searchSolver = new Search(strategy);
+
+        /* Generate an XML file with the search tree. It can also be generated
+         * in other formats like PDF with PDF_TREE */
+        searchSolver.setVisibleTree(Search.EFAIA_TREE);
+
+        // Set the Search searchSolver.
+        this.setSolver(searchSolver);
+
+        // Ask the solver for the best action
     		Action selectedAction = null;
-//        try {
-//            selectedAction =
-//                    this.getSolver().solve(new Object[]{this.getProblem()});
-//        } catch (Exception ex) {
-//            Logger.getLogger(PacmanAgent.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-//
-//        // Return the selected action
+        try {
+            selectedAction =
+                    this.getSolver().solve(new Object[]{this.getProblem()});
+        } catch (Exception ex) {
+            Logger.getLogger(PacmanAgent.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        // Return the selected action
         return selectedAction;
     }
 

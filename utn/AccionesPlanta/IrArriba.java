@@ -5,6 +5,9 @@ import frsf.cidisi.faia.agent.search.SearchAction;
 import frsf.cidisi.faia.agent.search.SearchBasedAgentState;
 import frsf.cidisi.faia.state.AgentState;
 import frsf.cidisi.faia.state.EnvironmentState;
+import frsf.ia.grupo1.EstadoAmbiente;
+import frsf.ia.grupo1.PlantaPerception;
+import frsf.ia.grupo1.PlantaState;
 
 public class IrArriba extends SearchAction {
 
@@ -14,66 +17,74 @@ public class IrArriba extends SearchAction {
     @Override
     public SearchBasedAgentState execute(SearchBasedAgentState s) {
 
-        PacmanAgentState pacmanState = (PacmanAgentState) s;
+    	 PlantaState estadoPlanta = (PlantaState) s;
 
-        pacmanState.increaseVisitedCellsCount();
+         int posFila = estadoPlanta.getPosicionPlantaFila();
+         int posColumna = estadoPlanta.getPosicionPlantaFila();
 
-        int row = pacmanState.getRowPosition();
-        int col = pacmanState.getColumnPosition();
-
-        // Check the limits of the world
-        if (row == 0) {
-            row = 3;
-        } else {
-            row = row - 1;
-        }
-
-        pacmanState.setRowPosition(row);
-
-        /* The agent can only go up when the cell is not empty */
-        if (pacmanState.getWorldPosition(row, col) !=
-                PacmanPerception.EMPTY_PERCEPTION) {
-
-            pacmanState.setWorldPosition(row, col,
-                    PacmanPerception.EMPTY_PERCEPTION);
-
-            return pacmanState;
-        }
+        /* La planta no puede ir arriba si esta en el limite suiperior. La planta solo puede moverse si la celda esta vacia. Si la celda tiene un zombie, se le restan los soles*/
+         if(posFila != 0) {
+        	 if ( estadoPlanta.getTablero()[posFila-1][posColumna] == "e") {
+        		 
+        		 estadoPlanta.setTableroEnPosicion(posFila-1, posColumna, PlantaPerception.PLANTA_PERCEPTION);
+        		 estadoPlanta.setTableroEnPosicion(posFila, posColumna, PlantaPerception.EMPTY_PERCEPTION);
+        		 estadoPlanta.setPosicionPlantaColumna(posColumna);
+        		 estadoPlanta.setPosicionPlantaFila(posFila-1);
+        		 
+        		 return estadoPlanta;
+        		 
+        	 }else if (estadoPlanta.getTablero()[posFila-1][posColumna].contains("z")) {
+        		 
+        		String zombies = estadoPlanta.getTablero()[posFila-1][posColumna];
+             	Integer cantSoles = Integer.parseInt(zombies.substring(zombies.length() - 1));
+        		estadoPlanta.setEnergia(estadoPlanta.getEnergia() - (2*cantSoles));
+        		return estadoPlanta;
+        	 }
+         }
+         
 
         return null;
     }
 
-    /**
-     * See comments in the Eat class.
-     */
+
     @Override
     public EnvironmentState execute(AgentState ast, EnvironmentState est) {
 
-        PacmanEnvironmentState environmentState = (PacmanEnvironmentState) est;
-        PacmanAgentState pacmanState = ((PacmanAgentState) ast);
+    	PlantaState estadoPlanta = (PlantaState) ast;
+    	EstadoAmbiente estadoAmbiente = (EstadoAmbiente) est;
 
-        pacmanState.increaseVisitedCellsCount();
+        int posFila = estadoAmbiente.getPosicionPlantaFila();
+        int posColumna = estadoAmbiente.getPosicionPlantaFila();
 
-        int row = environmentState.getAgentPosition()[0];
-        int col = environmentState.getAgentPosition()[1];
-
-        // Check the limits of the world
-        if (row == 0) {
-            row = 3;
-        } else {
-            row = row - 1;
+       /* La planta no puede ir arriba si esta en el limite suiperior. La planta solo puede moverse si la celda esta vacia. Si la celda tiene un zombie, se le restan los soles*/
+        if(posFila != 0) {
+       	 if ( estadoAmbiente.getTablero()[posFila-1][posColumna] == "e") {
+       		 
+       		estadoAmbiente.setTableroEnPosicion(posFila-1, posColumna, PlantaPerception.PLANTA_PERCEPTION);
+       		estadoAmbiente.setTableroEnPosicion(posFila, posColumna, PlantaPerception.EMPTY_PERCEPTION);
+       		estadoAmbiente.setPosicionPlantaColumna(posColumna);
+       		estadoAmbiente.setPosicionPlantaFila(posFila-1);
+       		
+       		 estadoPlanta.setTableroEnPosicion(posFila-1, posColumna, PlantaPerception.PLANTA_PERCEPTION);
+       		 estadoPlanta.setTableroEnPosicion(posFila, posColumna, PlantaPerception.EMPTY_PERCEPTION);
+       		 estadoPlanta.setPosicionPlantaColumna(posColumna);
+       		 estadoPlanta.setPosicionPlantaFila(posFila-1);
+       		 
+       		 return estadoAmbiente;
+       		 
+       	 }else if (estadoAmbiente.getTablero()[posFila-1][posColumna].contains("z")) {
+       		 
+       		String zombies = estadoAmbiente.getTablero()[posFila-1][posColumna];
+            	Integer cantSoles = Integer.parseInt(zombies.substring(zombies.length() - 1));
+       		estadoPlanta.setEnergia(estadoPlanta.getEnergia() - (2*cantSoles));
+       		estadoAmbiente.setEnergiaPlanta(estadoPlanta.getEnergia() - (2*cantSoles));
+       		return estadoAmbiente;
+       	 }
         }
-
-        pacmanState.setRowPosition(row);
-
-        environmentState.setAgentPosition(new int[] {row, col});
         
-        return environmentState;
+        return null;
     }
-
-    /**
-     * See comments in the Eat class.
-     */
+    
     @Override
     public Double getCost() {
         return new Double(0);

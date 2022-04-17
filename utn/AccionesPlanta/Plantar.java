@@ -16,28 +16,24 @@ public class Plantar extends SearchAction {
 
 	        PlantaState estadoPlanta = (PlantaState) s;
 
-	        int posFila = estadoPlanta.getPosicionPlantaFila();
-	        int posColumna = estadoPlanta.getPosicionPlantaFila();
-
 	        /* La planta puede plantar en una posicion distinta a la posicion actual, en una casilla vacia y debe tener 2 soles o mas*/
 	        
-	        if ( estadoPlanta.getEnergia() >=2 ) {
-	        	
-	        	Integer columnaAPlantar = 0;
-	        	
-	        	for(int i=0; i<5; i++){
-	        		
+	        if ( estadoPlanta.getEnergia() >=2 ) {        	
+	        	for(int j=0; j<9; j++){
+	        		for(int i=0; i<5; i++){
+	        			if(estadoPlanta.getTablero()[i][j] == "e") {
+	        			
+	        				estadoPlanta.setEnergia(estadoPlanta.getEnergia() -1 );
+	        				estadoPlanta.setTableroEnPosicion(i, j, PlantaPerception.GIRASOLES_PERCEPTION);
+	        				
+	        				j= 10;
+	        				i=6;
+	        			}      				
+	        		}
 	        	}
-	        	
-	        	Integer cantSoles = Integer.parseInt(estadoPlanta.getTablero()[posFila-1][posColumna]);	        	    	
-	        	estadoPlanta.setEnergia(estadoPlanta.getEnergia() + cantSoles);
-	        	estadoPlanta.setTableroEnPosicion(posFila-1, posColumna, PlantaPerception.GIRASOLES_PERCEPTION);
-	        	
-	        	
-	        	return estadoPlanta;
-					        	
+
+	        	return estadoPlanta;					        	
 	        }
-	        
 	        
 	        return null;
 	    }
@@ -48,10 +44,23 @@ public class Plantar extends SearchAction {
 
 	        EstadoAmbiente estadoAmbiente = (EstadoAmbiente) est;
 	        PlantaState estadoPlanta = (PlantaState) ast;
+	        
+	        if ( estadoAmbiente.getEnergiaPlanta() >=2 ) {        	
+	        	for(int j=0; j<9; j++){
+	        		for(int i=0; i<5; i++){
+	        			if(estadoAmbiente.getTablero()[i][j] == "e") {
+	        			
+	        				estadoAmbiente.setEnergiaPlanta(estadoPlanta.getEnergia() -1 );
+	        				estadoAmbiente.setTableroEnPosicion(i, j, PlantaPerception.GIRASOLES_PERCEPTION);
+	        				estadoPlanta.setTableroEnPosicion(i, j, PlantaPerception.GIRASOLES_PERCEPTION);
+	        				j= 10; i=6;
+	        			}      				
+	        		}
+	        	}
 
-	        int posFila = estadoPlanta.getPosicionPlantaFila();
-	        int posColumna = estadoPlanta.getPosicionPlantaFila();
-
+	        	return estadoAmbiente;					        	
+	        }
+	        
 	        
 	        
 	        return estadoAmbiente;
