@@ -9,40 +9,55 @@ public class MainClass {
     public static void main(String[] args) throws PrologConnectorException {
         Planta agentePlanta = new Planta();
         
-        Ambiente ambiente = new Ambiente();
-        
-        
-            	
+        Ambiente ambiente = new Ambiente();         	
 	    PlantaPerception perception = new PlantaPerception();
-	      
-	     
-	     perception.initPerception(agentePlanta, ambiente);
+//
+//	    SearchBasedAgentSimulator simulator =
+//                new SearchBasedAgentSimulator(ambiente, agentePlanta);
+//        
+//        simulator.start();
+//        
+	    while(ambiente.getEnvironmentState().energiaPlanta >1 && !ambiente.getEnvironmentState().zombieEnCasa) {
+	    	perception.initPerception(agentePlanta, ambiente);
+	    }
+	    
+	    System.out.println("El juego termino");
    
-	     perception.initPerception(agentePlanta, ambiente);
-	     
-	     perception.initPerception(agentePlanta, ambiente);
-	     
-	     perception.initPerception(agentePlanta, ambiente);
-	     
-	     perception.initPerception(agentePlanta, ambiente);
-	     
-	     perception.initPerception(agentePlanta, ambiente);
-     
-	     perception.initPerception(agentePlanta, ambiente);
-	     
-	     perception.initPerception(agentePlanta, ambiente);
-	     
-	     perception.initPerception(agentePlanta, ambiente);
-	     
-	     perception.initPerception(agentePlanta, ambiente);
+	    
+		System.out.println(ambiente.getEnvironmentState().toString());
+		System.out.println("-----------p----------------");
+	    
+//	     perception.initPerception(agentePlanta, ambiente);
+//	     
+//	     perception.initPerception(agentePlanta, ambiente);
+//	     
+//	     perception.initPerception(agentePlanta, ambiente);
+//	     
+//	     perception.initPerception(agentePlanta, ambiente);
+//	     
+//	     perception.initPerception(agentePlanta, ambiente);
+//     
+//	     perception.initPerception(agentePlanta, ambiente);
+//	     
+//	     perception.initPerception(agentePlanta, ambiente);
+//	     
+//	     perception.initPerception(agentePlanta, ambiente);
+//	     
+//	     perception.initPerception(agentePlanta, ambiente);
+//	     
+//	     perception.initPerception(agentePlanta, ambiente);
+//	     
+//	     perception.initPerception(agentePlanta, ambiente);
+//	     
+//	     perception.initPerception(agentePlanta, ambiente);
+//	     
+//	     perception.initPerception(agentePlanta, ambiente);
+//	     
+//	     perception.initPerception(agentePlanta, ambiente);
 	     
 	     
 //	     System.out.print(perception.toString());
 	    
-      
-//        SearchBasedAgentSimulator simulator =
-//                new SearchBasedAgentSimulator(ambiente, agentePlanta);
-//        
-//        simulator.start();
+
     }
 }

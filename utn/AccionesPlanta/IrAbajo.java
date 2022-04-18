@@ -35,6 +35,8 @@ public class IrAbajo extends SearchAction {
         		 
         	 }else if (estadoPlanta.getTablero()[posFila+1][posColumna].contains("z")) {
         		 
+        		 //Poner que lo mata
+        		 
         		String zombies = estadoPlanta.getTablero()[posFila+1][posColumna];
              	Integer cantSoles = Integer.parseInt(zombies.substring(zombies.length() - 1));
         		estadoPlanta.setEnergia(estadoPlanta.getEnergia() - (2*cantSoles));

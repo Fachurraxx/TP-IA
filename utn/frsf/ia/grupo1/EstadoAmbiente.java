@@ -21,7 +21,10 @@ public class EstadoAmbiente extends EnvironmentState {
 		tablero = new String[5][9]; 
 		posicionZombies = new int[5][9];
 		this.initState();
-		System.out.println("EstadoAmbiente()");
+		System.out.println("EstadoAmbiente() ");
+		System.out.println("Energia: " + energiaPlanta);
+		System.out.println("Cant zombies: " + totalZombies);
+
 		System.out.println(this.toString());
 		System.out.println("---------------------------");
 	}
@@ -40,12 +43,7 @@ public class EstadoAmbiente extends EnvironmentState {
 //		this.setPosicionPlantaFila(2);
 //		this.setPosicionPlantaColumna(0);
 
-//      Los zombies siempre inician en la celda mas alejada de la casa, y en el inicio del
-//      juego puede que no estén todos los zombies en el escenario, sino que se van
-//      sumando a medida que transcurre el tiempo
-//      Numero de zombies que aparecen al principio es random, no puede haber mas de 5 porque como los
-//      zombies aparecen siempre lo mas alejado tiene que ser en la ultima columna.
-
+		//Matriz Zombies
 		for (int row = 0; row < 5; row++) {
 			for (int col = 0; col < 9; col++) {
 				posicionZombies[row][col] = -1;
@@ -61,7 +59,6 @@ public class EstadoAmbiente extends EnvironmentState {
 		int missingZombies = totalZombies - zombiesInicio;
 		this.setMissingZombies(missingZombies);
 
-//        En el inicio la planta recibe una cantidad aleatoria de entre 2 y 20 soles. 
 		this.setEnergiaPlanta(getRandomNumber(2, 20));
 
 		this.setZombieEnCasa(false);
@@ -74,12 +71,12 @@ public class EstadoAmbiente extends EnvironmentState {
 		setTableroEnPosicion(4,0, PlantaPerception.GIRASOLES_PERCEPTION);
 		
 		//set energia planta
-		this.setEnergiaPlanta(12);
+		this.setEnergiaPlanta(2);
 		
-		setTableroEnPosicion(2,3, PlantaPerception.PLANTA_PERCEPTION);
+		setTableroEnPosicion(2,6, PlantaPerception.PLANTA_PERCEPTION);
 		this.setPosicionPlantaFila(2);
-		this.setPosicionPlantaColumna(3);
-		
+		this.setPosicionPlantaColumna(6);
+
 
 	}
 
@@ -202,11 +199,16 @@ public class EstadoAmbiente extends EnvironmentState {
 					// si todavia no pasaron 3 ciclos puedo randomly choose to move or not
 					if (posicionZombies[row][col] <= 2) {
 						//TODO check if the previous is empty or nor. If its not empty then we ignore.
-						if (moveRandomlly()) {
+						//TODO chequear que no haya zombies adelante
+						boolean celdaVacia = true;
+						if(col!=0) {
+							celdaVacia = previousZombiePositionEmpty(row, col);
+						}
+						if (moveRandomlly() && celdaVacia) {
 							move = true;
 						}
 					} else {
-						// i have to move it because pasaron 3 ciclos
+						// Me tengo que mover porque pasaron 3 ciclos
 						move = true;
 					}
 
@@ -224,11 +226,11 @@ public class EstadoAmbiente extends EnvironmentState {
 
 		if (col != 0) {
 			// check if the previous spot if empty if not move all one position
-			boolean previousPositionEmpty = previousZombiePositionEmpty(row, col);
-
-			if (!previousPositionEmpty) {
-				moveZombie(row, col - 1);
-			}
+//			boolean previousPositionEmpty = previousZombiePositionEmpty(row, col);
+//
+//			if (!previousPositionEmpty) {
+//				moveZombie(row, col - 1);
+//			}
 
 			posicionZombies[row][col] = -1;
 			posicionZombies[row][col - 1] = 0;
@@ -251,6 +253,8 @@ public class EstadoAmbiente extends EnvironmentState {
 				this.setEnergiaPlanta(newEnergiaPlanta);
 				if(newEnergiaPlanta < 1) {
 					setTableroEnPosicion(row, col - 1, "p-".concat(zombie));
+				}else {
+					posicionZombies[row][col-1] = -1;
 				}
 				
 			}
@@ -262,6 +266,7 @@ public class EstadoAmbiente extends EnvironmentState {
 		} else {
 			// perder juego
 			this.setZombieEnCasa(true);
+			setTableroEnPosicion(row, col, "H");
 		}
 	}
 	
