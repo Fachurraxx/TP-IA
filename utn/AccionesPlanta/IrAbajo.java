@@ -43,7 +43,7 @@ public class IrAbajo extends SearchAction {
          }
          
 
-        return null;
+        return estadoPlanta;
     }
 
 

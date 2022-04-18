@@ -4,6 +4,7 @@ package frsf.ia.grupo1;
 
 	import frsf.cidisi.faia.agent.Perception;
 	import frsf.cidisi.faia.agent.search.SearchBasedAgentState;
+import frsf.cidisi.faia.examples.search.pacman.PacmanPerception;
 
 	/**
 	 * Represent the internal state of the Pacman.
@@ -18,7 +19,11 @@ package frsf.ia.grupo1;
 	    
 
 	    public PlantaState() {
-	    	
+	    	tablero = new String [5][9];
+	    	posicionPlantaFila = 2;
+	        posicionPlantaColumna = 0;
+	        energia = 10;
+	        this.initState();
 	    }
 	    
 	    public PlantaState(String[][] t, int row, int col, int e) {
@@ -36,8 +41,19 @@ package frsf.ia.grupo1;
 
 		@Override
 		public SearchBasedAgentState clone() {
-			// TODO Auto-generated method stub
-			return null;
+			String[][] newWorld = new String[5][9];
+			
+				        for (int row = 0; row < 5; row++) {
+				            for (int col = 0; col < 9; col++) {
+				                newWorld[row][col] = tablero[row][col];
+				            }
+				        }
+			
+			
+				        PlantaState newState = new PlantaState(newWorld,
+				                this.getPosicionPlantaFila(), this.getPosicionPlantaColumna(), this.energia);
+			
+		return newState;
 		}
 
 		@Override
@@ -54,7 +70,16 @@ package frsf.ia.grupo1;
 
 		@Override
 		public void initState() {
-			// TODO Auto-generated method stub
+			for (int row = 0; row < 5; row++) {
+	            for (int col = 0; col < 9; col++) {
+	            	tablero[row][col] = PlantaPerception.UNKNOWN_PERCEPTION;
+	            }
+	        }
+	        
+	        this.setPosicionPlantaFila(2);
+	        this.setPosicionPlantaColumna(0);
+
+	        this.setEnergia(0);
 			
 		}
 	    

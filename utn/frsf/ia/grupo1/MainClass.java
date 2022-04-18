@@ -11,11 +11,26 @@ public class MainClass {
         
         Ambiente ambiente = new Ambiente();
             	
-	     PlantaPerception perception = new PlantaPerception();
-	      
+//	     PlantaPerception perception = new PlantaPerception();
+//	      
+//	     
+//	     perception.initPerception(agentePlanta, ambiente);
+//	    
+//	     perception.initPerception(agentePlanta, ambiente);
+//	     
+//	     perception.initPerception(agentePlanta, ambiente);
+//	     
+//	     perception.initPerception(agentePlanta, ambiente);
+//	     
+//	     perception.initPerception(agentePlanta, ambiente);
+//	     
+//	     perception.initPerception(agentePlanta, ambiente);
+//	     
+//	     perception.initPerception(agentePlanta, ambiente);
 	     
-	     perception.initPerception(agentePlanta, ambiente);
-	     perception.toString();
+	     
+//	     System.out.print(perception.toString());
+	    
       
         SearchBasedAgentSimulator simulator =
                 new SearchBasedAgentSimulator(ambiente, agentePlanta);
