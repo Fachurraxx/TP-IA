@@ -18,7 +18,7 @@ public class EstadoAmbiente extends EnvironmentState {
 	}
 
 	public EstadoAmbiente() {
-		tablero = new String[5][9];
+		tablero = new String[5][9]; 
 		posicionZombies = new int[5][9];
 		this.initState();
 		System.out.println("EstadoAmbiente()");
@@ -32,29 +32,19 @@ public class EstadoAmbiente extends EnvironmentState {
 		// Sets all cells as empty
 		for (int row = 0; row < 5; row++) {
 			for (int col = 0; col < 9; col++) {
-				tablero[row][col] = PlantaPerception.UNKNOWN_PERCEPTION;
+				tablero[row][col] = PlantaPerception.EMPTY_PERCEPTION;
 			}
 		}
 
-		for (int col = 0; col < 9; col++) {
-			tablero[2][col] = PlantaPerception.EMPTY_PERCEPTION;
-		}
-
-		for (int row = 0; row < 5; row++) {
-			tablero[row][1] = PlantaPerception.EMPTY_PERCEPTION;
-		}
-
-//        no se si es necesario poner la posicion de la planta en el tablero
-		tablero[2][1] = PlantaPerception.PLANTA_PERCEPTION;
-		this.setPosicionPlantaFila(2);
-		this.setPosicionPlantaColumna(1);
+//		setTableroEnPosicion(2,0, PlantaPerception.PLANTA_PERCEPTION);
+//		this.setPosicionPlantaFila(2);
+//		this.setPosicionPlantaColumna(0);
 
 //      Los zombies siempre inician en la celda mas alejada de la casa, y en el inicio del
 //      juego puede que no estén todos los zombies en el escenario, sino que se van
 //      sumando a medida que transcurre el tiempo
 //      Numero de zombies que aparecen al principio es random, no puede haber mas de 5 porque como los
-//        zombies aparecen siempre lo mas alejado tiene que ser en la ultima columna.
-//        TODO a menos que sea en la celda LIBRE  mas alejada de la casa? pero para mi esto nos complica
+//      zombies aparecen siempre lo mas alejado tiene que ser en la ultima columna.
 
 		for (int row = 0; row < 5; row++) {
 			for (int col = 0; col < 9; col++) {
@@ -75,12 +65,25 @@ public class EstadoAmbiente extends EnvironmentState {
 		this.setEnergiaPlanta(getRandomNumber(2, 20));
 
 		this.setZombieEnCasa(false);
+		
+		
+//		TEST
+		//Set some girasoles
+		setTableroEnPosicion(1,0, PlantaPerception.GIRASOLES_PERCEPTION);
+		setTableroEnPosicion(3,0, PlantaPerception.GIRASOLES_PERCEPTION);
+		setTableroEnPosicion(4,0, PlantaPerception.GIRASOLES_PERCEPTION);
+		
+		//set energia planta
+		this.setEnergiaPlanta(12);
+		
+		setTableroEnPosicion(2,3, PlantaPerception.PLANTA_PERCEPTION);
+		this.setPosicionPlantaFila(2);
+		this.setPosicionPlantaColumna(3);
+		
 
 	}
 
 	public void agregarZombiesAlTablero(int zombiesInicio) {
-		// TODO check if the plant is in the last column and if we add a zombie it
-		// looses energy?
 
 		for (int i = 0; i < zombiesInicio; i++) {
 			int tipoDeZombie = getRandomNumber(1, 5);
@@ -92,28 +95,43 @@ public class EstadoAmbiente extends EnvironmentState {
 				else
 					filaPorDondeCamina = getRandomNumber(0, 4);
 			}
-			switch (tipoDeZombie) {
-			case 1:
-				tablero[filaPorDondeCamina][8] = PlantaPerception.Z1_PERCEPTION;
-				posicionZombies[filaPorDondeCamina][8] = 0;
-				break;
-			case 2:
-				tablero[filaPorDondeCamina][8] = PlantaPerception.Z2_PERCEPTION;
-				posicionZombies[filaPorDondeCamina][8] = 0;
-				break;
-			case 3:
-				tablero[filaPorDondeCamina][8] = PlantaPerception.Z3_PERCEPTION;
-				posicionZombies[filaPorDondeCamina][8] = 0;
-				break;
-			case 4:
-				tablero[filaPorDondeCamina][8] = PlantaPerception.Z4_PERCEPTION;
-				posicionZombies[filaPorDondeCamina][8] = 0;
-				break;
-			case 5:
-				tablero[filaPorDondeCamina][8] = PlantaPerception.Z5_PERCEPTION;
-				posicionZombies[filaPorDondeCamina][8] = 0;
-				break;
+//			Check if the plant is in that position.
+//			If its then we just rest the energy to the plant 
+//				if the energy is enough to kill it then we dont display it on the environment 
+//				if the energy is not enough then we display 'p z4' for example to show the plant died in that position
+//			If the plant is not on that position then we just add the zombie
+			if(posicionPlantaColumna==8 && posicionPlantaFila==filaPorDondeCamina) {
+				int newEnergiaPlanta = energiaPlanta - tipoDeZombie * 2;
+				this.setEnergiaPlanta(newEnergiaPlanta);
+				if(newEnergiaPlanta < 1) {
+					setTableroEnPosicion(filaPorDondeCamina, 8, "p-z".concat(String.valueOf(tipoDeZombie)));
+				}
 			}
+			else {
+				switch (tipoDeZombie) {
+				case 1:
+					tablero[filaPorDondeCamina][8] = PlantaPerception.Z1_PERCEPTION;
+					posicionZombies[filaPorDondeCamina][8] = 0;
+					break;
+				case 2:
+					tablero[filaPorDondeCamina][8] = PlantaPerception.Z2_PERCEPTION;
+					posicionZombies[filaPorDondeCamina][8] = 0;
+					break;
+				case 3:
+					tablero[filaPorDondeCamina][8] = PlantaPerception.Z3_PERCEPTION;
+					posicionZombies[filaPorDondeCamina][8] = 0;
+					break;
+				case 4:
+					tablero[filaPorDondeCamina][8] = PlantaPerception.Z4_PERCEPTION;
+					posicionZombies[filaPorDondeCamina][8] = 0;
+					break;
+				case 5:
+					tablero[filaPorDondeCamina][8] = PlantaPerception.Z5_PERCEPTION;
+					posicionZombies[filaPorDondeCamina][8] = 0;
+					break;
+				}
+			}
+			
 
 		}
 
@@ -132,11 +150,10 @@ public class EstadoAmbiente extends EnvironmentState {
 	}
 
 	public void setSoles() {
-		// Check where we have a girasol and generate soles with random function from 1
-		// till 3
+		// Check where we have a girasol and generate soles with random function from 1 till 3
 
-		for (int row = 0; row < tablero.length; row++) {
-			for (int col = 0; col < tablero.length; col++) {
+		for (int row = 0; row < 5; row++) {
+			for (int col = 0; col < 9; col++) {
 				// basically if we dont have a zombie, the plant or empty then we have a
 				// girasol(integer number)
 
@@ -184,8 +201,8 @@ public class EstadoAmbiente extends EnvironmentState {
 
 					// si todavia no pasaron 3 ciclos puedo randomly choose to move or not
 					if (posicionZombies[row][col] <= 2) {
-						int auxMove = getRandomNumber(0, 1);
-						if (auxMove == 1) {
+						//TODO check if the previous is empty or nor. If its not empty then we ignore.
+						if (moveRandomlly()) {
 							move = true;
 						}
 					} else {
@@ -202,6 +219,52 @@ public class EstadoAmbiente extends EnvironmentState {
 		}
 	}
 
+
+	private void moveZombie(int row, int col) {
+
+		if (col != 0) {
+			// check if the previous spot if empty if not move all one position
+			boolean previousPositionEmpty = previousZombiePositionEmpty(row, col);
+
+			if (!previousPositionEmpty) {
+				moveZombie(row, col - 1);
+			}
+
+			posicionZombies[row][col] = -1;
+			posicionZombies[row][col - 1] = 0;
+
+//        	Si un zombie llega a la posición de un girasol, el girasol muere y desaparecen
+//        	todos los soles que tenía ese girasol: Esto no es un probelma porque unicamente sobreescribimos
+//        	lo que hay en la posicion por un zombie
+
+//        	Si la planta se mueve a una celda en la cual hay un zombie, la planta perderá una
+//        	cantidad de soles multiplicando por dos a los valores de la Tabla 1: como hacemos en el caso de que el 
+//        	zombie se mueve a la posicion donde esta la planta? solo le restamos energia a la planta y si tiene suficiente lo mata
+//			sino pierde
+
+			String zombie = tablero[row][col];
+			
+			if (posicionPlantaFila == row && posicionPlantaColumna == col - 1) {
+				// make plant fight with the zombie but for twice the energy
+				int tipoZombie = getTipoZombie(zombie);
+				int newEnergiaPlanta = energiaPlanta - tipoZombie * 2;
+				this.setEnergiaPlanta(newEnergiaPlanta);
+				if(newEnergiaPlanta < 1) {
+					setTableroEnPosicion(row, col - 1, "p-".concat(zombie));
+				}
+				
+			}
+			else {
+				setTableroEnPosicion(row, col - 1, zombie);
+			}
+
+			setTableroEnPosicion(row, col, PlantaPerception.EMPTY_PERCEPTION);
+		} else {
+			// perder juego
+			this.setZombieEnCasa(true);
+		}
+	}
+	
 	private int getTipoZombie(String tipoZombieString) {
 		int tipoZombie = 0;
 
@@ -231,52 +294,12 @@ public class EstadoAmbiente extends EnvironmentState {
 		// check if col-1 is empty
 		int previousColumn = posicionZombies[row][col - 1];
 
-		if (previousColumn == -1) {
+		if (previousColumn == -1 && !tablero[row][col - 1].contains("z")) {
 			isEmpty = true;
 		}
 
 		return isEmpty;
 
-	}
-
-	private void moveZombie(int row, int col) {
-
-		if (col != 0) {
-			// check if the previous spot if empty if not move all one position
-			boolean previousPositionEmpty = previousZombiePositionEmpty(row, col);
-
-			if (!previousPositionEmpty) {
-				moveZombie(row, col - 1);
-			}
-
-			posicionZombies[row][col] = -1;
-			posicionZombies[row][col - 1] = 0;
-
-//        	Si un zombie llega a la posición de un girasol, el girasol muere y desaparecen
-//        	todos los soles que tenía ese girasol: Esto no es un probelma porque unicamente sobreescribimos
-//        	lo que hay en la posicion por un zombie
-
-//        	Si la planta se mueve a una celda en la cual hay un zombie, la planta perderá una
-//        	cantidad de soles multiplicando por dos a los valores de la Tabla 1: como hacemos en el caso de que el 
-//        	zombie se mueve a la posicion donde esta la planta? solo le restamos energia a la planta? y si hacemos 
-//        	que la planta se mueva una posicion para atras dps de perder la energia? sino que onda se quedan los dos 
-//        	en el mismo lugar?
-
-			String zombie = tablero[row][col];
-
-			if (posicionPlantaFila == row && posicionPlantaColumna == col - 1) {
-				// make plant loose energy
-				int tipoZombie = getTipoZombie(zombie);
-				int totalEnergiaAPerder = energiaPlanta - tipoZombie;
-				this.setEnergiaPlanta(totalEnergiaAPerder);
-			}
-
-			setTableroEnPosicion(row, col - 1, zombie);
-			setTableroEnPosicion(row, col, PlantaPerception.EMPTY_PERCEPTION);
-		} else {
-			// perder juego
-			this.setZombieEnCasa(true);
-		}
 	}
 
 	private int getNumberOfZombiesLastColumn() {
@@ -359,7 +382,12 @@ public class EstadoAmbiente extends EnvironmentState {
 	}
 
 	public int getRandomNumber(int min, int max) {
-		return (int) ((Math.random() * (max - min)) + min);
+		return (int) ((Math.random() * (max + 1 - min)) + min);
+		
+	}
+	
+	public boolean moveRandomlly() {
+		return Math.random() < 0.5;
 	}
 
 	/**

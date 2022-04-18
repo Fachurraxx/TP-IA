@@ -10,31 +10,39 @@ public class MainClass {
         Planta agentePlanta = new Planta();
         
         Ambiente ambiente = new Ambiente();
+        
+        
             	
-//	     PlantaPerception perception = new PlantaPerception();
-//	      
-//	     
-//	     perception.initPerception(agentePlanta, ambiente);
-//	    
-//	     perception.initPerception(agentePlanta, ambiente);
-//	     
-//	     perception.initPerception(agentePlanta, ambiente);
-//	     
-//	     perception.initPerception(agentePlanta, ambiente);
-//	     
-//	     perception.initPerception(agentePlanta, ambiente);
-//	     
-//	     perception.initPerception(agentePlanta, ambiente);
-//	     
-//	     perception.initPerception(agentePlanta, ambiente);
+	    PlantaPerception perception = new PlantaPerception();
+	      
+	     
+	     perception.initPerception(agentePlanta, ambiente);
+   
+	     perception.initPerception(agentePlanta, ambiente);
+	     
+	     perception.initPerception(agentePlanta, ambiente);
+	     
+	     perception.initPerception(agentePlanta, ambiente);
+	     
+	     perception.initPerception(agentePlanta, ambiente);
+	     
+	     perception.initPerception(agentePlanta, ambiente);
+     
+	     perception.initPerception(agentePlanta, ambiente);
+	     
+	     perception.initPerception(agentePlanta, ambiente);
+	     
+	     perception.initPerception(agentePlanta, ambiente);
+	     
+	     perception.initPerception(agentePlanta, ambiente);
 	     
 	     
 //	     System.out.print(perception.toString());
 	    
       
-        SearchBasedAgentSimulator simulator =
-                new SearchBasedAgentSimulator(ambiente, agentePlanta);
-        
-        simulator.start();
+//        SearchBasedAgentSimulator simulator =
+//                new SearchBasedAgentSimulator(ambiente, agentePlanta);
+//        
+//        simulator.start();
     }
 }
