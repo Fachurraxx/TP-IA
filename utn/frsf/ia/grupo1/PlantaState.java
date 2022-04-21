@@ -321,6 +321,10 @@ public class PlantaState extends SearchBasedAgentState {
 	public void setTableroEnPosicion(int row, int col, String value) {
 		this.tablero[row][col] = value;
 	}
+	
+	public String getTableroEnPosicion(int row, int col) {
+		return tablero[row][col];
+	}
 
 	public int getPosicionPlantaFila() {
 		return posicionPlantaFila;
@@ -353,63 +357,29 @@ public class PlantaState extends SearchBasedAgentState {
 	public void setTotalZombies(int totalZombies) {
 		this.totalZombies = totalZombies;
 	}
+	
+	public int getTipoZombie(String tipoZombieString) {
+		int tipoZombie = 0;
 
-//	    public boolean isAllWorldKnown() {
-//	        for (int row = 0; row < world.length; row++) {
-//	            for (int col = 0; col < world.length; col++) {
-//	                if (world[row][col] == PacmanPerception.UNKNOWN_PERCEPTION) {
-//	                    return false;
-//	                }
-//	            }
-//	        }
-//	        
-//	        return true;
-//	    }
-//
-//	    public int getUnknownCellsCount() {
-//	        int result = 0;
-//
-//	        for (int row = 0; row < world.length; row++) {
-//	            for (int col = 0; col < world.length; col++) {
-//	                if (world[row][col] == PacmanPerception.UNKNOWN_PERCEPTION) {
-//	                    result++;
-//	                }
-//	            }
-//	        }
-//
-//	        return result;
-//	    }
-//
-//	    public int getRemainingFoodCount() {
-//	        int result = 0;
-//
-//	        for (int row = 0; row < world.length; row++) {
-//	            for (int col = 0; col < world.length; col++) {
-//	                if (world[row][col] == PacmanPerception.FOOD_PERCEPTION) {
-//	                    result++;
-//	                }
-//	            }
-//	        }
-//	        
-//	        return result;
-//	    }
-//
-//	    public boolean isNoMoreFood() {
-//	        for (int row = 0; row < world.length; row++) {
-//	            for (int col = 0; col < world.length; col++) {
-//	                if (world[row][col] == PacmanPerception.FOOD_PERCEPTION) {
-//	                    return false;
-//	                }
-//	            }
-//	        }
-//	        return true;
-//	    }
-//
-//	    public int getVisitedCellsCount() {
-//	        return visitedCells;
-//	    }
-//
-//	    public void increaseVisitedCellsCount() {
-//	        this.visitedCells = +20;
-//	    }
+		switch (tipoZombieString) {
+		case "z1":
+			tipoZombie = 1;
+			break;
+		case "z2":
+			tipoZombie = 2;
+			break;
+		case "z3":
+			tipoZombie = 3;
+			break;
+		case "z4":
+			tipoZombie = 4;
+			break;
+		case "z5":
+			tipoZombie = 5;
+			break;
+		}
+
+		return tipoZombie;
+	}
+	
 }
