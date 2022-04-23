@@ -51,6 +51,10 @@ public class Planta extends SearchBasedAgent {
 		Problem problem = new Problem(goal, plantaState, operators);
 		this.setProblem(problem);
 	}
+	
+	public Planta(String[][] t, int row, int col, int e, int z) {
+		
+	}
 
 	/**
 	 * This method is executed by the simulator to ask the agent for an action.

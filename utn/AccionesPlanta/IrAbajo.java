@@ -37,10 +37,10 @@ public class IrAbajo extends SearchAction {
 
         	if(posicionPlantaValor.contains("-")) {
         		posicionPlantaValor = posicionPlantaValor.split("-")[1];
-        		estadoPlanta.setTableroEnPosicion(row+1, col, posicionPlantaValor);
+        		estadoPlanta.setTableroEnPosicion(row, col, posicionPlantaValor);
         	}
         	else {
-            	estadoPlanta.setTableroEnPosicion(row+1, col, PlantaPerception.EMPTY_PERCEPTION);
+            	estadoPlanta.setTableroEnPosicion(row, col, PlantaPerception.EMPTY_PERCEPTION);
         	}
         }
         else{
@@ -93,12 +93,12 @@ public class IrAbajo extends SearchAction {
         	
         	if(posicionPlantaValor.contains("-")) {
         		posicionPlantaValor = posicionPlantaValor.split("-")[1];
-        		estadoAmbiente.setTableroEnPosicion(row+1, col, posicionPlantaValor);
-        		estadoPlanta.setTableroEnPosicion(row+1, col, posicionPlantaValor);
+        		estadoAmbiente.setTableroEnPosicion(row, col, posicionPlantaValor);
+        		estadoPlanta.setTableroEnPosicion(row, col, posicionPlantaValor);
         	}
         	else {
-            	estadoAmbiente.setTableroEnPosicion(row+1, col, PlantaPerception.EMPTY_PERCEPTION);
-            	estadoPlanta.setTableroEnPosicion(row+1, col, PlantaPerception.EMPTY_PERCEPTION);
+            	estadoAmbiente.setTableroEnPosicion(row, col, PlantaPerception.EMPTY_PERCEPTION);
+            	estadoPlanta.setTableroEnPosicion(row, col, PlantaPerception.EMPTY_PERCEPTION);
         	}
         }
         else{

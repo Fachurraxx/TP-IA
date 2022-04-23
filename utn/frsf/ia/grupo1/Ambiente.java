@@ -23,8 +23,15 @@ public class Ambiente extends Environment {
 
 		PlantaPerception perception = new PlantaPerception();
 
+		perception.initPerception(null, this);
+		
+		this.getEnvironmentState().setSoles();
+		this.getEnvironmentState().updateZombies();		
+		
 		perception.setRowSensor(this.getRow(this.getEnvironmentState().getPosicionPlantaFila()));
 		perception.setColumnSensor(this.getColumn(this.getEnvironmentState().getPosicionPlantaColumna()));
+		
+		
 
 		return perception;
 	}

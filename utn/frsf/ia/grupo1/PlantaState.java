@@ -19,8 +19,8 @@ public class PlantaState extends SearchBasedAgentState {
 	public PlantaState() {
 		tablero = new String[5][9];
 		posicionPlantaFila = 2;
-		posicionPlantaColumna = 0;
-		energia = 0;// TODO check this energy
+		posicionPlantaColumna = 3;
+		energia = 0; // TODO check this energy
 		this.initState();
 	}
 
@@ -65,12 +65,13 @@ public class PlantaState extends SearchBasedAgentState {
 
 		String[] columnSensor = plantaPerception.getColumnSensor();
 		for (int i=0; i < columnSensor.length; i++) {
-			tablero[row][i] = columnSensor[i];
+			tablero[i][col] = columnSensor[i];
 		}
 
 		String[] rowSensor = plantaPerception.getRowSensor();
+
 		for (int i=0; i < rowSensor.length; i++) {
-			tablero[i][col] = columnSensor[i];
+			tablero[row][i] = rowSensor[i];
 		}
 
 		energia = plantaPerception.getEnergy();

@@ -7,42 +7,13 @@ import frsf.cidisi.faia.simulator.SearchBasedAgentSimulator;
 public class MainClass {
     
     public static void main(String[] args) throws PrologConnectorException {
-        Planta agentePlanta = new Planta();
+        
         
         Ambiente ambiente = new Ambiente();
+        Planta agentePlanta = new Planta();
+        SearchBasedAgentSimulator simulator =
+                new SearchBasedAgentSimulator(ambiente, agentePlanta);
         
-        
-            	
-	    PlantaPerception perception = new PlantaPerception();
-	      
-	     
-	     perception.initPerception(agentePlanta, ambiente);
-   
-	     perception.initPerception(agentePlanta, ambiente);
-	     
-	     perception.initPerception(agentePlanta, ambiente);
-	     
-	     perception.initPerception(agentePlanta, ambiente);
-	     
-	     perception.initPerception(agentePlanta, ambiente);
-	     
-	     perception.initPerception(agentePlanta, ambiente);
-     
-	     perception.initPerception(agentePlanta, ambiente);
-	     
-	     perception.initPerception(agentePlanta, ambiente);
-	     
-	     perception.initPerception(agentePlanta, ambiente);
-	     
-	     perception.initPerception(agentePlanta, ambiente);
-	     
-	     
-//	     System.out.print(perception.toString());
-	    
-      
-//        SearchBasedAgentSimulator simulator =
-//                new SearchBasedAgentSimulator(ambiente, agentePlanta);
-//        
-//        simulator.start();
+        simulator.start();
     }
 }
