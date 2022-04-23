@@ -265,7 +265,7 @@ public class EstadoAmbiente extends EnvironmentState {
 		}
 	}
 	
-	private int getTipoZombie(String tipoZombieString) {
+	public int getTipoZombie(String tipoZombieString) {
 		int tipoZombie = 0;
 
 		switch (tipoZombieString) {
@@ -313,6 +313,10 @@ public class EstadoAmbiente extends EnvironmentState {
 		return aux;
 	}
 
+	public String getTableroEnPosicion(int row, int col) {
+		return this.tablero[row][col];
+	}
+	
 	public void setTableroEnPosicion(int row, int col, String value) {
 		this.tablero[row][col] = value;
 	}
