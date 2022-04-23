@@ -1,6 +1,5 @@
 package AccionesPlanta;
 
-import frsf.cidisi.faia.examples.search.pacman.*;
 import frsf.cidisi.faia.agent.search.SearchAction;
 import frsf.cidisi.faia.agent.search.SearchBasedAgentState;
 import frsf.cidisi.faia.state.AgentState;
@@ -38,10 +37,10 @@ public class IrAbajo extends SearchAction {
 
         	if(posicionPlantaValor.contains("-")) {
         		posicionPlantaValor = posicionPlantaValor.split("-")[1];
-        		estadoPlanta.setTableroEnPosicion(row-1, col, posicionPlantaValor);
+        		estadoPlanta.setTableroEnPosicion(row+1, col, posicionPlantaValor);
         	}
         	else {
-            	estadoPlanta.setTableroEnPosicion(row-1, col, PlantaPerception.EMPTY_PERCEPTION);
+            	estadoPlanta.setTableroEnPosicion(row+1, col, PlantaPerception.EMPTY_PERCEPTION);
         	}
         }
         else{
@@ -94,12 +93,12 @@ public class IrAbajo extends SearchAction {
         	
         	if(posicionPlantaValor.contains("-")) {
         		posicionPlantaValor = posicionPlantaValor.split("-")[1];
-        		estadoAmbiente.setTableroEnPosicion(row-1, col, posicionPlantaValor);
-        		estadoPlanta.setTableroEnPosicion(row-1, col, posicionPlantaValor);
+        		estadoAmbiente.setTableroEnPosicion(row+1, col, posicionPlantaValor);
+        		estadoPlanta.setTableroEnPosicion(row+1, col, posicionPlantaValor);
         	}
         	else {
-            	estadoAmbiente.setTableroEnPosicion(row-1, col, PlantaPerception.EMPTY_PERCEPTION);
-            	estadoPlanta.setTableroEnPosicion(row-1, col, PlantaPerception.EMPTY_PERCEPTION);
+            	estadoAmbiente.setTableroEnPosicion(row+1, col, PlantaPerception.EMPTY_PERCEPTION);
+            	estadoPlanta.setTableroEnPosicion(row+1, col, PlantaPerception.EMPTY_PERCEPTION);
         	}
         }
         else{
