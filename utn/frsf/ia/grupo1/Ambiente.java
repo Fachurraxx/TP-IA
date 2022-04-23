@@ -28,8 +28,39 @@ public class Ambiente extends Environment {
 		this.getEnvironmentState().setSoles();
 		this.getEnvironmentState().updateZombies();		
 		
-		perception.setRowSensor(this.getRow(this.getEnvironmentState().getPosicionPlantaFila()));
-		perception.setColumnSensor(this.getColumn(this.getEnvironmentState().getPosicionPlantaColumna()));
+		String[] sensorFila = this.getRow(this.getEnvironmentState().getPosicionPlantaFila());
+		String[] sensorColumna = this.getColumn(this.getEnvironmentState().getPosicionPlantaColumna());
+		
+		int plantaCol = this.getEnvironmentState().getPosicionPlantaColumna();
+		int plantaFila = this.getEnvironmentState().getPosicionPlantaFila();
+		
+		boolean obsDerecha = false;
+		boolean obsIzquierda = false;
+		boolean obsArriba = false;
+		boolean obsAbajo = false;
+		
+		for(int i = plantaCol+1; i<=8; i++) {			
+			if(obsDerecha) 	sensorFila[i] = PlantaPerception.UNKNOWN_PERCEPTION;
+			if(sensorFila[i] != "e") obsDerecha = true;
+		}
+		
+		for(int i = plantaCol-1; i>=0; i--) {	
+			if(obsIzquierda) sensorFila[i] = PlantaPerception.UNKNOWN_PERCEPTION;
+			if(sensorFila[i] != "e") obsIzquierda = true;
+		}
+		
+		for(int i = plantaFila+1; i<=4; i++) {
+			if(obsAbajo) 	sensorColumna[i] = PlantaPerception.UNKNOWN_PERCEPTION;
+			if(sensorColumna[i] != "e") obsAbajo = true;
+		}
+		
+		for(int i = plantaFila-1; i>=0; i--) {	
+			if(obsArriba) sensorColumna[i] = PlantaPerception.UNKNOWN_PERCEPTION;
+			if(sensorColumna[i] != "e") obsArriba = true;
+		}
+		
+		perception.setRowSensor(sensorFila);
+		perception.setColumnSensor(sensorColumna);
 		
 		
 

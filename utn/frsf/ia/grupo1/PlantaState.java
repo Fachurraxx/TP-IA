@@ -28,7 +28,7 @@ public class PlantaState extends SearchBasedAgentState {
 		this.setEnergia(energiaPlanta);
 		this.setTotalZombies(totalZombies);
 
-		this.initTablero();
+		this.initState();
 	}
 
 	public PlantaState(String[][] t, int row, int col, int e, int z) {
@@ -66,17 +66,17 @@ public class PlantaState extends SearchBasedAgentState {
 	@Override
 	public void updateState(Perception p) {
 		PlantaPerception plantaPerception = (PlantaPerception) p;
-
+	
 		int row = this.getPosicionPlantaFila();
 		int col = this.getPosicionPlantaColumna();
 
 		String[] columnSensor = plantaPerception.getColumnSensor();
+		String[] rowSensor = plantaPerception.getRowSensor();
+		
 		for (int i=0; i < columnSensor.length; i++) {
 			tablero[i][col] = columnSensor[i];
-		}
-
-		String[] rowSensor = plantaPerception.getRowSensor();
-
+		}	
+		
 		for (int i=0; i < rowSensor.length; i++) {
 			tablero[row][i] = rowSensor[i];
 		}
@@ -90,7 +90,7 @@ public class PlantaState extends SearchBasedAgentState {
 	 * This method is optional, and sets the initial state of the agent.
 	 */
 	@Override
-	public void initTablero() {
+	public void initState() {
 		for (int row = 0; row < 5; row++) {
 			for (int col = 0; col < 9; col++) {
 				if(row != 2 && col !=3)

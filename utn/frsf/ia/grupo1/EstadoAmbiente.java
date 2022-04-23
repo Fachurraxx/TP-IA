@@ -20,14 +20,14 @@ public class EstadoAmbiente extends EnvironmentState {
 	public EstadoAmbiente() {
 		tablero = new String[5][9]; 
 		posicionZombies = new int[5][9];
-		this.initTablero();
+		this.initState();
 		System.out.println("EstadoAmbiente()");
 		System.out.println(this.toString());
 		System.out.println("---------------------------");
 	}
 
 	@Override
-	public void initTablero() {
+	public void initState() {
 
 		// Sets all cells as empty
 		for (int row = 0; row < 5; row++) {
@@ -70,8 +70,10 @@ public class EstadoAmbiente extends EnvironmentState {
 //		TEST
 		//Set some girasoles
 		setTableroEnPosicion(1,0, PlantaPerception.GIRASOLES_PERCEPTION);
-		setTableroEnPosicion(3,0, PlantaPerception.GIRASOLES_PERCEPTION);
-		setTableroEnPosicion(4,0, PlantaPerception.GIRASOLES_PERCEPTION);
+		setTableroEnPosicion(2,5, PlantaPerception.GIRASOLES_PERCEPTION);
+		setTableroEnPosicion(2,2, PlantaPerception.GIRASOLES_PERCEPTION);
+		setTableroEnPosicion(1,3, PlantaPerception.GIRASOLES_PERCEPTION);
+		setTableroEnPosicion(3,3, PlantaPerception.GIRASOLES_PERCEPTION);
 		
 		//set energia planta
 		this.setEnergiaPlanta(12);
@@ -421,4 +423,6 @@ public class EstadoAmbiente extends EnvironmentState {
 
 		return str;
 	}
+
+
 }
