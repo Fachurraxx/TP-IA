@@ -313,12 +313,12 @@ public class EstadoAmbiente extends EnvironmentState {
 		return aux;
 	}
 
-	public String getTableroEnPosicion(int row, int col) {
-		return this.tablero[row][col];
-	}
-	
 	public void setTableroEnPosicion(int row, int col, String value) {
 		this.tablero[row][col] = value;
+	}
+	
+	public String getTableroEnPosicion(int row, int col) {
+		return tablero[row][col];
 	}
 
 	public int getPosicionPlantaFila() {
