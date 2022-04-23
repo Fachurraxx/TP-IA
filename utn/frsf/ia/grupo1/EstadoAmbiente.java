@@ -20,14 +20,14 @@ public class EstadoAmbiente extends EnvironmentState {
 	public EstadoAmbiente() {
 		tablero = new String[5][9]; 
 		posicionZombies = new int[5][9];
-		this.initState();
+		this.initTablero();
 		System.out.println("EstadoAmbiente()");
 		System.out.println(this.toString());
 		System.out.println("---------------------------");
 	}
 
 	@Override
-	public void initState() {
+	public void initTablero() {
 
 		// Sets all cells as empty
 		for (int row = 0; row < 5; row++) {

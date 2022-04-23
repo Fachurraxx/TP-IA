@@ -27,7 +27,7 @@ public class PlantaPerception extends Perception {
 	private int energy;
 
 	public PlantaPerception() {
-		// TODO compare to Pacman where it set the energy to 50
+		energy=12;
 	}
 
 	public PlantaPerception(Agent agent, Environment environment) {

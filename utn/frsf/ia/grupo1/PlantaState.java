@@ -16,12 +16,19 @@ public class PlantaState extends SearchBasedAgentState {
 	private int energia;
 	private int totalZombies;
 
-	public PlantaState() {
+	public PlantaState(int energiaPlanta, int  totalZombies) {
 		tablero = new String[5][9];
-		posicionPlantaFila = 2;
-		posicionPlantaColumna = 3;
-		energia = 0; // TODO check this energy
-		this.initState();
+//		posicionPlantaFila = 2;
+//		posicionPlantaColumna = 3;
+//		energia = energiaPlanta;
+//		
+		this.setPosicionPlantaFila(2);
+		this.setPosicionPlantaColumna(3);
+
+		this.setEnergia(energiaPlanta);
+		this.setTotalZombies(totalZombies);
+
+		this.initTablero();
 	}
 
 	public PlantaState(String[][] t, int row, int col, int e, int z) {
@@ -47,7 +54,7 @@ public class PlantaState extends SearchBasedAgentState {
 		}
 
 		PlantaState newState = new PlantaState(newWorld, this.getPosicionPlantaFila(), this.getPosicionPlantaColumna(),
-				this.energia, this.totalZombies);
+				this.getEnergia(), this.getTotalZombies());
 
 		return newState;
 	}
@@ -83,18 +90,13 @@ public class PlantaState extends SearchBasedAgentState {
 	 * This method is optional, and sets the initial state of the agent.
 	 */
 	@Override
-	public void initState() {
+	public void initTablero() {
 		for (int row = 0; row < 5; row++) {
 			for (int col = 0; col < 9; col++) {
-				tablero[row][col] = PlantaPerception.UNKNOWN_PERCEPTION;
+				if(row != 2 && col !=3)
+					tablero[row][col] = PlantaPerception.UNKNOWN_PERCEPTION;
 			}
 		}
-
-		this.setPosicionPlantaFila(2);
-		this.setPosicionPlantaColumna(0);
-
-		this.setEnergia(0);
-		this.setTotalZombies(0);
 
 	}
 
