@@ -19,23 +19,29 @@ public class Plantar extends SearchAction {
 	        /* La planta puede plantar en una posicion distinta a la posicion actual, en una casilla vacia y debe tener 2 soles o mas*/
 	        
 	        if ( estadoPlanta.getEnergia() >=2 ) {        	
-	        	for(int j=0; j<9; j++){
-	        		for(int i=0; i<5; i++){
-	        			if(estadoPlanta.getTablero()[i][j] == "e") {
+	        	for(int col=0; col<9; col++){
+	        		for(int row=0; row<5; row++){
+	        			if(estadoPlanta.getTablero()[row][col] == "e") {
 	        			
 	        				estadoPlanta.setEnergia(estadoPlanta.getEnergia() -1 );
-	        				estadoPlanta.setTableroEnPosicion(i, j, PlantaPerception.GIRASOLES_PERCEPTION);
+	        				estadoPlanta.setTableroEnPosicion(row, col, PlantaPerception.GIRASOLES_PERCEPTION);
 	        				
-	        				j= 10;
-	        				i=6;
-	        			}      				
+	        				col= 10;
+	        				row=6;
+	        			}
+	        			else if(estadoPlanta.getTablero()[row][col] == "p") {
+		        			
+	        				estadoPlanta.setEnergia(estadoPlanta.getEnergia() -1 );
+	        				estadoPlanta.setTableroEnPosicion(row, col, "p-" + PlantaPerception.GIRASOLES_PERCEPTION);
+	        				
+	        				col= 10;
+	        				row=6;
+	        			}   
 	        		}
-	        	}
-
-	        	return estadoPlanta;					        	
+	        	}			        	
 	        }
 	        
-	        return null;
+	        return estadoPlanta;
 	    }
 
 
@@ -46,22 +52,30 @@ public class Plantar extends SearchAction {
 	        PlantaState estadoPlanta = (PlantaState) ast;
 	        
 	        if ( estadoAmbiente.getEnergiaPlanta() >=2 ) {        	
-	        	for(int j=0; j<9; j++){
-	        		for(int i=0; i<5; i++){
-	        			if(estadoAmbiente.getTablero()[i][j] == "e") {
+	        	for(int col=0; col<9; col++){
+	        		for(int row=0; row<5; row++){
+	        			if(estadoAmbiente.getTablero()[row][col] == "e") {
 	        			
 	        				estadoAmbiente.setEnergiaPlanta(estadoPlanta.getEnergia() -1 );
-	        				estadoAmbiente.setTableroEnPosicion(i, j, PlantaPerception.GIRASOLES_PERCEPTION);
-	        				estadoPlanta.setTableroEnPosicion(i, j, PlantaPerception.GIRASOLES_PERCEPTION);
-	        				j= 10; i=6;
-	        			}      				
+	        				estadoAmbiente.setTableroEnPosicion(row, col, PlantaPerception.GIRASOLES_PERCEPTION);
+	        				estadoPlanta.setEnergia(estadoPlanta.getEnergia() -1 );
+	        				estadoPlanta.setTableroEnPosicion(row, col, PlantaPerception.GIRASOLES_PERCEPTION);
+	        				col= 10;
+	        				row=6;
+	        			}
+	        			else if(estadoAmbiente.getTablero()[row][col] == "p") {
+		        			
+	        				estadoAmbiente.setEnergiaPlanta(estadoPlanta.getEnergia() -1 );
+	        				estadoAmbiente.setTableroEnPosicion(row, col, "p-" + PlantaPerception.GIRASOLES_PERCEPTION);
+	        				estadoPlanta.setEnergia(estadoPlanta.getEnergia() -1 );
+	        				estadoPlanta.setTableroEnPosicion(row, col, "p-" + PlantaPerception.GIRASOLES_PERCEPTION);
+	        				col= 10;
+	        				row=6;
+	        			}   
 	        		}
 	        	}
-
-	        	return estadoAmbiente;					        	
+				        	
 	        }
-	        
-	        
 	        
 	        return estadoAmbiente;
 	    }

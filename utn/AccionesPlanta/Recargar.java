@@ -26,32 +26,27 @@ public class Recargar extends SearchAction {
         	Integer cantSoles = Integer.parseInt(estadoPlanta.getTablero()[posFila-1][posColumna]);	        	    	
         	estadoPlanta.setEnergia(estadoPlanta.getEnergia() + cantSoles);
         	estadoPlanta.setTableroEnPosicion(posFila-1, posColumna, PlantaPerception.GIRASOLES_PERCEPTION);
-        	return estadoPlanta;
 				        	
         }else if ( estadoPlanta.getTablero()[posFila+1][posColumna].matches("[+-]?\\d*(\\.\\d+)?") ) {
         	
         	Integer cantSoles = Integer.parseInt(estadoPlanta.getTablero()[posFila+1][posColumna]);	        	    	
         	estadoPlanta.setEnergia(estadoPlanta.getEnergia() + cantSoles);
         	estadoPlanta.setTableroEnPosicion(posFila+1, posColumna, PlantaPerception.GIRASOLES_PERCEPTION);
-        	return estadoPlanta;
 				        	
         }else if ( estadoPlanta.getTablero()[posFila][posColumna-1].matches("[+-]?\\d*(\\.\\d+)?") ) {
         	
         	Integer cantSoles = Integer.parseInt(estadoPlanta.getTablero()[posFila][posColumna-1]);	        	    	
         	estadoPlanta.setEnergia(estadoPlanta.getEnergia() + cantSoles);
         	estadoPlanta.setTableroEnPosicion(posFila, posColumna-1, PlantaPerception.GIRASOLES_PERCEPTION);
-        	return estadoPlanta;
 				        	
         }else if ( estadoPlanta.getTablero()[posFila][posColumna+1].matches("[+-]?\\d*(\\.\\d+)?") ) {
         	
         	Integer cantSoles = Integer.parseInt(estadoPlanta.getTablero()[posFila][posColumna+1]);	        	    	
         	estadoPlanta.setEnergia(estadoPlanta.getEnergia() + cantSoles);
-        	estadoPlanta.setTableroEnPosicion(posFila, posColumna+1, PlantaPerception.GIRASOLES_PERCEPTION);
-        	return estadoPlanta;
-				        	
+        	estadoPlanta.setTableroEnPosicion(posFila, posColumna+1, PlantaPerception.GIRASOLES_PERCEPTION);				        	
         }
         
-        return null;
+        return estadoPlanta;
     }
 
 
@@ -72,8 +67,8 @@ public class Recargar extends SearchAction {
         	Integer cantSoles = Integer.parseInt(estadoAmbiente.getTablero()[posFila-1][posColumna]);	        	    	
         	estadoAmbiente.setEnergiaPlanta(estadoAmbiente.getEnergiaPlanta() + cantSoles);
         	estadoAmbiente.setTableroEnPosicion(posFila-1, posColumna, PlantaPerception.GIRASOLES_PERCEPTION);
+        	estadoPlanta.setEnergia(estadoAmbiente.getEnergiaPlanta() + cantSoles);
         	estadoPlanta.setTableroEnPosicion(posFila-1, posColumna, PlantaPerception.EMPTY_PERCEPTION);
-        	return estadoAmbiente;
 				        	
         }
         else if ( estadoAmbiente.getTablero()[posFila+1][posColumna].matches("[+-]?\\d*(\\.\\d+)?") ) {
@@ -82,7 +77,7 @@ public class Recargar extends SearchAction {
         	estadoAmbiente.setEnergiaPlanta(estadoAmbiente.getEnergiaPlanta() + cantSoles);
         	estadoAmbiente.setTableroEnPosicion(posFila+1, posColumna, PlantaPerception.GIRASOLES_PERCEPTION);
         	estadoPlanta.setTableroEnPosicion(posFila+1, posColumna, PlantaPerception.EMPTY_PERCEPTION);
-        	return estadoAmbiente;
+        	estadoPlanta.setEnergia(estadoAmbiente.getEnergiaPlanta() + cantSoles);
 				        	
         }else if ( estadoAmbiente.getTablero()[posFila][posColumna-1].matches("[+-]?\\d*(\\.\\d+)?") ) {
         	
@@ -90,7 +85,7 @@ public class Recargar extends SearchAction {
         	estadoAmbiente.setEnergiaPlanta(estadoAmbiente.getEnergiaPlanta() + cantSoles);
         	estadoAmbiente.setTableroEnPosicion(posFila, posColumna-1, PlantaPerception.GIRASOLES_PERCEPTION);
         	estadoPlanta.setTableroEnPosicion(posFila, posColumna-1, PlantaPerception.EMPTY_PERCEPTION);
-        	return estadoAmbiente;
+        	estadoPlanta.setEnergia(estadoAmbiente.getEnergiaPlanta() + cantSoles);
 				        	
         }else if ( estadoAmbiente.getTablero()[posFila][posColumna+1].matches("[+-]?\\d*(\\.\\d+)?") ) {
         	
@@ -98,7 +93,7 @@ public class Recargar extends SearchAction {
         	estadoAmbiente.setEnergiaPlanta(estadoAmbiente.getEnergiaPlanta() + cantSoles);
         	estadoAmbiente.setTableroEnPosicion(posFila, posColumna+1, PlantaPerception.GIRASOLES_PERCEPTION);
         	estadoPlanta.setTableroEnPosicion(posFila, posColumna+1, PlantaPerception.EMPTY_PERCEPTION);
-        	return estadoAmbiente;					        	
+        	estadoPlanta.setEnergia(estadoAmbiente.getEnergiaPlanta() + cantSoles);				        	
         }
         
         return estadoAmbiente;
