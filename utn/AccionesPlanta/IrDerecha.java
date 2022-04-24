@@ -54,7 +54,7 @@ public class IrDerecha extends SearchAction {
 	        	 }
 	        }
 	        estadoPlanta.setPosicionPlantaColumna(col);
-	        return estadoPlanta;
+	        estadoPlanta.setCantidadAccionesRealizadas(this.getCost());
         }
 		
 		
@@ -120,9 +120,8 @@ public class IrDerecha extends SearchAction {
 	        }
 	        estadoPlanta.setPosicionPlantaColumna(col);
 	        estadoAmbiente.setPosicionPlantaColumna(col);
-	        return estadoAmbiente;
+	        estadoPlanta.setCantidadAccionesRealizadas(this.getCost());
 		}
-		 
         return estadoAmbiente;
 	}
 	

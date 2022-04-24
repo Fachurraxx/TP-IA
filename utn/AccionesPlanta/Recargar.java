@@ -45,7 +45,7 @@ public class Recargar extends SearchAction {
         	estadoPlanta.setEnergia(estadoPlanta.getEnergia() + cantSoles);
         	estadoPlanta.setTableroEnPosicion(posFila, posColumna+1, PlantaPerception.GIRASOLES_PERCEPTION);				        	
         }
-        
+        estadoPlanta.setCantidadAccionesRealizadas(this.getCost());
         return estadoPlanta;
     }
 
@@ -94,7 +94,7 @@ public class Recargar extends SearchAction {
         	estadoPlanta.setTableroEnPosicion(posFila, posColumna+1, PlantaPerception.EMPTY_PERCEPTION);
         	estadoPlanta.setEnergia(estadoAmbiente.getEnergiaPlanta() + cantSoles);				        	
         }
-        
+        estadoPlanta.setCantidadAccionesRealizadas(this.getCost());
         return estadoAmbiente;
     }
     

@@ -15,6 +15,7 @@ public class PlantaState extends SearchBasedAgentState {
 	int posicionPlantaColumna;
 	private int energia;
 	private int totalZombies;
+	Double cantidadAccionesRealizadas = (double) 0;
 
 	public PlantaState(int energiaPlanta, int  totalZombies) {
 		tablero = new String[5][9];
@@ -384,5 +385,17 @@ public class PlantaState extends SearchBasedAgentState {
 
 		return tipoZombie;
 	}
+
+	public Double getCantidadAccionesRealizadas() {
+		return cantidadAccionesRealizadas;
+	}
+
+	public void setCantidadAccionesRealizadas(Double cantidadAccionesRealizadas) {
+		this.cantidadAccionesRealizadas += cantidadAccionesRealizadas;
+	}
+
+
+	
+	
 	
 }

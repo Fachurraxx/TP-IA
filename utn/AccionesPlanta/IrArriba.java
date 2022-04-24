@@ -64,7 +64,7 @@ public class IrArriba extends SearchAction {
 	        		 
 	        	 }
 	        }
-	        
+	        estadoPlanta.setCantidadAccionesRealizadas(this.getCost());
 			return estadoPlanta;
 		}
 
@@ -133,7 +133,7 @@ public class IrArriba extends SearchAction {
 	        estadoPlanta.setPosicionPlantaFila(row);
 	        estadoAmbiente.setPosicionPlantaFila(row);
 	        
-	        
+	        estadoPlanta.setCantidadAccionesRealizadas(this.getCost());
 	        return estadoAmbiente;
 		}
     

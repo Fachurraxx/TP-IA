@@ -68,7 +68,7 @@ public class Pelear extends SearchAction {
 
 			}
         }
-        
+        estadoPlanta.setCantidadAccionesRealizadas(this.getCost());
         return estadoPlanta;
     }
 
@@ -143,7 +143,7 @@ public class Pelear extends SearchAction {
 
 			}
         }
-        
+        estadoPlanta.setCantidadAccionesRealizadas(this.getCost());
         return estadoAmbiente;
     }
 

@@ -40,7 +40,7 @@ public class Plantar extends SearchAction {
 	        		}
 	        	}			        	
 	        }
-	        
+	        estadoPlanta.setCantidadAccionesRealizadas(this.getCost());
 	        return estadoPlanta;
 	    }
 
@@ -76,7 +76,7 @@ public class Plantar extends SearchAction {
 	        	}
 				        	
 	        }
-	        
+	        estadoPlanta.setCantidadAccionesRealizadas(this.getCost());
 	        return estadoAmbiente;
 	    }
 	    

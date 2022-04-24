@@ -54,8 +54,9 @@ public class IrIzquierda extends SearchAction {
 	        	 }
 	        }
 			estadoPlanta.setPosicionPlantaColumna(col);
-	        return estadoPlanta;
+			estadoPlanta.setCantidadAccionesRealizadas(this.getCost());
 		}
+		
 		
 		return estadoPlanta;
 	}
@@ -116,12 +117,12 @@ public class IrIzquierda extends SearchAction {
 	        }
 	        estadoPlanta.setPosicionPlantaColumna(col);
 	        estadoAmbiente.setPosicionPlantaColumna(col);
-	        
-	        
-	        return estadoAmbiente;
+	        estadoPlanta.setCantidadAccionesRealizadas(this.getCost());   
         }
         return estadoAmbiente;
 	}
+	
+	
 	   @Override
 	    public Double getCost() {
 	        return 1.0;
