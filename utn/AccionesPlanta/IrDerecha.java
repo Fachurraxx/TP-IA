@@ -127,10 +127,10 @@ public class IrDerecha extends SearchAction {
 	}
 	
 	
-    @Override
-    public Double getCost() {
-        return new Double(0);
-    }
+	   @Override
+	    public Double getCost() {
+	        return 1.0;
+	    }
 
     /**
      * See comments in the Eat class.

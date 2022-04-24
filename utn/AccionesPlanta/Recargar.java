@@ -100,7 +100,7 @@ public class Recargar extends SearchAction {
     
     @Override
     public Double getCost() {
-        return new Double(0);
+        return 1.0;
     }
 
     /**

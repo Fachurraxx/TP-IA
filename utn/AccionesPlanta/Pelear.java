@@ -149,7 +149,7 @@ public class Pelear extends SearchAction {
 
     @Override
     public Double getCost() {
-        return new Double(0);
+        return 1.0;
     }
 
     @Override

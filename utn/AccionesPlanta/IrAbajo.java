@@ -135,10 +135,10 @@ public class IrAbajo extends SearchAction {
         return estadoAmbiente;
 	}
 
-	@Override
-	public Double getCost() {
-		return new Double(0);
-	}
+	   @Override
+	    public Double getCost() {
+	        return 1.0;
+	    }
 
 	@Override
 	public String toString() {
