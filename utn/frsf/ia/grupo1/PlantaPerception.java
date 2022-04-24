@@ -27,7 +27,7 @@ public class PlantaPerception extends Perception {
 	private int energy;
 
 	public PlantaPerception() {
-		energy=12;
+
 	}
 
 	public PlantaPerception(Agent agent, Environment environment) {
@@ -64,14 +64,14 @@ public class PlantaPerception extends Perception {
 		Ambiente ambiente = (Ambiente) environment;
 		EstadoAmbiente estadoDelAmbiente = ambiente.getEnvironmentState();
 
-		estadoDelAmbiente.setSoles();
-		estadoDelAmbiente.updateZombies();
+		
+		this.energy = estadoDelAmbiente.getEnergiaPlanta();
 
 		this.setRowSensor(ambiente.getRow(estadoDelAmbiente.getPosicionPlantaFila()));
 		this.setColumnSensor(ambiente.getColumn(estadoDelAmbiente.getPosicionPlantaColumna()));
 
 		System.out.println(estadoDelAmbiente.toString());
-		System.out.println("---------------------------");
+		System.out.println("-------------p--------------");
 
 	}
 

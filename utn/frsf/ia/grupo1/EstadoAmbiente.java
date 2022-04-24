@@ -76,7 +76,7 @@ public class EstadoAmbiente extends EnvironmentState {
 		setTableroEnPosicion(3,3, PlantaPerception.GIRASOLES_PERCEPTION);
 		
 		//set energia planta
-		this.setEnergiaPlanta(12);
+		//this.setEnergiaPlanta(12);
 		
 		setTableroEnPosicion(2,3, PlantaPerception.PLANTA_PERCEPTION);
 		this.setPosicionPlantaFila(2);
