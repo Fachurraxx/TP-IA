@@ -39,13 +39,14 @@ public class Planta extends SearchBasedAgent {
 
 		// Create the operators
 		Vector<SearchAction> operators = new Vector<SearchAction>();
+		operators.addElement(new Pelear());
 		operators.addElement(new IrAbajo());
 		operators.addElement(new IrArriba());
 		operators.addElement(new IrDerecha());
 		operators.addElement(new IrIzquierda());
 		operators.addElement(new Plantar());
 		operators.addElement(new Recargar());
-		operators.addElement(new Pelear());
+
 
 		// Create the Problem which the Planta will resolve
 		Problem problem = new Problem(goal, plantaState, operators);
@@ -63,8 +64,12 @@ public class Planta extends SearchBasedAgent {
 	public Action selectAction() {
 
 		// Create the search strategy
-		DepthFirstSearch strategy = new DepthFirstSearch();
-
+		
+		DepthFirstSearch strategy = new DepthFirstSearch(); 
+		
+		//IStepCostFunction costFunction = new FuncionCosto();
+		//UniformCostSearch strategy = new UniformCostSearch(costFunction);
+		
 		/**
 		 * Another search strategy examples:
 		 * 
@@ -99,8 +104,9 @@ public class Planta extends SearchBasedAgent {
 		Action selectedAction = null;
 
 		try {
-			
+	
 			//NOS QUEDA UN LOOP ACA PORQUE SIEMPRE GENERA NUEVOS NODOS Y NO DEVUELVE NINGUNA ACCION
+			
 			selectedAction = this.getSolver().solve(new Object[] { this.getProblem() });
 		} catch (Exception ex) {
 			Logger.getLogger(Planta.class.getName()).log(Level.SEVERE, null, ex);

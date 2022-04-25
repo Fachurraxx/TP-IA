@@ -50,9 +50,7 @@ public class IrAbajo extends SearchAction {
         		 }
         		 else {
         			 estadoPlanta.setTableroEnPosicion(row, col, PlantaPerception.PLANTA_PERCEPTION.concat("-").concat(tableroValor));
-        		 }
-        		
-        		 
+        		 }       		 
         	 }
         }
         
@@ -63,7 +61,8 @@ public class IrAbajo extends SearchAction {
     	else {
         	estadoPlanta.setTableroEnPosicion(prevRow, col, PlantaPerception.EMPTY_PERCEPTION);
     	}
-        estadoPlanta.setCantidadAccionesRealizadas(this.getCost());
+        
+        estadoPlanta.setCantidadAccionesRealizadas(this.getCost()); 
 		return estadoPlanta;
 	}
 
