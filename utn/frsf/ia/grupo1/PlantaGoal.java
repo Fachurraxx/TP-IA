@@ -13,9 +13,14 @@ public class PlantaGoal extends GoalTest {
 	@Override
 	public boolean isGoalState(AgentState agentState) {
 
-		if (((PlantaState) agentState).getTotalZombies() == 0 && ((PlantaState) agentState).getEnergia() >= 1) {
+//		if (((PlantaState) agentState).getTotalZombies() == 0 && ((PlantaState) agentState).getEnergia() >= 1) {
+//			return true;
+//		}
+		
+		if (((PlantaState) agentState).getPosicionPlantaColumna() == 3) {
 			return true;
 		}
+		
 		return false;
 	}
 }

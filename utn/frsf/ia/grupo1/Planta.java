@@ -40,9 +40,10 @@ public class Planta extends SearchBasedAgent {
 		// Create the operators
 		Vector<SearchAction> operators = new Vector<SearchAction>();
 		operators.addElement(new Pelear());
+		operators.addElement(new IrDerecha());
 		operators.addElement(new IrAbajo());
 		operators.addElement(new IrArriba());
-		operators.addElement(new IrDerecha());
+		
 		operators.addElement(new IrIzquierda());
 		operators.addElement(new Plantar());
 		operators.addElement(new Recargar());

@@ -69,9 +69,6 @@ public class Ambiente extends Environment {
 		perception.setRowSensor(sensorFila);
 		perception.setColumnSensor(sensorColumna);
 		perception.setEnergy(this.getEnvironmentState().getEnergiaPlanta());
-		
-		
-		
 
 		return perception;
 	}

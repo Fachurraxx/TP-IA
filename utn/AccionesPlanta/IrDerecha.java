@@ -146,6 +146,6 @@ public class IrDerecha extends SearchAction {
 	 */
 	@Override
 	public String toString() {
-		return "GoUp";
+		return "Ir Derecha";
 	}
 }
