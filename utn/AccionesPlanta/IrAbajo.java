@@ -30,18 +30,13 @@ public class IrAbajo extends SearchAction {
             
         }
         
-        estadoPlanta.setPosicionPlantaFila(row);
-        
-        
+        estadoPlanta.setPosicionPlantaFila(row);       
         String tableroValor = estadoPlanta.getTableroEnPosicion(row, col);
         if (tableroValor == PlantaPerception.EMPTY_PERCEPTION || tableroValor == PlantaPerception.UNKNOWN_PERCEPTION ) {
-
-        	estadoPlanta.setTableroEnPosicion(row, col, PlantaPerception.PLANTA_PERCEPTION);
-
-        	
+        	estadoPlanta.setTableroEnPosicion(row, col, PlantaPerception.PLANTA_PERCEPTION);   	
         }
         else{
-        	 if(!tableroValor.contains("z")) {//p-12 
+        	 if(!tableroValor.contains("z")) {   //p-12 
         		 estadoPlanta.setTableroEnPosicion(row, col,
              			PlantaPerception.PLANTA_PERCEPTION.concat("-").concat(tableroValor));
         	 }
@@ -68,7 +63,6 @@ public class IrAbajo extends SearchAction {
     	else {
         	estadoPlanta.setTableroEnPosicion(prevRow, col, PlantaPerception.EMPTY_PERCEPTION);
     	}
-        
         estadoPlanta.setCantidadAccionesRealizadas(this.getCost());
 		return estadoPlanta;
 	}

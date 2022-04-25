@@ -58,22 +58,21 @@ public class PlantaPerception extends Perception {
 //
 //	}
 	
-	@Override
-	public void initPerception(Agent agent, Environment environment) {
-
-		Ambiente ambiente = (Ambiente) environment;
-		EstadoAmbiente estadoDelAmbiente = ambiente.getEnvironmentState();
-
-		
-		this.energy = estadoDelAmbiente.getEnergiaPlanta();
-
-		this.setRowSensor(ambiente.getRow(estadoDelAmbiente.getPosicionPlantaFila()));
-		this.setColumnSensor(ambiente.getColumn(estadoDelAmbiente.getPosicionPlantaColumna()));
-
+//	@Override
+//	public void initPerception(Agent agent, Environment environment) {
+//
+//		Ambiente ambiente = (Ambiente) environment;
+//		EstadoAmbiente estadoDelAmbiente = ambiente.getEnvironmentState();
+//		
+//		this.energy = estadoDelAmbiente.getEnergiaPlanta();
+//
+//		this.setRowSensor(ambiente.getRow(estadoDelAmbiente.getPosicionPlantaFila()));
+//		this.setColumnSensor(ambiente.getColumn(estadoDelAmbiente.getPosicionPlantaColumna()));
+//
 //		System.out.println(estadoDelAmbiente.toString());
 //		System.out.println("-------------p--------------");
-
-	}
+//
+//	}
 
 	public void setRowSensor(String[] rowSensor) {
 		this.rowSensor = rowSensor;
@@ -117,6 +116,12 @@ public class PlantaPerception extends Perception {
 		str = str + "         ]\n";
 
 		return str;
+	}
+
+	@Override
+	public void initPerception(Agent agent, Environment environment) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

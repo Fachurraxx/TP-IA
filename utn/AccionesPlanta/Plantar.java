@@ -38,10 +38,12 @@ public class Plantar extends SearchAction {
 	        				row=6;
 	        			}   
 	        		}
-	        	}			        	
+	        	}	
+	        	estadoPlanta.setCantidadAccionesRealizadas(this.getCost());
+	 	        return estadoPlanta;
 	        }
-	        estadoPlanta.setCantidadAccionesRealizadas(this.getCost());
-	        return estadoPlanta;
+	        
+	        return null;
 	    }
 
 
@@ -74,10 +76,11 @@ public class Plantar extends SearchAction {
 	        			}   
 	        		}
 	        	}
-				        	
+	        	estadoPlanta.setCantidadAccionesRealizadas(this.getCost());
+	 	        return estadoAmbiente;   	
 	        }
-	        estadoPlanta.setCantidadAccionesRealizadas(this.getCost());
-	        return estadoAmbiente;
+	       
+	        return null;
 	    }
 	    
 	    

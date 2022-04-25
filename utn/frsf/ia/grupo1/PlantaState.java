@@ -68,6 +68,7 @@ public class PlantaState extends SearchBasedAgentState {
 	 */
 	@Override
 	public void updateState(Perception p) {
+		
 		PlantaPerception plantaPerception = (PlantaPerception) p;
 	
 		int row = this.getPosicionPlantaFila();
