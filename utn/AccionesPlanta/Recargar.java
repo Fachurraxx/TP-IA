@@ -17,41 +17,36 @@ public class Recargar extends SearchAction {
         PlantaState estadoPlanta = (PlantaState) s;
 
         int posFila = estadoPlanta.getPosicionPlantaFila();
-        int posColumna = estadoPlanta.getPosicionPlantaFila();
+        int posColumna = estadoPlanta.getPosicionPlantaColumna();
 
         /* La planta puede recargar si hay un numero entero al lado */
         
-        if ( estadoPlanta.getTablero()[posFila-1][posColumna].matches("[+-]?\\d*(\\.\\d+)?") ) {
+        if ( posFila > 0 && estadoPlanta.getTablero()[posFila-1][posColumna].matches("[+-]?\\d*(\\.\\d+)?") ) {
         	
         	Integer cantSoles = Integer.parseInt(estadoPlanta.getTablero()[posFila-1][posColumna]);	        	    	
         	estadoPlanta.setEnergia(estadoPlanta.getEnergia() + cantSoles);
         	estadoPlanta.setTableroEnPosicion(posFila-1, posColumna, PlantaPerception.GIRASOLES_PERCEPTION);
-        	return estadoPlanta;
 				        	
-        }else if ( estadoPlanta.getTablero()[posFila+1][posColumna].matches("[+-]?\\d*(\\.\\d+)?") ) {
+        }else if ( posFila < 4 && estadoPlanta.getTablero()[posFila+1][posColumna].matches("[+-]?\\d*(\\.\\d+)?") ) {
         	
         	Integer cantSoles = Integer.parseInt(estadoPlanta.getTablero()[posFila+1][posColumna]);	        	    	
         	estadoPlanta.setEnergia(estadoPlanta.getEnergia() + cantSoles);
         	estadoPlanta.setTableroEnPosicion(posFila+1, posColumna, PlantaPerception.GIRASOLES_PERCEPTION);
-        	return estadoPlanta;
 				        	
-        }else if ( estadoPlanta.getTablero()[posFila][posColumna-1].matches("[+-]?\\d*(\\.\\d+)?") ) {
+        }else if (  posColumna > 0 && estadoPlanta.getTablero()[posFila][posColumna-1].matches("[+-]?\\d*(\\.\\d+)?") ) {
         	
         	Integer cantSoles = Integer.parseInt(estadoPlanta.getTablero()[posFila][posColumna-1]);	        	    	
         	estadoPlanta.setEnergia(estadoPlanta.getEnergia() + cantSoles);
         	estadoPlanta.setTableroEnPosicion(posFila, posColumna-1, PlantaPerception.GIRASOLES_PERCEPTION);
-        	return estadoPlanta;
 				        	
-        }else if ( estadoPlanta.getTablero()[posFila][posColumna+1].matches("[+-]?\\d*(\\.\\d+)?") ) {
+        }else if ( posColumna < 8 && estadoPlanta.getTablero()[posFila][posColumna+1].matches("[+-]?\\d*(\\.\\d+)?") ) {
         	
         	Integer cantSoles = Integer.parseInt(estadoPlanta.getTablero()[posFila][posColumna+1]);	        	    	
         	estadoPlanta.setEnergia(estadoPlanta.getEnergia() + cantSoles);
-        	estadoPlanta.setTableroEnPosicion(posFila, posColumna+1, PlantaPerception.GIRASOLES_PERCEPTION);
-        	return estadoPlanta;
-				        	
+        	estadoPlanta.setTableroEnPosicion(posFila, posColumna+1, PlantaPerception.GIRASOLES_PERCEPTION);				        	
         }
-        
-        return null;
+        estadoPlanta.setCantidadAccionesRealizadas(this.getCost());
+        return estadoPlanta;
     }
 
 
@@ -67,46 +62,45 @@ public class Recargar extends SearchAction {
         /* La planta puede pelear si hay un zombie al lado y si tiene mas soles de los que necesita para pelear*/
        
         
-        if ( estadoAmbiente.getTablero()[posFila-1][posColumna].matches("[+-]?\\d*(\\.\\d+)?") ) {
+        if ( posFila > 0 && estadoAmbiente.getTablero()[posFila-1][posColumna].matches("[+-]?\\d*(\\.\\d+)?") ) {
         	
         	Integer cantSoles = Integer.parseInt(estadoAmbiente.getTablero()[posFila-1][posColumna]);	        	    	
         	estadoAmbiente.setEnergiaPlanta(estadoAmbiente.getEnergiaPlanta() + cantSoles);
         	estadoAmbiente.setTableroEnPosicion(posFila-1, posColumna, PlantaPerception.GIRASOLES_PERCEPTION);
+        	estadoPlanta.setEnergia(estadoAmbiente.getEnergiaPlanta() + cantSoles);
         	estadoPlanta.setTableroEnPosicion(posFila-1, posColumna, PlantaPerception.EMPTY_PERCEPTION);
-        	return estadoAmbiente;
-				        	
-        }
-        else if ( estadoAmbiente.getTablero()[posFila+1][posColumna].matches("[+-]?\\d*(\\.\\d+)?") ) {
+
+        }else if ( posFila < 4 && estadoAmbiente.getTablero()[posFila+1][posColumna].matches("[+-]?\\d*(\\.\\d+)?") ) {
         	
         	Integer cantSoles = Integer.parseInt(estadoAmbiente.getTablero()[posFila+1][posColumna]);	        	    	
         	estadoAmbiente.setEnergiaPlanta(estadoAmbiente.getEnergiaPlanta() + cantSoles);
         	estadoAmbiente.setTableroEnPosicion(posFila+1, posColumna, PlantaPerception.GIRASOLES_PERCEPTION);
         	estadoPlanta.setTableroEnPosicion(posFila+1, posColumna, PlantaPerception.EMPTY_PERCEPTION);
-        	return estadoAmbiente;
+        	estadoPlanta.setEnergia(estadoAmbiente.getEnergiaPlanta() + cantSoles);
 				        	
-        }else if ( estadoAmbiente.getTablero()[posFila][posColumna-1].matches("[+-]?\\d*(\\.\\d+)?") ) {
+        }else if (  posColumna > 0 && estadoAmbiente.getTablero()[posFila][posColumna-1].matches("[+-]?\\d*(\\.\\d+)?") ) {
         	
         	Integer cantSoles = Integer.parseInt(estadoAmbiente.getTablero()[posFila][posColumna-1]);	        	    	
         	estadoAmbiente.setEnergiaPlanta(estadoAmbiente.getEnergiaPlanta() + cantSoles);
         	estadoAmbiente.setTableroEnPosicion(posFila, posColumna-1, PlantaPerception.GIRASOLES_PERCEPTION);
         	estadoPlanta.setTableroEnPosicion(posFila, posColumna-1, PlantaPerception.EMPTY_PERCEPTION);
-        	return estadoAmbiente;
+        	estadoPlanta.setEnergia(estadoAmbiente.getEnergiaPlanta() + cantSoles);
 				        	
-        }else if ( estadoAmbiente.getTablero()[posFila][posColumna+1].matches("[+-]?\\d*(\\.\\d+)?") ) {
+        }else if ( posColumna < 8 && estadoAmbiente.getTablero()[posFila][posColumna+1].matches("[+-]?\\d*(\\.\\d+)?") ) {
         	
         	Integer cantSoles = Integer.parseInt(estadoAmbiente.getTablero()[posFila][posColumna+1]);	        	    	
         	estadoAmbiente.setEnergiaPlanta(estadoAmbiente.getEnergiaPlanta() + cantSoles);
         	estadoAmbiente.setTableroEnPosicion(posFila, posColumna+1, PlantaPerception.GIRASOLES_PERCEPTION);
         	estadoPlanta.setTableroEnPosicion(posFila, posColumna+1, PlantaPerception.EMPTY_PERCEPTION);
-        	return estadoAmbiente;					        	
+        	estadoPlanta.setEnergia(estadoAmbiente.getEnergiaPlanta() + cantSoles);				        	
         }
-        
+        estadoPlanta.setCantidadAccionesRealizadas(this.getCost());
         return estadoAmbiente;
     }
     
     @Override
     public Double getCost() {
-        return new Double(0);
+        return 1.0;
     }
 
     /**

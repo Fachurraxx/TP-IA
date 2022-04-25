@@ -36,9 +36,9 @@ public class EstadoAmbiente extends EnvironmentState {
 			}
 		}
 
-//		setTableroEnPosicion(2,0, PlantaPerception.PLANTA_PERCEPTION);
-//		this.setPosicionPlantaFila(2);
-//		this.setPosicionPlantaColumna(0);
+		setTableroEnPosicion(2,0, PlantaPerception.PLANTA_PERCEPTION);
+		this.setPosicionPlantaFila(2);
+		this.setPosicionPlantaColumna(0);
 
 //      Los zombies siempre inician en la celda mas alejada de la casa, y en el inicio del
 //      juego puede que no estén todos los zombies en el escenario, sino que se van
@@ -69,16 +69,18 @@ public class EstadoAmbiente extends EnvironmentState {
 		
 //		TEST
 		//Set some girasoles
-		setTableroEnPosicion(1,0, PlantaPerception.GIRASOLES_PERCEPTION);
-		setTableroEnPosicion(3,0, PlantaPerception.GIRASOLES_PERCEPTION);
-		setTableroEnPosicion(4,0, PlantaPerception.GIRASOLES_PERCEPTION);
-		
-		//set energia planta
-		this.setEnergiaPlanta(12);
-		
-		setTableroEnPosicion(2,3, PlantaPerception.PLANTA_PERCEPTION);
-		this.setPosicionPlantaFila(2);
-		this.setPosicionPlantaColumna(3);
+//		setTableroEnPosicion(1,0, PlantaPerception.GIRASOLES_PERCEPTION);
+//		setTableroEnPosicion(2,5, PlantaPerception.GIRASOLES_PERCEPTION);
+//		setTableroEnPosicion(2,2, PlantaPerception.GIRASOLES_PERCEPTION);
+//		setTableroEnPosicion(1,3, PlantaPerception.GIRASOLES_PERCEPTION);
+//		setTableroEnPosicion(3,3, PlantaPerception.GIRASOLES_PERCEPTION);
+//		
+//		//set energia planta
+//		//this.setEnergiaPlanta(12);
+//		
+//		setTableroEnPosicion(2,3, PlantaPerception.PLANTA_PERCEPTION);
+//		this.setPosicionPlantaFila(2);
+//		this.setPosicionPlantaColumna(3);
 		
 
 	}
@@ -265,7 +267,7 @@ public class EstadoAmbiente extends EnvironmentState {
 		}
 	}
 	
-	private int getTipoZombie(String tipoZombieString) {
+	public int getTipoZombie(String tipoZombieString) {
 		int tipoZombie = 0;
 
 		switch (tipoZombieString) {
@@ -315,6 +317,10 @@ public class EstadoAmbiente extends EnvironmentState {
 
 	public void setTableroEnPosicion(int row, int col, String value) {
 		this.tablero[row][col] = value;
+	}
+	
+	public String getTableroEnPosicion(int row, int col) {
+		return tablero[row][col];
 	}
 
 	public int getPosicionPlantaFila() {
@@ -417,4 +423,6 @@ public class EstadoAmbiente extends EnvironmentState {
 
 		return str;
 	}
+
+
 }

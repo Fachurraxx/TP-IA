@@ -11,84 +11,146 @@ import frsf.ia.grupo1.PlantaState;
 
 public class IrArriba extends SearchAction {
 
-    /**
-     * See comments in the Eat class.
-     */
-    @Override
-    public SearchBasedAgentState execute(SearchBasedAgentState s) {
+		@Override
+		public SearchBasedAgentState execute(SearchBasedAgentState s) {
 
-    	 PlantaState estadoPlanta = (PlantaState) s;
+			PlantaState estadoPlanta = (PlantaState) s;
 
-         int posFila = estadoPlanta.getPosicionPlantaFila();
-         int posColumna = estadoPlanta.getPosicionPlantaFila();
+			
+			int row = estadoPlanta.getPosicionPlantaFila();
+			int col = estadoPlanta.getPosicionPlantaColumna();
+			int prevRow = 0;
+			String posicionPlantaValor = estadoPlanta.getTableroEnPosicion(row, col);//p or p-12
+			
+			// Check the limits of the world
+	        if (row == 0) {
+	            row = 4;
+	            prevRow = 0;
+	        } else {
+	        	prevRow = row;
+	            row = row - 1;
+	            
+	        }
+	        
+	        estadoPlanta.setPosicionPlantaFila(row);
+	        
+	        
+	        String tableroValor = estadoPlanta.getTableroEnPosicion(row, col);
+	        if (tableroValor == PlantaPerception.EMPTY_PERCEPTION || tableroValor == PlantaPerception.UNKNOWN_PERCEPTION ) {
 
-        /* La planta no puede ir arriba si esta en el limite suiperior. La planta solo puede moverse si la celda esta vacia. Si la celda tiene un zombie, se le restan los soles*/
-         if(posFila != 0) {
-        	 if ( estadoPlanta.getTablero()[posFila-1][posColumna] == "e") {
-        		 
-        		 estadoPlanta.setTableroEnPosicion(posFila-1, posColumna, PlantaPerception.PLANTA_PERCEPTION);
-        		 estadoPlanta.setTableroEnPosicion(posFila, posColumna, PlantaPerception.EMPTY_PERCEPTION);
-        		 estadoPlanta.setPosicionPlantaColumna(posColumna);
-        		 estadoPlanta.setPosicionPlantaFila(posFila-1);
-        		 
-        		 return estadoPlanta;
-        		 
-        	 }else if (estadoPlanta.getTablero()[posFila-1][posColumna].contains("z")) {
-        		 
-        		String zombies = estadoPlanta.getTablero()[posFila-1][posColumna];
-             	Integer cantSoles = Integer.parseInt(zombies.substring(zombies.length() - 1));
-        		estadoPlanta.setEnergia(estadoPlanta.getEnergia() - (2*cantSoles));
-        		return estadoPlanta;
-        	 }
-         }
-         
+	        	estadoPlanta.setTableroEnPosicion(row, col, PlantaPerception.PLANTA_PERCEPTION);
 
-        return null;
-    }
+	        	
+	        }
+	        else{
+	        	 if(!tableroValor.contains("z")) {//p-12 
+	        		 estadoPlanta.setTableroEnPosicion(row, col,
+	             			PlantaPerception.PLANTA_PERCEPTION.concat("-").concat(tableroValor));
+	        	 }
+	        	 else {
+	        		 int tipoZombie = estadoPlanta.getTipoZombie(tableroValor);
+	        		 estadoPlanta.setEnergia(estadoPlanta.getEnergia() - (2 * tipoZombie));
+	        		 
+	        		 if (estadoPlanta.getEnergia()>1) {
+	        			 estadoPlanta.setTableroEnPosicion(row, col, PlantaPerception.PLANTA_PERCEPTION);
+	        			 estadoPlanta.setTotalZombies(estadoPlanta.getTotalZombies() - 1 );
+	        		 }
+	        		 else {
+	        			 estadoPlanta.setTableroEnPosicion(row, col, PlantaPerception.PLANTA_PERCEPTION.concat("-").concat(tableroValor));
+	        		 }
+	        		
+	        		 
+	        	 }
+	        }
+	        
+	        if(posicionPlantaValor.contains("-")) {
+        		posicionPlantaValor = posicionPlantaValor.split("-")[1];
+        		estadoPlanta.setTableroEnPosicion(prevRow, col, posicionPlantaValor);
+        	}
+        	else {
+            	estadoPlanta.setTableroEnPosicion(prevRow, col, PlantaPerception.EMPTY_PERCEPTION);
+        	}
+	        
+	        estadoPlanta.setCantidadAccionesRealizadas(this.getCost());
+			return estadoPlanta;
+		}
 
 
-    @Override
-    public EnvironmentState execute(AgentState ast, EnvironmentState est) {
+		@Override
+		public EnvironmentState execute(AgentState ast, EnvironmentState est) {
 
-    	PlantaState estadoPlanta = (PlantaState) ast;
-    	EstadoAmbiente estadoAmbiente = (EstadoAmbiente) est;
+			PlantaState estadoPlanta = (PlantaState) ast;
+			EstadoAmbiente estadoAmbiente = (EstadoAmbiente) est;
 
-        int posFila = estadoAmbiente.getPosicionPlantaFila();
-        int posColumna = estadoAmbiente.getPosicionPlantaFila();
+			int row = estadoAmbiente.getPosicionPlantaFila();
+			int col = estadoAmbiente.getPosicionPlantaColumna();
+			int prevRow = row;
+			String posicionPlantaValor = estadoPlanta.getTableroEnPosicion(row, col);//p or p-12
+			
+			// Check the limits of the world
+	        if (row == 0) {
+	            row = 4;
+	        } else {
+	            row = row - 1;
+	            
+	        }
 
-       /* La planta no puede ir arriba si esta en el limite suiperior. La planta solo puede moverse si la celda esta vacia. Si la celda tiene un zombie, se le restan los soles*/
-        if(posFila != 0) {
-       	 if ( estadoAmbiente.getTablero()[posFila-1][posColumna] == "e") {
-       		 
-       		estadoAmbiente.setTableroEnPosicion(posFila-1, posColumna, PlantaPerception.PLANTA_PERCEPTION);
-       		estadoAmbiente.setTableroEnPosicion(posFila, posColumna, PlantaPerception.EMPTY_PERCEPTION);
-       		estadoAmbiente.setPosicionPlantaColumna(posColumna);
-       		estadoAmbiente.setPosicionPlantaFila(posFila-1);
-       		
-       		 estadoPlanta.setTableroEnPosicion(posFila-1, posColumna, PlantaPerception.PLANTA_PERCEPTION);
-       		 estadoPlanta.setTableroEnPosicion(posFila, posColumna, PlantaPerception.EMPTY_PERCEPTION);
-       		 estadoPlanta.setPosicionPlantaColumna(posColumna);
-       		 estadoPlanta.setPosicionPlantaFila(posFila-1);
-       		 
-       		 return estadoAmbiente;
-       		 
-       	 }else if (estadoAmbiente.getTablero()[posFila-1][posColumna].contains("z")) {
-       		 
-       		String zombies = estadoAmbiente.getTablero()[posFila-1][posColumna];
-            	Integer cantSoles = Integer.parseInt(zombies.substring(zombies.length() - 1));
-       		estadoPlanta.setEnergia(estadoPlanta.getEnergia() - (2*cantSoles));
-       		estadoAmbiente.setEnergiaPlanta(estadoPlanta.getEnergia() - (2*cantSoles));
-       		return estadoAmbiente;
-       	 }
-        }
-        
-        return null;
-    }
+	        String tableroValor = estadoAmbiente.getTableroEnPosicion(row, col);
+	        if (tableroValor == PlantaPerception.EMPTY_PERCEPTION || tableroValor == PlantaPerception.UNKNOWN_PERCEPTION ) {
+	        	//seteamos estado del ambiente y de la planta 
+	        	estadoAmbiente.setTableroEnPosicion(row, col, PlantaPerception.PLANTA_PERCEPTION);
+	        	estadoPlanta.setTableroEnPosicion(row, col, PlantaPerception.PLANTA_PERCEPTION);
+	        	
+	        	
+	        }
+	        else{
+	        	 if(!tableroValor.contains("z")) {//p-12 
+	        		 estadoAmbiente.setTableroEnPosicion(row, col,
+	             			PlantaPerception.PLANTA_PERCEPTION.concat("-").concat(tableroValor));
+	        		 estadoPlanta.setTableroEnPosicion(row, col,
+	              			PlantaPerception.PLANTA_PERCEPTION.concat("-").concat(tableroValor));
+	        	 }
+	        	 else {
+	        		 int tipoZombie = estadoAmbiente.getTipoZombie(tableroValor);
+	        		 estadoAmbiente.setEnergiaPlanta(estadoAmbiente.getEnergiaPlanta() - (2 * tipoZombie));
+	        		 estadoPlanta.setEnergia(estadoPlanta.getEnergia() - (2 * tipoZombie));
+
+	        		 if (estadoAmbiente.getEnergiaPlanta()>1) {
+	        			 estadoAmbiente.setTableroEnPosicion(row, col, PlantaPerception.PLANTA_PERCEPTION);
+	        			 estadoAmbiente.setTotalZombies(estadoAmbiente.getTotalZombies() - 1 );
+	        			 estadoPlanta.setTableroEnPosicion(row, col, PlantaPerception.PLANTA_PERCEPTION);
+	        			 estadoPlanta.setTotalZombies(estadoPlanta.getTotalZombies() - 1 );
+	        		 }
+	        		 else {
+	        			 estadoAmbiente.setTableroEnPosicion(row, col, PlantaPerception.PLANTA_PERCEPTION.concat("-").concat(tableroValor));
+	        			 estadoPlanta.setTableroEnPosicion(row, col, PlantaPerception.PLANTA_PERCEPTION.concat("-").concat(tableroValor));
+	        		 }
+	        		
+	        		 
+	        	 }
+	        }
+	        
+	        if(posicionPlantaValor.contains("-")) {
+        		posicionPlantaValor = posicionPlantaValor.split("-")[1];
+        		estadoAmbiente.setTableroEnPosicion(prevRow, col, posicionPlantaValor);
+        		estadoPlanta.setTableroEnPosicion(prevRow, col, posicionPlantaValor);
+        	}
+        	else {
+            	estadoAmbiente.setTableroEnPosicion(prevRow, col, PlantaPerception.EMPTY_PERCEPTION);
+            	estadoPlanta.setTableroEnPosicion(prevRow, col, PlantaPerception.EMPTY_PERCEPTION);
+        	}
+	        
+	        estadoPlanta.setPosicionPlantaFila(row);
+	        estadoAmbiente.setPosicionPlantaFila(row);
+	        
+	        estadoPlanta.setCantidadAccionesRealizadas(this.getCost());
+	        return estadoAmbiente;
+		}
     
-    @Override
-    public Double getCost() {
-        return new Double(0);
-    }
+		   @Override
+		    public Double getCost() {
+		        return 1.0;
+		    }
 
     /**
      * See comments in the Eat class.

@@ -30,11 +30,11 @@ import AccionesPlanta.Recargar;
 
 public class Planta extends SearchBasedAgent {
 
-	public Planta() {
+	public Planta(int energiaPlanta, int totalZombies) {
 
 		PlantaGoal goal = new PlantaGoal();
 
-		PlantaState plantaState = new PlantaState();
+		PlantaState plantaState = new PlantaState(energiaPlanta, totalZombies);
 		this.setAgentState(plantaState);
 
 		// Create the operators
@@ -50,6 +50,10 @@ public class Planta extends SearchBasedAgent {
 		// Create the Problem which the Planta will resolve
 		Problem problem = new Problem(goal, plantaState, operators);
 		this.setProblem(problem);
+	}
+	
+	public Planta(String[][] t, int row, int col, int e, int z) {
+		
 	}
 
 	/**
@@ -87,18 +91,25 @@ public class Planta extends SearchBasedAgent {
 		 * formats like PDF with PDF_TREE
 		 */
 		searchSolver.setVisibleTree(Search.EFAIA_TREE);
-
+		
 		// Set the Search searchSolver.
 		this.setSolver(searchSolver);
-
+		
 		// Ask the solver for the best action
 		Action selectedAction = null;
+
+		
+		System.out.println("Impresion antes del try");
 		try {
+			System.out.println("Impresion dentro del try");
 			selectedAction = this.getSolver().solve(new Object[] { this.getProblem() });
+			System.out.println("Impresion despues del solve");
 		} catch (Exception ex) {
-			Logger.getLogger(PacmanAgent.class.getName()).log(Level.SEVERE, null, ex);
+			System.out.println("Impresion en el catch");
+			Logger.getLogger(Planta.class.getName()).log(Level.SEVERE, null, ex);
 		}
 
+		System.out.println("Impresion despues de todo");
 		// Return the selected action
 		return selectedAction;
 	}

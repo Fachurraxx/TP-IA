@@ -18,58 +18,58 @@ public class Pelear extends SearchAction {
         PlantaState estadoPlanta = (PlantaState) s;
 
         int posFila = estadoPlanta.getPosicionPlantaFila();
-        int posColumna = estadoPlanta.getPosicionPlantaFila();
+        int posColumna = estadoPlanta.getPosicionPlantaColumna();
 
         /* La planta puede pelear si hay un zombie al lado y si tiene mas soles de los que necesita para pelear*/
        
-        if ( estadoPlanta.getTablero()[posFila-1][posColumna].contains("z")) {
+        if ( posFila > 0 && estadoPlanta.getTablero()[posFila-1][posColumna].contains("z")) {
         	
-        	String zombies = estadoPlanta.getTablero()[posFila-1][posColumna];
-        	Integer cantSoles = Integer.parseInt(zombies.substring(zombies.length() - 1));
+        	String zombies = estadoPlanta.getTablero()[posFila-1][posColumna]; //z1 1
+        	Integer cantSoles = estadoPlanta.getTipoZombie(zombies);
         	    	
         	if (cantSoles < estadoPlanta.getEnergia()) {
         		estadoPlanta.setEnergia(estadoPlanta.getEnergia() - cantSoles);
         		estadoPlanta.setTotalZombies(estadoPlanta.getTotalZombies()-1);
         		estadoPlanta.setTableroEnPosicion(posFila-1, posColumna, PlantaPerception.EMPTY_PERCEPTION);
-        		return estadoPlanta;
+
 			}
         	
-        }else if ( estadoPlanta.getTablero()[posFila+1][posColumna].contains("z")) {
+        }else if ( posFila < 4 && estadoPlanta.getTablero()[posFila+1][posColumna].contains("z") ) {
         	
         	String zombies = estadoPlanta.getTablero()[posFila+1][posColumna];
-        	Integer cantSoles = Integer.parseInt(zombies.substring(zombies.length() - 1));
+        	Integer cantSoles = estadoPlanta.getTipoZombie(zombies);
         	    	
         	if (cantSoles < estadoPlanta.getEnergia()) {
         		estadoPlanta.setEnergia(estadoPlanta.getEnergia() - cantSoles);
         		estadoPlanta.setTotalZombies(estadoPlanta.getTotalZombies()-1);
         		estadoPlanta.setTableroEnPosicion(posFila+1, posColumna, PlantaPerception.EMPTY_PERCEPTION);
-        		return estadoPlanta;
+
 			}
-        }else if ( estadoPlanta.getTablero()[posFila][posColumna-1].contains("z")) {
+        }else if (  posColumna > 0 && estadoPlanta.getTablero()[posFila][posColumna-1].contains("z") ) {
         	
         	String zombies = estadoPlanta.getTablero()[posFila][posColumna-1];
-        	Integer cantSoles = Integer.parseInt(zombies.substring(zombies.length() - 1));
+        	Integer cantSoles = estadoPlanta.getTipoZombie(zombies);
         	    	
         	if (cantSoles < estadoPlanta.getEnergia()) {
         		estadoPlanta.setEnergia(estadoPlanta.getEnergia() - cantSoles);
         		estadoPlanta.setTotalZombies(estadoPlanta.getTotalZombies()-1);
         		estadoPlanta.setTableroEnPosicion(posFila+1, posColumna-1, PlantaPerception.EMPTY_PERCEPTION);
-        		return estadoPlanta;
+
 			}
-        }else if ( estadoPlanta.getTablero()[posFila][posColumna+1].contains("z")) {
+        }else if (  posColumna < 8 && estadoPlanta.getTablero()[posFila][posColumna+1].contains("z") ) {
         	
         	String zombies = estadoPlanta.getTablero()[posFila][posColumna+1];
-        	Integer cantSoles = Integer.parseInt(zombies.substring(zombies.length() - 1));
+        	Integer cantSoles = estadoPlanta.getTipoZombie(zombies);
         	    	
         	if (cantSoles < estadoPlanta.getEnergia()) {
         		estadoPlanta.setEnergia(estadoPlanta.getEnergia() - cantSoles);
         		estadoPlanta.setTotalZombies(estadoPlanta.getTotalZombies()+1);
         		estadoPlanta.setTableroEnPosicion(posFila, posColumna+1, PlantaPerception.EMPTY_PERCEPTION);
-        		return estadoPlanta;
+
 			}
         }
-        
-        return null;
+        estadoPlanta.setCantidadAccionesRealizadas(this.getCost());
+        return estadoPlanta;
     }
 
 
@@ -84,63 +84,72 @@ public class Pelear extends SearchAction {
 
         /* La planta puede pelear si hay un zombie al lado y si tiene mas soles de los que necesita para pelear*/
        
-        if ( estadoAmbiente.getTablero()[posFila-1][posColumna].contains("z")) {
+        if ( posFila > 0 && estadoAmbiente.getTablero()[posFila-1][posColumna].contains("z")) {
         	
         	String zombies = estadoPlanta.getTablero()[posFila-1][posColumna];
-        	Integer cantSoles = Integer.parseInt(zombies.substring(zombies.length() - 1));
+        	Integer cantSoles = estadoPlanta.getTipoZombie(zombies);
         	    	
         	if (cantSoles < estadoAmbiente.getEnergiaPlanta()) {
         		estadoAmbiente.setEnergiaPlanta(estadoAmbiente.getEnergiaPlanta() - cantSoles);
         		estadoAmbiente.setTotalZombies(estadoAmbiente.getTotalZombies()-1);
         		estadoAmbiente.setTableroEnPosicion(posFila-1, posColumna, PlantaPerception.EMPTY_PERCEPTION);
+        		
+        		estadoPlanta.setEnergia(estadoAmbiente.getEnergiaPlanta() - cantSoles);
+        		estadoPlanta.setTotalZombies(estadoAmbiente.getTotalZombies()-1);
         		estadoPlanta.setTableroEnPosicion(posFila-1, posColumna, PlantaPerception.EMPTY_PERCEPTION);
-        		return estadoAmbiente;
+
 			}
         	
-        }else if ( estadoAmbiente.getTablero()[posFila+1][posColumna].contains("z")) {
+        }else if ( posFila < 4 && estadoAmbiente.getTablero()[posFila+1][posColumna].contains("z") ) {
         	
         	String zombies = estadoAmbiente.getTablero()[posFila+1][posColumna];
-        	Integer cantSoles = Integer.parseInt(zombies.substring(zombies.length() - 1));
+        	Integer cantSoles = estadoPlanta.getTipoZombie(zombies);
         	    	
         	if (cantSoles < estadoAmbiente.getEnergiaPlanta()) {
         		estadoAmbiente.setEnergiaPlanta(estadoAmbiente.getEnergiaPlanta() - cantSoles);
         		estadoAmbiente.setTotalZombies(estadoAmbiente.getTotalZombies()-1);
         		estadoAmbiente.setTableroEnPosicion(posFila+1, posColumna, PlantaPerception.EMPTY_PERCEPTION);
+        		estadoPlanta.setEnergia(estadoAmbiente.getEnergiaPlanta() - cantSoles);
+        		estadoPlanta.setTotalZombies(estadoAmbiente.getTotalZombies()-1);
         		estadoPlanta.setTableroEnPosicion(posFila+1, posColumna, PlantaPerception.EMPTY_PERCEPTION);
-        		return estadoAmbiente;
+
 			}
-        }else if ( estadoAmbiente.getTablero()[posFila][posColumna-1].contains("z")) {
+        }else if (  posColumna > 0 && estadoAmbiente.getTablero()[posFila][posColumna-1].contains("z") ) {
         	
         	String zombies = estadoAmbiente.getTablero()[posFila][posColumna-1];
-        	Integer cantSoles = Integer.parseInt(zombies.substring(zombies.length() - 1));
+        	Integer cantSoles = estadoPlanta.getTipoZombie(zombies);
         	    	
         	if (cantSoles < estadoAmbiente.getEnergiaPlanta()) {
         		estadoAmbiente.setEnergiaPlanta(estadoAmbiente.getEnergiaPlanta() - cantSoles);
         		estadoAmbiente.setTotalZombies(estadoAmbiente.getTotalZombies()-1);
         		estadoAmbiente.setTableroEnPosicion(posFila+1, posColumna-1, PlantaPerception.EMPTY_PERCEPTION);
+        		estadoPlanta.setEnergia(estadoAmbiente.getEnergiaPlanta() - cantSoles);
+        		estadoPlanta.setTotalZombies(estadoAmbiente.getTotalZombies()-1);
         		estadoPlanta.setTableroEnPosicion(posFila+1, posColumna-1, PlantaPerception.EMPTY_PERCEPTION);
-        		return estadoAmbiente;
+
 			}
-        }else if ( estadoAmbiente.getTablero()[posFila][posColumna+1].contains("z")) {
+        }else if (  posColumna < 8 && estadoAmbiente.getTablero()[posFila][posColumna+1].contains("z") ) {
         	
         	String zombies = estadoAmbiente.getTablero()[posFila][posColumna+1];
-        	Integer cantSoles = Integer.parseInt(zombies.substring(zombies.length() - 1));
+        	Integer cantSoles = estadoPlanta.getTipoZombie(zombies);
         	    	
         	if (cantSoles < estadoAmbiente.getEnergiaPlanta()) {
         		estadoAmbiente.setEnergiaPlanta(estadoAmbiente.getEnergiaPlanta() - cantSoles);
         		estadoAmbiente.setTotalZombies(estadoAmbiente.getTotalZombies()+1);
         		estadoAmbiente.setTableroEnPosicion(posFila, posColumna+1, PlantaPerception.EMPTY_PERCEPTION);
+        		estadoPlanta.setEnergia(estadoAmbiente.getEnergiaPlanta() - cantSoles);
+        		estadoPlanta.setTotalZombies(estadoAmbiente.getTotalZombies()-1);
         		estadoPlanta.setTableroEnPosicion(posFila, posColumna+1, PlantaPerception.EMPTY_PERCEPTION);
-        		return estadoAmbiente;
+
 			}
         }
-        
+        estadoPlanta.setCantidadAccionesRealizadas(this.getCost());
         return estadoAmbiente;
     }
 
     @Override
     public Double getCost() {
-        return new Double(0);
+        return 1.0;
     }
 
     @Override

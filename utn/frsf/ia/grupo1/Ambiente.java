@@ -6,6 +6,7 @@ import frsf.cidisi.faia.environment.Environment;
 import frsf.cidisi.faia.examples.search.pacman.PacmanEnvironmentState;
 import frsf.cidisi.faia.examples.search.pacman.PacmanPerception;
 
+
 public class Ambiente extends Environment {
 
 	public Ambiente() {
@@ -18,13 +19,59 @@ public class Ambiente extends Environment {
 		return (EstadoAmbiente) super.getEnvironmentState();
 	}
 
+	/**
+     * This method is called by the simulator. Given the Agent, it creates
+     * a new perception reading, for example, the agent position.
+     * @param agent
+     * @return A perception that will be given to the agent by the simulator.
+     */
 	@Override
 	public Perception getPercept() {
 
 		PlantaPerception perception = new PlantaPerception();
 
-		perception.setRowSensor(this.getRow(this.getEnvironmentState().getPosicionPlantaFila()));
-		perception.setColumnSensor(this.getColumn(this.getEnvironmentState().getPosicionPlantaColumna()));
+//		perception.initPerception(null, this);
+		
+		this.getEnvironmentState().setSoles();
+		this.getEnvironmentState().updateZombies();		
+		
+		String[] sensorFila = this.getRow(this.getEnvironmentState().getPosicionPlantaFila());
+		String[] sensorColumna = this.getColumn(this.getEnvironmentState().getPosicionPlantaColumna());
+		
+		int plantaCol = this.getEnvironmentState().getPosicionPlantaColumna();
+		int plantaFila = this.getEnvironmentState().getPosicionPlantaFila();
+		
+		boolean obsDerecha = false;
+		boolean obsIzquierda = false;
+		boolean obsArriba = false;
+		boolean obsAbajo = false;
+		
+		for(int i = plantaCol+1; i<=8; i++) {			
+			if(obsDerecha) 	sensorFila[i] = PlantaPerception.UNKNOWN_PERCEPTION;
+			if(sensorFila[i] != "e") obsDerecha = true;
+		}
+		
+		for(int i = plantaCol-1; i>=0; i--) {	
+			if(obsIzquierda) sensorFila[i] = PlantaPerception.UNKNOWN_PERCEPTION;
+			if(sensorFila[i] != "e") obsIzquierda = true;
+		}
+		
+		for(int i = plantaFila+1; i<=4; i++) {
+			if(obsAbajo) 	sensorColumna[i] = PlantaPerception.UNKNOWN_PERCEPTION;
+			if(sensorColumna[i] != "e") obsAbajo = true;
+		}
+		
+		for(int i = plantaFila-1; i>=0; i--) {	
+			if(obsArriba) sensorColumna[i] = PlantaPerception.UNKNOWN_PERCEPTION;
+			if(sensorColumna[i] != "e") obsArriba = true;
+		}
+		
+		perception.setRowSensor(sensorFila);
+		perception.setColumnSensor(sensorColumna);
+		perception.setEnergy(this.getEnvironmentState().getEnergiaPlanta());
+		
+		
+		
 
 		return perception;
 	}

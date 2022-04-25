@@ -15,12 +15,20 @@ public class PlantaState extends SearchBasedAgentState {
 	int posicionPlantaColumna;
 	private int energia;
 	private int totalZombies;
+	Double cantidadAccionesRealizadas = (double) 0;
 
-	public PlantaState() {
+	public PlantaState(int energiaPlanta, int  totalZombies) {
 		tablero = new String[5][9];
-		posicionPlantaFila = 2;
-		posicionPlantaColumna = 0;
-		energia = 0;// TODO check this energy
+//		posicionPlantaFila = 2;
+//		posicionPlantaColumna = 3;
+//		energia = energiaPlanta;
+//		
+		this.setPosicionPlantaFila(2);
+		this.setPosicionPlantaColumna(0);
+
+		this.setEnergia(energiaPlanta);
+		this.setTotalZombies(totalZombies);
+
 		this.initState();
 	}
 
@@ -47,8 +55,10 @@ public class PlantaState extends SearchBasedAgentState {
 		}
 
 		PlantaState newState = new PlantaState(newWorld, this.getPosicionPlantaFila(), this.getPosicionPlantaColumna(),
-				this.energia, this.totalZombies);
+				this.getEnergia(), this.getTotalZombies());
 
+		System.out.println(newState.toString());
+		
 		return newState;
 	}
 
@@ -59,18 +69,19 @@ public class PlantaState extends SearchBasedAgentState {
 	@Override
 	public void updateState(Perception p) {
 		PlantaPerception plantaPerception = (PlantaPerception) p;
-
+	
 		int row = this.getPosicionPlantaFila();
 		int col = this.getPosicionPlantaColumna();
 
 		String[] columnSensor = plantaPerception.getColumnSensor();
-		for (int i=0; i < columnSensor.length; i++) {
-			tablero[row][i] = columnSensor[i];
-		}
-
 		String[] rowSensor = plantaPerception.getRowSensor();
-		for (int i=0; i < rowSensor.length; i++) {
+		
+		for (int i=0; i < columnSensor.length; i++) {
 			tablero[i][col] = columnSensor[i];
+		}	
+		
+		for (int i=0; i < rowSensor.length; i++) {
+			tablero[row][i] = rowSensor[i];
 		}
 
 		energia = plantaPerception.getEnergy();
@@ -85,15 +96,9 @@ public class PlantaState extends SearchBasedAgentState {
 	public void initState() {
 		for (int row = 0; row < 5; row++) {
 			for (int col = 0; col < 9; col++) {
-				tablero[row][col] = PlantaPerception.UNKNOWN_PERCEPTION;
+					tablero[row][col] = PlantaPerception.UNKNOWN_PERCEPTION;
 			}
 		}
-
-		this.setPosicionPlantaFila(2);
-		this.setPosicionPlantaColumna(0);
-
-		this.setEnergia(0);
-		this.setTotalZombies(0);
 
 	}
 
@@ -381,5 +386,17 @@ public class PlantaState extends SearchBasedAgentState {
 
 		return tipoZombie;
 	}
+
+	public Double getCantidadAccionesRealizadas() {
+		return cantidadAccionesRealizadas;
+	}
+
+	public void setCantidadAccionesRealizadas(Double cantidadAccionesRealizadas) {
+		this.cantidadAccionesRealizadas += cantidadAccionesRealizadas;
+	}
+
+
+	
+	
 	
 }

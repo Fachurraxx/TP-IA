@@ -1,6 +1,5 @@
 package AccionesPlanta;
 
-import frsf.cidisi.faia.examples.search.pacman.*;
 import frsf.cidisi.faia.agent.search.SearchAction;
 import frsf.cidisi.faia.agent.search.SearchBasedAgentState;
 import frsf.cidisi.faia.state.AgentState;
@@ -19,13 +18,16 @@ public class IrAbajo extends SearchAction {
 		
 		int row = estadoPlanta.getPosicionPlantaFila();
 		int col = estadoPlanta.getPosicionPlantaColumna();
+		int prevRow = row;
 		String posicionPlantaValor = estadoPlanta.getTableroEnPosicion(row, col);
 		
 		// Check the limits of the world
+		
         if (row == 4) {
             row = 0;
         } else {
             row = row + 1;
+            
         }
         
         estadoPlanta.setPosicionPlantaFila(row);
@@ -36,13 +38,7 @@ public class IrAbajo extends SearchAction {
 
         	estadoPlanta.setTableroEnPosicion(row, col, PlantaPerception.PLANTA_PERCEPTION);
 
-        	if(posicionPlantaValor.contains("-")) {
-        		posicionPlantaValor = posicionPlantaValor.split("-")[1];
-        		estadoPlanta.setTableroEnPosicion(row-1, col, posicionPlantaValor);
-        	}
-        	else {
-            	estadoPlanta.setTableroEnPosicion(row-1, col, PlantaPerception.EMPTY_PERCEPTION);
-        	}
+        	
         }
         else{
         	 if(!tableroValor.contains("z")) {//p-12 
@@ -55,6 +51,7 @@ public class IrAbajo extends SearchAction {
         		 
         		 if (estadoPlanta.getEnergia()>1) {
         			 estadoPlanta.setTableroEnPosicion(row, col, PlantaPerception.PLANTA_PERCEPTION);
+        			 estadoPlanta.setTotalZombies(estadoPlanta.getTotalZombies() - 1 );
         		 }
         		 else {
         			 estadoPlanta.setTableroEnPosicion(row, col, PlantaPerception.PLANTA_PERCEPTION.concat("-").concat(tableroValor));
@@ -64,6 +61,15 @@ public class IrAbajo extends SearchAction {
         	 }
         }
         
+        if(posicionPlantaValor.contains("-")) {
+    		posicionPlantaValor = posicionPlantaValor.split("-")[1];
+    		estadoPlanta.setTableroEnPosicion(prevRow, col, posicionPlantaValor);
+    	}
+    	else {
+        	estadoPlanta.setTableroEnPosicion(prevRow, col, PlantaPerception.EMPTY_PERCEPTION);
+    	}
+        
+        estadoPlanta.setCantidadAccionesRealizadas(this.getCost());
 		return estadoPlanta;
 	}
 
@@ -75,62 +81,74 @@ public class IrAbajo extends SearchAction {
 
 		int row = estadoAmbiente.getPosicionPlantaFila();
 		int col = estadoAmbiente.getPosicionPlantaColumna();
+		int prevRow = row;
 		String posicionPlantaValor = estadoPlanta.getTableroEnPosicion(row, col);
-
-
+		
 		// Check the limits of the world
+		
         if (row == 4) {
             row = 0;
         } else {
             row = row + 1;
+            
+        }
+
+        String tableroValor = estadoAmbiente.getTableroEnPosicion(row, col);
+        if (tableroValor == PlantaPerception.EMPTY_PERCEPTION || tableroValor == PlantaPerception.UNKNOWN_PERCEPTION ) {
+        	//seteamos estado del ambiente y de la planta 
+        	estadoAmbiente.setTableroEnPosicion(row, col, PlantaPerception.PLANTA_PERCEPTION);
+        	estadoPlanta.setTableroEnPosicion(row, col, PlantaPerception.PLANTA_PERCEPTION);
+        	
+        	
+        }
+        else{
+        	 if(!tableroValor.contains("z")) {//p-12 
+        		 estadoAmbiente.setTableroEnPosicion(row, col,
+             			PlantaPerception.PLANTA_PERCEPTION.concat("-").concat(tableroValor));
+        		 estadoPlanta.setTableroEnPosicion(row, col,
+              			PlantaPerception.PLANTA_PERCEPTION.concat("-").concat(tableroValor));
+        	 }
+        	 else {
+        		 int tipoZombie = estadoAmbiente.getTipoZombie(tableroValor);
+        		 estadoAmbiente.setEnergiaPlanta(estadoAmbiente.getEnergiaPlanta() - (2 * tipoZombie));
+        		 estadoPlanta.setEnergia(estadoPlanta.getEnergia() - (2 * tipoZombie));
+
+        		 if (estadoAmbiente.getEnergiaPlanta()>1) {
+        			 estadoAmbiente.setTableroEnPosicion(row, col, PlantaPerception.PLANTA_PERCEPTION);
+        			 estadoAmbiente.setTotalZombies(estadoAmbiente.getTotalZombies() - 1 );
+        			 estadoPlanta.setTableroEnPosicion(row, col, PlantaPerception.PLANTA_PERCEPTION);
+        			 estadoPlanta.setTotalZombies(estadoPlanta.getTotalZombies() - 1 );
+        		 }
+        		 else {
+        			 estadoAmbiente.setTableroEnPosicion(row, col, PlantaPerception.PLANTA_PERCEPTION.concat("-").concat(tableroValor));
+        			 estadoPlanta.setTableroEnPosicion(row, col, PlantaPerception.PLANTA_PERCEPTION.concat("-").concat(tableroValor));
+        		 }
+        		
+        		 
+        	 }
         }
         
+        if(posicionPlantaValor.contains("-")) {
+    		posicionPlantaValor = posicionPlantaValor.split("-")[1];
+    		estadoAmbiente.setTableroEnPosicion(prevRow, col, posicionPlantaValor);
+    		estadoPlanta.setTableroEnPosicion(prevRow, col, posicionPlantaValor);
+    	}
+    	else {
+        	estadoAmbiente.setTableroEnPosicion(prevRow, col, PlantaPerception.EMPTY_PERCEPTION);
+        	estadoPlanta.setTableroEnPosicion(prevRow, col, PlantaPerception.EMPTY_PERCEPTION);
+    	}
+        
         estadoPlanta.setPosicionPlantaFila(row);
-
         estadoAmbiente.setPosicionPlantaFila(row);
         
-        //TODO hay que actualizar los estados cuando nos movemos? porque el pacman no lo hace?
-        //si actualizamos en que estado(planta o ambiente) nos basamos para verificar que hay es esa posicion?
-//        String tableroValor = estadoPlanta.getTableroEnPosicion(row, col);
-//        if (tableroValor == PlantaPerception.EMPTY_PERCEPTION || tableroValor == PlantaPerception.UNKNOWN_PERCEPTION ) {
-//
-//        	estadoPlanta.setTableroEnPosicion(row, col, PlantaPerception.PLANTA_PERCEPTION);
-//
-//        	if(posicionPlantaValor.contains("-")) {
-//        		posicionPlantaValor = posicionPlantaValor.split("-")[1];
-//        		estadoPlanta.setTableroEnPosicion(row-1, col, posicionPlantaValor);
-//        	}
-//        	else {
-//            	estadoPlanta.setTableroEnPosicion(row-1, col, PlantaPerception.EMPTY_PERCEPTION);
-//        	}
-//        }
-//        else{
-//        	 if(!tableroValor.contains("z")) {//p-12 
-//        		 estadoPlanta.setTableroEnPosicion(row, col,
-//             			PlantaPerception.PLANTA_PERCEPTION.concat("-").concat(tableroValor));
-//        	 }
-//        	 else {
-//        		 int tipoZombie = estadoPlanta.getTipoZombie(tableroValor);
-//        		 estadoPlanta.setEnergia(estadoPlanta.getEnergia() - (2 * tipoZombie));
-//        		 
-//        		 if (estadoPlanta.getEnergia()>1) {
-//        			 estadoPlanta.setTableroEnPosicion(row, col, PlantaPerception.PLANTA_PERCEPTION);
-//        		 }
-//        		 else {
-//        			 estadoPlanta.setTableroEnPosicion(row, col, PlantaPerception.PLANTA_PERCEPTION.concat("-").concat(tableroValor));
-//        		 }
-//        		
-//        		 
-//        	 }
-//        }
-        
+        estadoPlanta.setCantidadAccionesRealizadas(this.getCost());
         return estadoAmbiente;
 	}
 
-	@Override
-	public Double getCost() {
-		return new Double(0);
-	}
+	   @Override
+	    public Double getCost() {
+	        return 1.0;
+	    }
 
 	@Override
 	public String toString() {
