@@ -20,33 +20,38 @@ public class Recargar extends SearchAction {
         int posColumna = estadoPlanta.getPosicionPlantaColumna();
 
         /* La planta puede recargar si hay un numero entero al lado */
+        estadoPlanta.setCantidadAccionesRealizadas(this.getCost());
         
         if ( posFila > 0 && estadoPlanta.getTablero()[posFila-1][posColumna].matches("[+-]?\\d*(\\.\\d+)?") ) {
         	
         	Integer cantSoles = Integer.parseInt(estadoPlanta.getTablero()[posFila-1][posColumna]);	        	    	
         	estadoPlanta.setEnergia(estadoPlanta.getEnergia() + cantSoles);
         	estadoPlanta.setTableroEnPosicion(posFila-1, posColumna, PlantaPerception.GIRASOLES_PERCEPTION);
-				        	
+
+            return estadoPlanta;        	
         }else if ( posFila < 4 && estadoPlanta.getTablero()[posFila+1][posColumna].matches("[+-]?\\d*(\\.\\d+)?") ) {
         	
         	Integer cantSoles = Integer.parseInt(estadoPlanta.getTablero()[posFila+1][posColumna]);	        	    	
         	estadoPlanta.setEnergia(estadoPlanta.getEnergia() + cantSoles);
         	estadoPlanta.setTableroEnPosicion(posFila+1, posColumna, PlantaPerception.GIRASOLES_PERCEPTION);
-				        	
+
+            return estadoPlanta;        	
         }else if (  posColumna > 0 && estadoPlanta.getTablero()[posFila][posColumna-1].matches("[+-]?\\d*(\\.\\d+)?") ) {
         	
         	Integer cantSoles = Integer.parseInt(estadoPlanta.getTablero()[posFila][posColumna-1]);	        	    	
         	estadoPlanta.setEnergia(estadoPlanta.getEnergia() + cantSoles);
         	estadoPlanta.setTableroEnPosicion(posFila, posColumna-1, PlantaPerception.GIRASOLES_PERCEPTION);
-				        	
+
+            return estadoPlanta;       	
         }else if ( posColumna < 8 && estadoPlanta.getTablero()[posFila][posColumna+1].matches("[+-]?\\d*(\\.\\d+)?") ) {
         	
         	Integer cantSoles = Integer.parseInt(estadoPlanta.getTablero()[posFila][posColumna+1]);	        	    	
         	estadoPlanta.setEnergia(estadoPlanta.getEnergia() + cantSoles);
         	estadoPlanta.setTableroEnPosicion(posFila, posColumna+1, PlantaPerception.GIRASOLES_PERCEPTION);				        	
+
+            return estadoPlanta;
         }
-        estadoPlanta.setCantidadAccionesRealizadas(this.getCost());
-        return estadoPlanta;
+        return null;
     }
 
 

@@ -30,47 +30,52 @@ public class IrAbajo extends SearchAction {
             
         }
         
-        estadoPlanta.setPosicionPlantaFila(row);
-        
-        
-        String tableroValor = estadoPlanta.getTableroEnPosicion(row, col);
-        if (tableroValor == PlantaPerception.EMPTY_PERCEPTION || tableroValor == PlantaPerception.UNKNOWN_PERCEPTION ) {
+        if(estadoPlanta.getEnergia()>1) {
+        	estadoPlanta.setPosicionPlantaFila(row);
+            
+            
+            String tableroValor = estadoPlanta.getTableroEnPosicion(row, col);
+            if (tableroValor == PlantaPerception.EMPTY_PERCEPTION || tableroValor == PlantaPerception.UNKNOWN_PERCEPTION ) {
 
-        	estadoPlanta.setTableroEnPosicion(row, col, PlantaPerception.PLANTA_PERCEPTION);
+            	estadoPlanta.setTableroEnPosicion(row, col, PlantaPerception.PLANTA_PERCEPTION);
 
-        	
-        }
-        else{
-        	 if(!tableroValor.contains("z")) {//p-12 
-        		 estadoPlanta.setTableroEnPosicion(row, col,
-             			PlantaPerception.PLANTA_PERCEPTION.concat("-").concat(tableroValor));
-        	 }
-        	 else {
-        		 int tipoZombie = estadoPlanta.getTipoZombie(tableroValor);
-        		 estadoPlanta.setEnergia(estadoPlanta.getEnergia() - (2 * tipoZombie));
-        		 
-        		 if (estadoPlanta.getEnergia()>1) {
-        			 estadoPlanta.setTableroEnPosicion(row, col, PlantaPerception.PLANTA_PERCEPTION);
-        			 estadoPlanta.setTotalZombies(estadoPlanta.getTotalZombies() - 1 );
-        		 }
-        		 else {
-        			 estadoPlanta.setTableroEnPosicion(row, col, PlantaPerception.PLANTA_PERCEPTION.concat("-").concat(tableroValor));
-        		 }
-        		
-        		 
-        	 }
+            	
+            }
+            else{
+            	 if(!tableroValor.contains("z")) {//p-12 
+            		 estadoPlanta.setTableroEnPosicion(row, col,
+                 			PlantaPerception.PLANTA_PERCEPTION.concat("-").concat(tableroValor));
+            	 }
+            	 else {
+            		 int tipoZombie = estadoPlanta.getTipoZombie(tableroValor);
+            		 estadoPlanta.setEnergia(estadoPlanta.getEnergia() - (2 * tipoZombie));
+            		 
+            		 if (estadoPlanta.getEnergia()>1) {
+            			 estadoPlanta.setTableroEnPosicion(row, col, PlantaPerception.PLANTA_PERCEPTION);
+            			 estadoPlanta.setTotalZombies(estadoPlanta.getTotalZombies() - 1 );
+            		 }
+            		 else {
+            			 estadoPlanta.setTableroEnPosicion(row, col, PlantaPerception.PLANTA_PERCEPTION.concat("-").concat(tableroValor));
+            		 }
+            		
+            		 
+            	 }
+            }
+            
+            if(posicionPlantaValor.contains("-")) {
+        		posicionPlantaValor = posicionPlantaValor.split("-")[1];
+        		estadoPlanta.setTableroEnPosicion(prevRow, col, posicionPlantaValor);
+        	}
+        	else {
+            	estadoPlanta.setTableroEnPosicion(prevRow, col, PlantaPerception.EMPTY_PERCEPTION);
+        	}
+            
+            estadoPlanta.setCantidadAccionesRealizadas(this.getCost());
+    		return estadoPlanta;
         }
         
-        if(posicionPlantaValor.contains("-")) {
-    		posicionPlantaValor = posicionPlantaValor.split("-")[1];
-    		estadoPlanta.setTableroEnPosicion(prevRow, col, posicionPlantaValor);
-    	}
-    	else {
-        	estadoPlanta.setTableroEnPosicion(prevRow, col, PlantaPerception.EMPTY_PERCEPTION);
-    	}
+        return null;
         
-        estadoPlanta.setCantidadAccionesRealizadas(this.getCost());
-		return estadoPlanta;
 	}
 
 	@Override
@@ -147,7 +152,7 @@ public class IrAbajo extends SearchAction {
 
 	   @Override
 	    public Double getCost() {
-	        return 1.0;
+	        return 10.0;
 	    }
 
 	@Override

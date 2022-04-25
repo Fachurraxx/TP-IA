@@ -3,8 +3,6 @@ package frsf.ia.grupo1;
 import frsf.cidisi.faia.agent.Action;
 import frsf.cidisi.faia.agent.Perception;
 import frsf.cidisi.faia.environment.Environment;
-import frsf.cidisi.faia.examples.search.pacman.PacmanEnvironmentState;
-import frsf.cidisi.faia.examples.search.pacman.PacmanPerception;
 
 
 public class Ambiente extends Environment {
@@ -30,7 +28,6 @@ public class Ambiente extends Environment {
 
 		PlantaPerception perception = new PlantaPerception();
 
-//		perception.initPerception(null, this);
 		
 		this.getEnvironmentState().setSoles();
 		this.getEnvironmentState().updateZombies();		
@@ -69,8 +66,6 @@ public class Ambiente extends Environment {
 		perception.setRowSensor(sensorFila);
 		perception.setColumnSensor(sensorColumna);
 		perception.setEnergy(this.getEnvironmentState().getEnergiaPlanta());
-		
-		
 		
 
 		return perception;

@@ -1,6 +1,5 @@
 package frsf.ia.grupo1;
 
-import frsf.cidisi.faia.agent.Perception;
 import frsf.cidisi.faia.exceptions.PrologConnectorException;
 import frsf.cidisi.faia.simulator.SearchBasedAgentSimulator;
 

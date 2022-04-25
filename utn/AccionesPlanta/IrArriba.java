@@ -31,7 +31,7 @@ public class IrArriba extends SearchAction {
 	            row = row - 1;
 	            
 	        }
-	        
+	        if(estadoPlanta.getEnergia()>1) { 
 	        estadoPlanta.setPosicionPlantaFila(row);
 	        
 	        
@@ -73,6 +73,10 @@ public class IrArriba extends SearchAction {
 	        
 	        estadoPlanta.setCantidadAccionesRealizadas(this.getCost());
 			return estadoPlanta;
+}
+        
+        return null;
+			
 		}
 
 
@@ -149,7 +153,7 @@ public class IrArriba extends SearchAction {
     
 		   @Override
 		    public Double getCost() {
-		        return 1.0;
+		        return 10.0;
 		    }
 
     /**

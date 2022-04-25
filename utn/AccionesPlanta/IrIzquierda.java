@@ -22,7 +22,8 @@ public class IrIzquierda extends SearchAction {
 		int prevCol = col;
 		String posicionPlantaValor = estadoPlanta.getTableroEnPosicion(row, col);
     
-//		if (col != 0) { 
+		if(estadoPlanta.getEnergia()>1) {
+//			if (col != 0) { 
 	        String tableroValor = estadoPlanta.getTableroEnPosicion(row, col);
 	        if (tableroValor == PlantaPerception.EMPTY_PERCEPTION || tableroValor == PlantaPerception.UNKNOWN_PERCEPTION ) {
 	
@@ -62,7 +63,10 @@ public class IrIzquierda extends SearchAction {
 //		}
 		
 		
-		return estadoPlanta;
+		return estadoPlanta; 
+		 }
+		 return null;
+
 	}
 
 
@@ -134,7 +138,7 @@ public class IrIzquierda extends SearchAction {
 	
 	   @Override
 	    public Double getCost() {
-	        return 1.0;
+	        return 10.0;
 	    }
 
     /**

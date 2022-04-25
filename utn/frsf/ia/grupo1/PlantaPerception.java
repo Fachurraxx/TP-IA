@@ -3,9 +3,6 @@ package frsf.ia.grupo1;
 import frsf.cidisi.faia.agent.Agent;
 import frsf.cidisi.faia.agent.Perception;
 import frsf.cidisi.faia.environment.Environment;
-import frsf.cidisi.faia.examples.search.pacman.PacmanAgent;
-import frsf.cidisi.faia.examples.search.pacman.PacmanEnvironment;
-import frsf.cidisi.faia.examples.search.pacman.PacmanEnvironmentState;
 
 public class PlantaPerception extends Perception {
 //	matrizPosiciones se representa como una matriz de 5x9. Los zombies se representarán como z1, z2, z3, z4, z5 siendo el subíndice la cantidad de soles que necesita la planta para matar a ese zombie.
@@ -35,28 +32,6 @@ public class PlantaPerception extends Perception {
 	}
 
 	
-//	@Override
-//	public void initPerception(Agent agent, Environment environment) {
-//
-//		Ambiente ambiente = (Ambiente) environment;
-//		EstadoAmbiente estadoDelAmbiente = ambiente.getEnvironmentState();
-//
-////      Cada girasol genera aleatoriamente entre 1 y 3 soles por cada ciclo de percepción.  Primero actualizamos los soles de los girasoles y despues percibimos la data actualizada              
-//		estadoDelAmbiente.setSoles();
-//
-////      Hacer avanzar los zombies que esten ya presentes         
-//// 		Tenemos que ver como modelar esto: Un zombie puede demorar entre 1 y 3 ciclos de percepción de manera aleatoria para avanzar a la siguiente celda 
-//		// Como podemos llevar registro de hace cuanto tiempo se movio el zombie???*/
-////      Hacer aparecer nuevos Zombies unicamente si la ultima columna no esta completa por zombies podemos hacer aparecer un numero random entre la cantidad de celdas libres en la ultima columna hasta 5(max numero de filas) o cantidad de zombies que todavia no hicimos aparecer, el numero que sea menor 
-//		estadoDelAmbiente.updateZombies();
-//
-//		this.setRowSensor(ambiente.getRow(estadoDelAmbiente.getPosicionPlantaFila()));
-//		this.setColumnSensor(ambiente.getColumn(estadoDelAmbiente.getPosicionPlantaColumna()));
-//
-//		System.out.println(estadoDelAmbiente.toString());
-//		System.out.println("---------------------------");
-//
-//	}
 	
 	@Override
 	public void initPerception(Agent agent, Environment environment) {
@@ -70,8 +45,6 @@ public class PlantaPerception extends Perception {
 		this.setRowSensor(ambiente.getRow(estadoDelAmbiente.getPosicionPlantaFila()));
 		this.setColumnSensor(ambiente.getColumn(estadoDelAmbiente.getPosicionPlantaColumna()));
 
-//		System.out.println(estadoDelAmbiente.toString());
-//		System.out.println("-------------p--------------");
 
 	}
 

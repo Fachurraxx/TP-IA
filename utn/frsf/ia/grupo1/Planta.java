@@ -1,14 +1,5 @@
 package frsf.ia.grupo1;
 
-import frsf.cidisi.faia.examples.search.pacman.PacmanAgent;
-import frsf.cidisi.faia.examples.search.pacman.PacmanAgentState;
-import frsf.cidisi.faia.examples.search.pacman.PacmanGoal;
-import frsf.cidisi.faia.examples.search.pacman.actions.Eat;
-import frsf.cidisi.faia.examples.search.pacman.actions.GoDown;
-import frsf.cidisi.faia.examples.search.pacman.actions.GoLeft;
-import frsf.cidisi.faia.examples.search.pacman.actions.Fight;
-import frsf.cidisi.faia.examples.search.pacman.actions.GoUp;
-import frsf.cidisi.faia.examples.search.pacman.actions.GoRight;
 import frsf.cidisi.faia.agent.Perception;
 import java.util.Vector;
 
@@ -39,13 +30,14 @@ public class Planta extends SearchBasedAgent {
 
 		// Create the operators
 		Vector<SearchAction> operators = new Vector<SearchAction>();
+		operators.addElement(new Pelear());
+		operators.addElement(new Recargar());
+		operators.addElement(new Plantar());
 		operators.addElement(new IrAbajo());
 		operators.addElement(new IrArriba());
 		operators.addElement(new IrDerecha());
 		operators.addElement(new IrIzquierda());
-		operators.addElement(new Plantar());
-		operators.addElement(new Recargar());
-		operators.addElement(new Pelear());
+		
 
 		// Create the Problem which the Planta will resolve
 		Problem problem = new Problem(goal, plantaState, operators);
@@ -65,6 +57,8 @@ public class Planta extends SearchBasedAgent {
 		// Create the search strategy
 		DepthFirstSearch strategy = new DepthFirstSearch();
 
+//		IStepCostFunction costFunction = new FuncionCosto();
+//		UniformCostSearch strategy = new UniformCostSearch(costFunction);
 		/**
 		 * Another search strategy examples:
 		 * 
