@@ -1,6 +1,5 @@
 package AccionesPlanta;
 
-import frsf.cidisi.faia.examples.search.pacman.*;
 import frsf.cidisi.faia.agent.search.SearchAction;
 import frsf.cidisi.faia.agent.search.SearchBasedAgentState;
 import frsf.cidisi.faia.state.AgentState;

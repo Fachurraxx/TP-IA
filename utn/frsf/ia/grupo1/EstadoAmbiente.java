@@ -52,10 +52,10 @@ public class EstadoAmbiente extends EnvironmentState {
 			}
 		}
 
-		int totalZombies = getRandomNumber(1, 2);
+		int totalZombies = getRandomNumber(5, 20);
 		this.setTotalZombies(totalZombies);
 
-		int zombiesInicio = getRandomNumber(1, totalZombies);
+		int zombiesInicio = getRandomNumber(1, 5);
 		this.agregarZombiesAlTablero(zombiesInicio);
 
 		int missingZombies = totalZombies - zombiesInicio;
@@ -66,21 +66,7 @@ public class EstadoAmbiente extends EnvironmentState {
 
 		this.setZombieEnCasa(false);
 		
-		
-//		TEST
-		//Set some girasoles
-//		setTableroEnPosicion(1,0, PlantaPerception.GIRASOLES_PERCEPTION);
-//		setTableroEnPosicion(2,5, PlantaPerception.GIRASOLES_PERCEPTION);
-//		setTableroEnPosicion(2,2, PlantaPerception.GIRASOLES_PERCEPTION);
-//		setTableroEnPosicion(1,3, PlantaPerception.GIRASOLES_PERCEPTION);
-//		setTableroEnPosicion(3,3, PlantaPerception.GIRASOLES_PERCEPTION);
-//		
-//		//set energia planta
-//		//this.setEnergiaPlanta(12);
-//		
-//		setTableroEnPosicion(2,3, PlantaPerception.PLANTA_PERCEPTION);
-//		this.setPosicionPlantaFila(2);
-//		this.setPosicionPlantaColumna(3);
+
 		
 
 	}
