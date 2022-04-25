@@ -98,18 +98,13 @@ public class Planta extends SearchBasedAgent {
 		// Ask the solver for the best action
 		Action selectedAction = null;
 
-		
-		System.out.println("Impresion antes del try");
 		try {
-			System.out.println("Impresion dentro del try");
+			
+			//NOS QUEDA UN LOOP ACA PORQUE SIEMPRE GENERA NUEVOS NODOS Y NO DEVUELVE NINGUNA ACCION
 			selectedAction = this.getSolver().solve(new Object[] { this.getProblem() });
-			System.out.println("Impresion despues del solve");
 		} catch (Exception ex) {
-			System.out.println("Impresion en el catch");
 			Logger.getLogger(Planta.class.getName()).log(Level.SEVERE, null, ex);
 		}
-
-		System.out.println("Impresion despues de todo");
 		// Return the selected action
 		return selectedAction;
 	}
