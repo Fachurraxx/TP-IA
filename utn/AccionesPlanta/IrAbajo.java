@@ -145,6 +145,6 @@ public class IrAbajo extends SearchAction {
 
 	@Override
 	public String toString() {
-		return "GoUp";
+		return "Ir Abajo";
 	}
 }

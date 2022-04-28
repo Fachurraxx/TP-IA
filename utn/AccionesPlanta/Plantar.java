@@ -94,6 +94,6 @@ public class Plantar extends SearchAction {
      */
     @Override
     public String toString() {
-        return "GoUp";
+        return "Plantar";
     }
 }

@@ -157,6 +157,6 @@ public class IrArriba extends SearchAction {
      */
     @Override
     public String toString() {
-        return "GoUp";
+        return "Ir Arriba";
     }
 }
