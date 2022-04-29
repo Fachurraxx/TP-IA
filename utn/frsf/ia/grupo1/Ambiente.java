@@ -18,13 +18,7 @@ public class Ambiente extends Environment {
 	public EstadoAmbiente getEnvironmentState() {
 		return (EstadoAmbiente) super.getEnvironmentState();
 	}
-
-	/**
-     * This method is called by the simulator. Given the Agent, it creates
-     * a new perception reading, for example, the agent position.
-     * @param agent
-     * @return A perception that will be given to the agent by the simulator.
-     */
+	
 	@Override
 	public Perception getPercept() {
 
@@ -81,6 +75,8 @@ public class Ambiente extends Environment {
 	@Override
 	public boolean agentFailed(Action actionReturned) {
 
+		System.out.println(actionReturned.toString());
+		
 		EstadoAmbiente estadoAmbiente = this.getEnvironmentState();
 		System.out.println("estado ambienteeeeeeeeeeeeeee");
 		System.out.println(estadoAmbiente.toString());

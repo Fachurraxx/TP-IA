@@ -115,4 +115,274 @@ world="[
 [ e e e e e p z3 * *  ]
 [ e e e e e z3 * * *  ]
 [ e e e e e * * * *  ]
+ ]"</NodoPlantar></Nodonull><Nodonull>Id="0" Action="null"  position="(2,5)" energy="19"
+ totalZombies="7"
+ ZombiesTablero="2"
+world="[ 
+[ e e e e e * * * *  ]
+[ e e e e e z3 * * *  ]
+[ e e e e e p z2 * *  ]
+[ e e e e e z1 * * *  ]
+[ e e e e e * * * *  ]
+ ]"<NodoPelear>Id="1" Action="Pelear"  position="(2,5)" energy="16"
+ totalZombies="6"
+ ZombiesTablero="1"
+world="[ 
+[ e e e e e * * * *  ]
+[ e e e e e e * * *  ]
+[ e e e e e p z2 * *  ]
+[ e e e e e z1 * * *  ]
+[ e e e e e * * * *  ]
+ ]"<NodoPelear>Id="7" Action="Pelear"  position="(2,5)" energy="15"
+ totalZombies="5"
+ ZombiesTablero="0"
+world="[ 
+[ e e e e e * * * *  ]
+[ e e e e e e * * *  ]
+[ e e e e e p z2 * *  ]
+[ e e e e e e * * *  ]
+[ e e e e e * * * *  ]
+ ]"</NodoPelear><NodoIr Derecha>Id="8" Action="Ir Derecha"  position="(2,6)" energy="12"
+ totalZombies="5"
+ ZombiesTablero="1"
+world="[ 
+[ e e e e e * * * *  ]
+[ e e e e e e * * *  ]
+[ e e e e e e p * *  ]
+[ e e e e e z1 * * *  ]
+[ e e e e e * * * *  ]
+ ]"</NodoIr Derecha><NodoIr Abajo>Id="9" Action="Ir Abajo"  position="(3,5)" energy="14"
+ totalZombies="5"
+ ZombiesTablero="1"
+world="[ 
+[ e e e e e * * * *  ]
+[ e e e e e e * * *  ]
+[ e e e e e e z2 * *  ]
+[ e e e e e p * * *  ]
+[ e e e e e * * * *  ]
+ ]"</NodoIr Abajo><NodoIr Arriba>Id="10" Action="Ir Arriba"  position="(1,5)" energy="16"
+ totalZombies="6"
+ ZombiesTablero="1"
+world="[ 
+[ e e e e e * * * *  ]
+[ e e e e e p * * *  ]
+[ e e e e e e z2 * *  ]
+[ e e e e e z1 * * *  ]
+[ e e e e e * * * *  ]
+ ]"</NodoIr Arriba><NodoIr Izquierda>Id="11" Action="Ir Izquierda"  position="(2,5)" energy="16"
+ totalZombies="6"
+ ZombiesTablero="1"
+world="[ 
+[ e e e e e * * * *  ]
+[ e e e e e e * * *  ]
+[ e e e e e e z2 * *  ]
+[ e e e e e z1 * * *  ]
+[ e e e e e * * * *  ]
+ ]"</NodoIr Izquierda><NodoPlantar>Id="12" Action="Plantar"  position="(2,5)" energy="15"
+ totalZombies="6"
+ ZombiesTablero="1"
+world="[ 
+[ 0 e e e e * * * *  ]
+[ e e e e e e * * *  ]
+[ e e e e e p z2 * *  ]
+[ e e e e e z1 * * *  ]
+[ e e e e e * * * *  ]
+ ]"</NodoPlantar></NodoPelear><NodoIr Derecha>Id="2" Action="Ir Derecha"  position="(2,6)" energy="15"
+ totalZombies="6"
+ ZombiesTablero="2"
+world="[ 
+[ e e e e e * * * *  ]
+[ e e e e e z3 * * *  ]
+[ e e e e e e p * *  ]
+[ e e e e e z1 * * *  ]
+[ e e e e e * * * *  ]
+ ]"</NodoIr Derecha><NodoIr Abajo>Id="3" Action="Ir Abajo"  position="(3,5)" energy="17"
+ totalZombies="6"
+ ZombiesTablero="2"
+world="[ 
+[ e e e e e * * * *  ]
+[ e e e e e z3 * * *  ]
+[ e e e e e e z2 * *  ]
+[ e e e e e p * * *  ]
+[ e e e e e * * * *  ]
+ ]"</NodoIr Abajo><NodoIr Arriba>Id="4" Action="Ir Arriba"  position="(1,5)" energy="13"
+ totalZombies="6"
+ ZombiesTablero="2"
+world="[ 
+[ e e e e e * * * *  ]
+[ e e e e e p * * *  ]
+[ e e e e e e z2 * *  ]
+[ e e e e e z1 * * *  ]
+[ e e e e e * * * *  ]
+ ]"</NodoIr Arriba><NodoIr Izquierda>Id="5" Action="Ir Izquierda"  position="(2,5)" energy="19"
+ totalZombies="7"
+ ZombiesTablero="2"
+world="[ 
+[ e e e e e * * * *  ]
+[ e e e e e z3 * * *  ]
+[ e e e e e e z2 * *  ]
+[ e e e e e z1 * * *  ]
+[ e e e e e * * * *  ]
+ ]"</NodoIr Izquierda><NodoPlantar>Id="6" Action="Plantar"  position="(2,5)" energy="18"
+ totalZombies="7"
+ ZombiesTablero="2"
+world="[ 
+[ 0 e e e e * * * *  ]
+[ e e e e e z3 * * *  ]
+[ e e e e e p z2 * *  ]
+[ e e e e e z1 * * *  ]
+[ e e e e e * * * *  ]
+ ]"</NodoPlantar></Nodonull><Nodonull>Id="0" Action="null"  position="(2,6)" energy="16"
+ totalZombies="19"
+ ZombiesTablero="1"
+world="[ 
+[ e e e e e e * * *  ]
+[ e e e e e e * * *  ]
+[ e e e e e e p e z4  ]
+[ e e e e e e * * *  ]
+[ e e e e e e * * *  ]
+ ]"<NodoIr Derecha>Id="1" Action="Ir Derecha"  position="(2,6)" energy="16"
+ totalZombies="19"
+ ZombiesTablero="1"
+world="[ 
+[ e e e e e e * * *  ]
+[ e e e e e e * * *  ]
+[ e e e e e e p e z4  ]
+[ e e e e e e * * *  ]
+[ e e e e e e * * *  ]
+ ]"<NodoIr Derecha>Id="6" Action="Ir Derecha"  position="(2,7)" energy="16"
+ totalZombies="19"
+ ZombiesTablero="1"
+world="[ 
+[ e e e e e e * * *  ]
+[ e e e e e e * * *  ]
+[ e e e e e e e p z4  ]
+[ e e e e e e * * *  ]
+[ e e e e e e * * *  ]
+ ]"<NodoPelear>Id="11" Action="Pelear"  position="(2,7)" energy="12"
+ totalZombies="20"
+ ZombiesTablero="0"
+world="[ 
+[ e e e e e e * * *  ]
+[ e e e e e e * * *  ]
+[ e e e e e e e p e  ]
+[ e e e e e e * * *  ]
+[ e e e e e e * * *  ]
+ ]"</NodoPelear><NodoIr Derecha>Id="12" Action="Ir Derecha"  position="(2,8)" energy="8"
+ totalZombies="18"
+ ZombiesTablero="1"
+world="[ 
+[ e e e e e e * * *  ]
+[ e e e e e e * * *  ]
+[ e e e e e e e e p  ]
+[ e e e e e e * * *  ]
+[ e e e e e e * * *  ]
+ ]"</NodoIr Derecha><NodoIr Abajo>Id="13" Action="Ir Abajo"  position="(3,7)" energy="16"
+ totalZombies="19"
+ ZombiesTablero="1"
+world="[ 
+[ e e e e e e * * *  ]
+[ e e e e e e * * *  ]
+[ e e e e e e e e z4  ]
+[ e e e e e e * p *  ]
+[ e e e e e e * * *  ]
+ ]"</NodoIr Abajo><NodoIr Arriba>Id="14" Action="Ir Arriba"  position="(1,7)" energy="16"
+ totalZombies="19"
+ ZombiesTablero="1"
+world="[ 
+[ e e e e e e * * *  ]
+[ e e e e e e * p *  ]
+[ e e e e e e e e z4  ]
+[ e e e e e e * * *  ]
+[ e e e e e e * * *  ]
+ ]"</NodoIr Arriba><NodoIr Izquierda>Id="15" Action="Ir Izquierda"  position="(2,7)" energy="16"
+ totalZombies="19"
+ ZombiesTablero="1"
+world="[ 
+[ e e e e e e * * *  ]
+[ e e e e e e * * *  ]
+[ e e e e e e e e z4  ]
+[ e e e e e e * * *  ]
+[ e e e e e e * * *  ]
+ ]"</NodoIr Izquierda><NodoPlantar>Id="16" Action="Plantar"  position="(2,7)" energy="15"
+ totalZombies="19"
+ ZombiesTablero="1"
+world="[ 
+[ 0 e e e e e * * *  ]
+[ e e e e e e * * *  ]
+[ e e e e e e e p z4  ]
+[ e e e e e e * * *  ]
+[ e e e e e e * * *  ]
+ ]"</NodoPlantar></NodoIr Derecha><NodoIr Abajo>Id="7" Action="Ir Abajo"  position="(3,6)" energy="16"
+ totalZombies="19"
+ ZombiesTablero="1"
+world="[ 
+[ e e e e e e * * *  ]
+[ e e e e e e * * *  ]
+[ e e e e e e e e z4  ]
+[ e e e e e e p * *  ]
+[ e e e e e e * * *  ]
+ ]"</NodoIr Abajo><NodoIr Arriba>Id="8" Action="Ir Arriba"  position="(1,6)" energy="16"
+ totalZombies="19"
+ ZombiesTablero="1"
+world="[ 
+[ e e e e e e * * *  ]
+[ e e e e e e p * *  ]
+[ e e e e e e e e z4  ]
+[ e e e e e e * * *  ]
+[ e e e e e e * * *  ]
+ ]"</NodoIr Arriba><NodoIr Izquierda>Id="9" Action="Ir Izquierda"  position="(2,6)" energy="16"
+ totalZombies="19"
+ ZombiesTablero="1"
+world="[ 
+[ e e e e e e * * *  ]
+[ e e e e e e * * *  ]
+[ e e e e e e e e z4  ]
+[ e e e e e e * * *  ]
+[ e e e e e e * * *  ]
+ ]"</NodoIr Izquierda><NodoPlantar>Id="10" Action="Plantar"  position="(2,6)" energy="15"
+ totalZombies="19"
+ ZombiesTablero="1"
+world="[ 
+[ 0 e e e e e * * *  ]
+[ e e e e e e * * *  ]
+[ e e e e e e p e z4  ]
+[ e e e e e e * * *  ]
+[ e e e e e e * * *  ]
+ ]"</NodoPlantar></NodoIr Derecha><NodoIr Abajo>Id="2" Action="Ir Abajo"  position="(3,5)" energy="16"
+ totalZombies="19"
+ ZombiesTablero="1"
+world="[ 
+[ e e e e e e * * *  ]
+[ e e e e e e * * *  ]
+[ e e e e e e e e z4  ]
+[ e e e e e p * * *  ]
+[ e e e e e e * * *  ]
+ ]"</NodoIr Abajo><NodoIr Arriba>Id="3" Action="Ir Arriba"  position="(1,5)" energy="16"
+ totalZombies="19"
+ ZombiesTablero="1"
+world="[ 
+[ e e e e e e * * *  ]
+[ e e e e e p * * *  ]
+[ e e e e e e e e z4  ]
+[ e e e e e e * * *  ]
+[ e e e e e e * * *  ]
+ ]"</NodoIr Arriba><NodoIr Izquierda>Id="4" Action="Ir Izquierda"  position="(2,5)" energy="16"
+ totalZombies="19"
+ ZombiesTablero="1"
+world="[ 
+[ e e e e e e * * *  ]
+[ e e e e e e * * *  ]
+[ e e e e e e e e z4  ]
+[ e e e e e e * * *  ]
+[ e e e e e e * * *  ]
+ ]"</NodoIr Izquierda><NodoPlantar>Id="5" Action="Plantar"  position="(2,5)" energy="15"
+ totalZombies="19"
+ ZombiesTablero="1"
+world="[ 
+[ 0 e e e e e * * *  ]
+[ e e e e e e * * *  ]
+[ e e e e e p e e z4  ]
+[ e e e e e e * * *  ]
+[ e e e e e e * * *  ]
  ]"</NodoPlantar></Nodonull>

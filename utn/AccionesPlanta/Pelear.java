@@ -87,7 +87,7 @@ public class Pelear extends SearchAction {
         PlantaState estadoPlanta = (PlantaState) ast;
 
         int posFila = estadoPlanta.getPosicionPlantaFila();
-        int posColumna = estadoPlanta.getPosicionPlantaFila();
+        int posColumna = estadoPlanta.getPosicionPlantaColumna();
 
         /* La planta puede pelear si hay un zombie al lado y si tiene mas soles de los que necesita para pelear*/
        
