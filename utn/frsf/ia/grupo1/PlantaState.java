@@ -15,9 +15,10 @@ public class PlantaState extends SearchBasedAgentState {
 	int posicionPlantaColumna;
 	private int energia;
 	private int totalZombies;
+	int zombiesEnTablero;
 	Double cantidadAccionesRealizadas = (double) 0;
 
-	public PlantaState(int energiaPlanta, int  totalZombies) {
+	public PlantaState(int energiaPlanta, int  totalZombies, int zombiesTablero) {
 		tablero = new String[5][9];
 		
 		this.setPosicionPlantaFila(2);
@@ -25,16 +26,17 @@ public class PlantaState extends SearchBasedAgentState {
 
 		this.setEnergia(energiaPlanta);
 		this.setTotalZombies(totalZombies);
-
+		this.setZombiesEnTablero(zombiesTablero);
 		this.initState();
 	}
 
-	public PlantaState(String[][] t, int row, int col, int e, int z) {
+	public PlantaState(String[][] t, int row, int col, int e, int z, int zt) {
 		tablero = t;
 		posicionPlantaFila = row;
 		posicionPlantaColumna = col;
 		energia = e;
 		totalZombies = z;
+		zombiesEnTablero = zt;
 	}
 
 	/**
@@ -66,7 +68,7 @@ public class PlantaState extends SearchBasedAgentState {
 		}
 
 		PlantaState newState = new PlantaState(newWorld, this.getPosicionPlantaFila(), this.getPosicionPlantaColumna(),
-				this.getEnergia(), this.getTotalZombies());
+				this.getEnergia(), this.getTotalZombies(), this.getZombiesEnTablero());
 
 		System.out.println(newState.toString());
 		
@@ -112,7 +114,7 @@ public class PlantaState extends SearchBasedAgentState {
 		str = str + " position=\"(" + this.getPosicionPlantaFila() + "," + "" + this.getPosicionPlantaColumna() + ")\"";
 		str = str + " energy=\"" + energia + "\"\n";
 		str = str + " totalZombies=\"" + totalZombies + "\"\n";
-
+		str = str + " ZombiesTablero=\"" + zombiesEnTablero + "\"\n";
 		str = str + "world=\"[ \n";
 		for (int row = 0; row <5; row++) {
 			str = str + "[ ";
@@ -236,6 +238,14 @@ public class PlantaState extends SearchBasedAgentState {
 
 	public void setCantidadAccionesRealizadas(Double cantidadAccionesRealizadas) {
 		this.cantidadAccionesRealizadas += cantidadAccionesRealizadas;
+	}
+
+	public int getZombiesEnTablero() {
+		return zombiesEnTablero;
+	}
+
+	public void setZombiesEnTablero(int zombiesEnTablero) {
+		this.zombiesEnTablero = zombiesEnTablero;
 	}
 
 

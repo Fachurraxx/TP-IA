@@ -12,7 +12,8 @@ public class MainClass {
         Ambiente ambiente = new Ambiente();
         int energiaPlanta = ambiente.getEnvironmentState().getEnergiaPlanta();
         int totalZombies = ambiente.getEnvironmentState().getTotalZombies();
-        Planta agentePlanta = new Planta(energiaPlanta, totalZombies);
+        int zombiesEnTablero = ambiente.getEnvironmentState().getZombiesEnTablero();
+        Planta agentePlanta = new Planta(energiaPlanta, totalZombies, zombiesEnTablero);
         
         SearchBasedAgentSimulator simulator =
                 new SearchBasedAgentSimulator(ambiente, agentePlanta);

@@ -30,11 +30,11 @@ import AccionesPlanta.Recargar;
 
 public class Planta extends SearchBasedAgent {
 
-	public Planta(int energiaPlanta, int totalZombies) {
+	public Planta(int energiaPlanta, int totalZombies, int zombiesTablero) {
 
 		PlantaGoal goal = new PlantaGoal();
 
-		PlantaState plantaState = new PlantaState(energiaPlanta, totalZombies);
+		PlantaState plantaState = new PlantaState(energiaPlanta, totalZombies, zombiesTablero);
 		this.setAgentState(plantaState);
 
 		// Create the operators

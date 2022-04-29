@@ -82,7 +82,9 @@ public class Ambiente extends Environment {
 	public boolean agentFailed(Action actionReturned) {
 
 		EstadoAmbiente estadoAmbiente = this.getEnvironmentState();
-
+		System.out.println("estado ambienteeeeeeeeeeeeeee");
+		System.out.println(estadoAmbiente.toString());
+		
 		int agentEnergy = estadoAmbiente.getEnergiaPlanta();
 
 		boolean zombieEnCasa = estadoAmbiente.getZombieEnCasa();

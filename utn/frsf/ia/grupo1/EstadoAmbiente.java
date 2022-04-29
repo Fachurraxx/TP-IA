@@ -12,6 +12,7 @@ public class EstadoAmbiente extends EnvironmentState {
 	int missingZombies;
 	int[][] posicionZombies;
 	boolean zombieEnCasa;
+	int zombiesEnTablero;
 
 	public EstadoAmbiente(String[][] m) {
 		tablero = m;
@@ -65,7 +66,7 @@ public class EstadoAmbiente extends EnvironmentState {
 		this.setEnergiaPlanta(getRandomNumber(2, 20));
 
 		this.setZombieEnCasa(false);
-		
+		this.setZombiesEnTablero();
 		
 //		TEST
 		//Set some girasoles
@@ -423,6 +424,27 @@ public class EstadoAmbiente extends EnvironmentState {
 
 		return str;
 	}
+
+	public void setZombiesEnTablero() {
+		this.zombiesEnTablero = 0;
+		for (int row = 0; row < 5; row++) {
+			for (int col = 0; col < 9; col++) {
+				if(this.getTableroEnPosicion(row,col).contains("z")) {
+					this.zombiesEnTablero += 1;
+				}
+			}
+		}
+	}
+	
+	public int getZombiesEnTablero() {
+		return zombiesEnTablero;
+	}
+
+	public void setZombiesEnTablero(int zombiesEnTablero) {
+		this.zombiesEnTablero = zombiesEnTablero;
+	}
+	
+	
 
 
 }
