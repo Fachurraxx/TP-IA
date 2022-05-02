@@ -30,20 +30,21 @@ import AccionesPlanta.Recargar;
 
 public class Planta extends SearchBasedAgent {
 
-	public Planta(int energiaPlanta, int totalZombies, int zombiesTablero) {
+	PlantaState plantaState;
+	
+	public Planta(int energiaPlanta, int totalZombies, int zombiesTablero, int zombiesQueVeo) {
 
 		PlantaGoal goal = new PlantaGoal();
 
-		PlantaState plantaState = new PlantaState(energiaPlanta, totalZombies, zombiesTablero);
+		this.plantaState = new PlantaState(energiaPlanta, totalZombies, zombiesTablero, zombiesQueVeo);
 		this.setAgentState(plantaState);
 
 		// Create the operators
 		Vector<SearchAction> operators = new Vector<SearchAction>();
 		operators.addElement(new Pelear());
 		operators.addElement(new IrDerecha());
-		operators.addElement(new IrAbajo());
 		operators.addElement(new IrArriba());
-		
+		operators.addElement(new IrAbajo());	
 		operators.addElement(new IrIzquierda());
 		operators.addElement(new Plantar());
 		operators.addElement(new Recargar());
@@ -70,6 +71,9 @@ public class Planta extends SearchBasedAgent {
 		
 		//IStepCostFunction costFunction = new FuncionCosto();
 		//UniformCostSearch strategy = new UniformCostSearch(costFunction);
+		
+//		IEstimatedCostFunction heuristic = new HeuristicaPlanta();
+//		GreedySearch strategy = new GreedySearch(heuristic);
 		
 		/**
 		 * Another search strategy examples:
@@ -106,9 +110,12 @@ public class Planta extends SearchBasedAgent {
 
 		try {
 	
-			//NOS QUEDA UN LOOP ACA PORQUE SIEMPRE GENERA NUEVOS NODOS Y NO DEVUELVE NINGUNA ACCION
-			
-			selectedAction = this.getSolver().solve(new Object[] { this.getProblem() });
+			if(this.plantaState.getZombiesQueVeo() == 0) {
+				selectedAction = this.getProblem().getActions().elementAt(2);
+			}else {
+				selectedAction = this.getSolver().solve(new Object[] { this.getProblem() });
+			}
+
 		} catch (Exception ex) {
 			Logger.getLogger(Planta.class.getName()).log(Level.SEVERE, null, ex);
 		}

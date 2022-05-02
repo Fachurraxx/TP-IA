@@ -13,6 +13,7 @@ public class EstadoAmbiente extends EnvironmentState {
 	int[][] posicionZombies;
 	boolean zombieEnCasa;
 	int zombiesEnTablero;
+	int zombiesQueVeo;
 
 	public EstadoAmbiente(String[][] m) {
 		tablero = m;
@@ -67,6 +68,7 @@ public class EstadoAmbiente extends EnvironmentState {
 
 		this.setZombieEnCasa(false);
 		this.setZombiesEnTablero();
+		this.setZombiesQueVeo();
 		
 //		TEST
 		//Set some girasoles
@@ -187,7 +189,7 @@ public class EstadoAmbiente extends EnvironmentState {
 			}
 			int zombiesToAdd = getRandomNumber(0, maxZombiesToAdd);
 			this.agregarZombiesAlTablero(zombiesToAdd);
-
+			this.setZombiesEnTablero();
 			this.setMissingZombies(missingZombies - zombiesToAdd);
 
 		}
@@ -442,6 +444,31 @@ public class EstadoAmbiente extends EnvironmentState {
 
 	public void setZombiesEnTablero(int zombiesEnTablero) {
 		this.zombiesEnTablero = zombiesEnTablero;
+	}
+
+	public int getZombiesQueVeo() {
+		return zombiesQueVeo;
+	}
+
+	public void setZombiesQueVeo(int zombiesQueVeo) {
+		this.zombiesQueVeo = zombiesQueVeo;
+	}
+	
+	public void setZombiesQueVeo() {
+		this.zombiesQueVeo = 0;
+		
+		for (int row = 0; row < 5; row++) {	
+				if (tablero[row][this.posicionPlantaColumna].contains("z")) {
+					this.zombiesQueVeo+=1;
+				}
+		}
+		
+		for (int col = 0; col < 9; col++) {			
+			if (tablero[this.posicionPlantaFila][col].contains("z")) {
+				this.zombiesQueVeo+=1;
+			}
+		}
+		
 	}
 	
 	

@@ -61,4 +61,64 @@ world="[
 [ e e e e e e p e z4  ]
 [ e e e e e e z3 * *  ]
 [ e e e e e e * * *  ]
+ ]"</NodoPlantar></Nodonull><Nodonull>Id="0" Action="null"  position="(0,0)" energy="8"
+ totalZombies="16"
+ ZombiesTablero="2"
+ Zombies Que Veo="1"
+world="[ 
+[ p e e e e e e e e  ]
+[ e e e e e e e z4 *  ]
+[ e e e e e z2 * * *  ]
+[ e e e e e z4 * * *  ]
+[ e e e e e e e z5 *  ]
+ ]"<NodoIr Arriba>Id="1" Action="Ir Arriba"  position="(0,0)" energy="8"
+ totalZombies="16"
+ ZombiesTablero="2"
+ Zombies Que Veo="1"
+world="[ 
+[ p e e e e e e e e  ]
+[ e e e e e e e z4 *  ]
+[ e e e e e z2 * * *  ]
+[ e e e e e z4 * * *  ]
+[ e e e e e e e z5 *  ]
+ ]"</NodoIr Arriba><NodoIr Derecha>Id="2" Action="Ir Derecha"  position="(1,1)" energy="8"
+ totalZombies="16"
+ ZombiesTablero="2"
+ Zombies Que Veo="1"
+world="[ 
+[ e e e e e e e e e  ]
+[ e p e e e e e z4 *  ]
+[ e e e e e z2 * * *  ]
+[ e e e e e z4 * * *  ]
+[ e e e e e e e z5 *  ]
+ ]"</NodoIr Derecha><NodoIr Abajo>Id="3" Action="Ir Abajo"  position="(2,0)" energy="8"
+ totalZombies="16"
+ ZombiesTablero="2"
+ Zombies Que Veo="1"
+world="[ 
+[ e e e e e e e e e  ]
+[ e e e e e e e z4 *  ]
+[ p e e e e z2 * * *  ]
+[ e e e e e z4 * * *  ]
+[ e e e e e e e z5 *  ]
+ ]"</NodoIr Abajo><NodoIr Izquierda>Id="4" Action="Ir Izquierda"  position="(1,0)" energy="8"
+ totalZombies="16"
+ ZombiesTablero="2"
+ Zombies Que Veo="1"
+world="[ 
+[ e e e e e e e e e  ]
+[ e e e e e e e z4 *  ]
+[ e e e e e z2 * * *  ]
+[ e e e e e z4 * * *  ]
+[ e e e e e e e z5 *  ]
+ ]"</NodoIr Izquierda><NodoPlantar>Id="5" Action="Plantar"  position="(1,0)" energy="7"
+ totalZombies="16"
+ ZombiesTablero="2"
+ Zombies Que Veo="1"
+world="[ 
+[ 0 e e e e e e e e  ]
+[ p e e e e e e z4 *  ]
+[ e e e e e z2 * * *  ]
+[ e e e e e z4 * * *  ]
+[ e e e e e e e z5 *  ]
  ]"</NodoPlantar></Nodonull>

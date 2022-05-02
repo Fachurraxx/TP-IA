@@ -27,7 +27,8 @@ public class Ambiente extends Environment {
 //		perception.initPerception(null, this);
 		
 		this.getEnvironmentState().setSoles();
-		this.getEnvironmentState().updateZombies();		
+		this.getEnvironmentState().updateZombies();	
+		perception.setZombiesEnTablero(this.getEnvironmentState().getZombiesEnTablero());
 		
 		String[] sensorFila = this.getRow(this.getEnvironmentState().getPosicionPlantaFila());
 		String[] sensorColumna = this.getColumn(this.getEnvironmentState().getPosicionPlantaColumna());
@@ -74,12 +75,8 @@ public class Ambiente extends Environment {
 
 	@Override
 	public boolean agentFailed(Action actionReturned) {
-
-		System.out.println(actionReturned.toString());
 		
 		EstadoAmbiente estadoAmbiente = this.getEnvironmentState();
-		System.out.println("estado ambienteeeeeeeeeeeeeee");
-		System.out.println(estadoAmbiente.toString());
 		
 		int agentEnergy = estadoAmbiente.getEnergiaPlanta();
 

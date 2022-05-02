@@ -16,19 +16,18 @@ public class PlantaGoal extends GoalTest {
 //		if (((PlantaState) agentState).getTotalZombies() == 0 && ((PlantaState) agentState).getEnergia() >= 1) {
 //			return true;
 //		}
-//		
-//		if (((PlantaState) agentState).getPosicionPlantaColumna() == 3) {
-//			return true;
-//		}
 		
-		if (((PlantaState) agentState).getZombiesEnTablero() == 0) {
-			return true;
-		}else if (((PlantaState) agentState).getPosicionPlantaFila() == 0) {
-			return true;
-		}else if (((PlantaState) agentState).getPosicionPlantaFila() == 4) {
+
+		
+		return false;
+	}
+
+	@Override
+	public boolean isGoalIntermedio(AgentState agentState) {
+		
+		if (((PlantaState) agentState).getZombiesQueVeo()==0) {
 			return true;
 		}
-		
 		return false;
 	}
 }

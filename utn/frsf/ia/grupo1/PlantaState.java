@@ -16,27 +16,29 @@ public class PlantaState extends SearchBasedAgentState {
 	private int energia;
 	private int totalZombies;
 	int zombiesEnTablero;
+	int zombiesQueVeo;
 	Double cantidadAccionesRealizadas = (double) 0;
 
-	public PlantaState(int energiaPlanta, int  totalZombies, int zombiesTablero) {
+	public PlantaState(int energiaPlanta, int  totalZombies, int zombiesTablero, int zombiesQueVeo) {
 		tablero = new String[5][9];
 		
 		this.setPosicionPlantaFila(2);
 		this.setPosicionPlantaColumna(0);
-
 		this.setEnergia(energiaPlanta);
 		this.setTotalZombies(totalZombies);
 		this.setZombiesEnTablero(zombiesTablero);
+		this.setZombiesQueVeo(zombiesQueVeo);
 		this.initState();
 	}
 
-	public PlantaState(String[][] t, int row, int col, int e, int z, int zt) {
+	public PlantaState(String[][] t, int row, int col, int e, int z, int zt, int zqv) {
 		tablero = t;
 		posicionPlantaFila = row;
 		posicionPlantaColumna = col;
 		energia = e;
 		totalZombies = z;
 		zombiesEnTablero = zt;
+		zombiesQueVeo = zqv;
 	}
 
 	/**
@@ -68,7 +70,7 @@ public class PlantaState extends SearchBasedAgentState {
 		}
 
 		PlantaState newState = new PlantaState(newWorld, this.getPosicionPlantaFila(), this.getPosicionPlantaColumna(),
-				this.getEnergia(), this.getTotalZombies(), this.getZombiesEnTablero());
+				this.getEnergia(), this.getTotalZombies(), this.getZombiesEnTablero(), this.getZombiesQueVeo());
 
 		System.out.println(newState.toString());
 		
@@ -99,8 +101,9 @@ public class PlantaState extends SearchBasedAgentState {
 		}
 
 		energia = plantaPerception.getEnergy();
-//        totalZombies = plantaPerceptio // TODO check if we send this as a perception
-
+		this.setZombiesQueVeo();
+		
+		this.setZombiesEnTablero(plantaPerception.getZombiesEnTablero());
 	}
 
 
@@ -115,6 +118,7 @@ public class PlantaState extends SearchBasedAgentState {
 		str = str + " energy=\"" + energia + "\"\n";
 		str = str + " totalZombies=\"" + totalZombies + "\"\n";
 		str = str + " ZombiesTablero=\"" + zombiesEnTablero + "\"\n";
+		str = str + " Zombies Que Veo=\"" + zombiesQueVeo + "\"\n";
 		str = str + "world=\"[ \n";
 		for (int row = 0; row <5; row++) {
 			str = str + "[ ";
@@ -248,6 +252,30 @@ public class PlantaState extends SearchBasedAgentState {
 		this.zombiesEnTablero = zombiesEnTablero;
 	}
 
+	public int getZombiesQueVeo() {
+		return zombiesQueVeo;
+	}
+
+	public void setZombiesQueVeo(int zombiesQueVeo) {
+		this.zombiesQueVeo = zombiesQueVeo;
+	}
+
+	public void setZombiesQueVeo() {
+		this.zombiesQueVeo = 0;
+		
+		for (int row = 0; row < 5; row++) {	
+				if (tablero[row][this.posicionPlantaColumna].contains("z")) {
+					this.zombiesQueVeo+=1;
+				}
+		}
+		
+		for (int col = 0; col < 9; col++) {			
+			if (tablero[this.posicionPlantaFila][col].contains("z")) {
+				this.zombiesQueVeo+=1;
+			}
+		}
+		
+	}
 
 	
 	
