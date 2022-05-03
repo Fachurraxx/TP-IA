@@ -67,10 +67,10 @@ public class Planta extends SearchBasedAgent {
 
 		// Create the search strategy
 		
-		DepthFirstSearch strategy = new DepthFirstSearch(); 
+//		DepthFirstSearch strategy = new DepthFirstSearch(); 
 		
-		//IStepCostFunction costFunction = new FuncionCosto();
-		//UniformCostSearch strategy = new UniformCostSearch(costFunction);
+		IStepCostFunction costFunction = new FuncionCosto();
+		UniformCostSearch strategy = new UniformCostSearch(costFunction);
 		
 //		IEstimatedCostFunction heuristic = new HeuristicaPlanta();
 //		GreedySearch strategy = new GreedySearch(heuristic);

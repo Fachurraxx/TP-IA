@@ -61,8 +61,8 @@ public class Recargar extends SearchAction {
         EstadoAmbiente estadoAmbiente = (EstadoAmbiente) est;
         PlantaState estadoPlanta = (PlantaState) ast;
 
-        int posFila = estadoPlanta.getPosicionPlantaFila();
-        int posColumna = estadoPlanta.getPosicionPlantaFila();
+        int posFila = estadoAmbiente.getPosicionPlantaFila();
+        int posColumna = estadoAmbiente.getPosicionPlantaFila();
 
         /* La planta puede pelear si hay un zombie al lado y si tiene mas soles de los que necesita para pelear*/
        
