@@ -72,7 +72,7 @@ public class PlantaState extends SearchBasedAgentState {
 		PlantaState newState = new PlantaState(newWorld, this.getPosicionPlantaFila(), this.getPosicionPlantaColumna(),
 				this.getEnergia(), this.getTotalZombies(), this.getZombiesEnTablero(), this.getZombiesQueVeo());
 
-		System.out.println(newState.toString());
+		System.out.println("Nuevo nodo" );
 		
 		return newState;
 	}
@@ -119,7 +119,7 @@ public class PlantaState extends SearchBasedAgentState {
 		str = str + " totalZombies=\"" + totalZombies + "\"\n";
 		str = str + " ZombiesTablero=\"" + zombiesEnTablero + "\"\n";
 		str = str + " Zombies Que Veo=\"" + zombiesQueVeo + "\"\n";
-		str = str + "world=\"[ \n";
+		str = str + " Tablero de la planta=\"[ \n";
 		for (int row = 0; row <5; row++) {
 			str = str + "[ ";
 			for (int col = 0; col < 9; col++) {

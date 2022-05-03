@@ -58,7 +58,7 @@ public class Pelear extends SearchAction {
         	if (cantSoles < estadoPlanta.getEnergia()) {
         		estadoPlanta.setEnergia(estadoPlanta.getEnergia() - cantSoles);
         		estadoPlanta.setTotalZombies(estadoPlanta.getTotalZombies()-1);
-        		estadoPlanta.setTableroEnPosicion(posFila+1, posColumna-1, PlantaPerception.EMPTY_PERCEPTION);
+        		estadoPlanta.setTableroEnPosicion(posFila, posColumna-1, PlantaPerception.EMPTY_PERCEPTION);
         		estadoPlanta.setZombiesEnTablero(estadoPlanta.getZombiesEnTablero()-1);
         		estadoPlanta.setZombiesQueVeo(estadoPlanta.getZombiesQueVeo()-1);
 			}

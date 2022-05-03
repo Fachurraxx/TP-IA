@@ -54,10 +54,10 @@ public class EstadoAmbiente extends EnvironmentState {
 			}
 		}
 
-		int totalZombies = getRandomNumber(5, 20);
+		int totalZombies = getRandomNumber(2, 4);
 		this.setTotalZombies(totalZombies);
 
-		int zombiesInicio = getRandomNumber(1, 5);
+		int zombiesInicio = getRandomNumber(1, 2);
 		this.agregarZombiesAlTablero(zombiesInicio);
 
 		int missingZombies = totalZombies - zombiesInicio;
