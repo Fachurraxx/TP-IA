@@ -19,7 +19,7 @@ public class PlantaGoal extends GoalTest {
 		return false;
 	}
 
-	@Override
+//	@Override
 	public boolean isGoalIntermedio(AgentState agentState) {
 		
 		if( ((PlantaState) agentState).getEnergia() < 1 ) {

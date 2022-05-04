@@ -3,9 +3,6 @@ package frsf.ia.grupo1;
 import frsf.cidisi.faia.agent.Action;
 import frsf.cidisi.faia.agent.Perception;
 import frsf.cidisi.faia.environment.Environment;
-import frsf.cidisi.faia.examples.search.pacman.PacmanEnvironmentState;
-import frsf.cidisi.faia.examples.search.pacman.PacmanPerception;
-
 
 public class Ambiente extends Environment {
 

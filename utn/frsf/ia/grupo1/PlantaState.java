@@ -2,8 +2,6 @@ package frsf.ia.grupo1;
 
 import frsf.cidisi.faia.agent.Perception;
 import frsf.cidisi.faia.agent.search.SearchBasedAgentState;
-import frsf.cidisi.faia.examples.search.pacman.PacmanAgentState;
-import frsf.cidisi.faia.examples.search.pacman.PacmanPerception;
 
 /**
  * Represent the internal state of the Plant.

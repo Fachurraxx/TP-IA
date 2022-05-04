@@ -1,14 +1,5 @@
 package frsf.ia.grupo1;
 
-import frsf.cidisi.faia.examples.search.pacman.PacmanAgent;
-import frsf.cidisi.faia.examples.search.pacman.PacmanAgentState;
-import frsf.cidisi.faia.examples.search.pacman.PacmanGoal;
-import frsf.cidisi.faia.examples.search.pacman.actions.Eat;
-import frsf.cidisi.faia.examples.search.pacman.actions.GoDown;
-import frsf.cidisi.faia.examples.search.pacman.actions.GoLeft;
-import frsf.cidisi.faia.examples.search.pacman.actions.Fight;
-import frsf.cidisi.faia.examples.search.pacman.actions.GoUp;
-import frsf.cidisi.faia.examples.search.pacman.actions.GoRight;
 import frsf.cidisi.faia.agent.Perception;
 import java.util.Vector;
 

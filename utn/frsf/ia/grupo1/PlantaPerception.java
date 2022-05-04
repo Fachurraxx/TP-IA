@@ -3,14 +3,12 @@ package frsf.ia.grupo1;
 import frsf.cidisi.faia.agent.Agent;
 import frsf.cidisi.faia.agent.Perception;
 import frsf.cidisi.faia.environment.Environment;
-import frsf.cidisi.faia.examples.search.pacman.PacmanAgent;
-import frsf.cidisi.faia.examples.search.pacman.PacmanEnvironment;
-import frsf.cidisi.faia.examples.search.pacman.PacmanEnvironmentState;
+
 
 public class PlantaPerception extends Perception {
-//	matrizPosiciones se representa como una matriz de 5x9. Los zombies se representarán como z1, z2, z3, z4, z5 siendo el subíndice la cantidad de soles que necesita la planta para matar a ese zombie.
-//	Los girasoles se representarán con la cantidad de soles que estén presentes en su celda (0 a 99) donde 0 se refiere a un girasol sin ningún sol producido. La celda donde se encuentra la planta se representa como p. 
-//	La letra x la utilizaremos para representar una celda la cual no tenemos información y la letra e para representar una celda vacía. 
+//	matrizPosiciones se representa como una matriz de 5x9. Los zombies se representarï¿½n como z1, z2, z3, z4, z5 siendo el subï¿½ndice la cantidad de soles que necesita la planta para matar a ese zombie.
+//	Los girasoles se representarï¿½n con la cantidad de soles que estï¿½n presentes en su celda (0 a 99) donde 0 se refiere a un girasol sin ningï¿½n sol producido. La celda donde se encuentra la planta se representa como p. 
+//	La letra x la utilizaremos para representar una celda la cual no tenemos informaciï¿½n y la letra e para representar una celda vacï¿½a. 
 
 	public static String Z1_PERCEPTION = "z1";
 	public static String Z2_PERCEPTION = "z2";
