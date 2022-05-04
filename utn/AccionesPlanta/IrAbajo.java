@@ -23,8 +23,9 @@ public class IrAbajo extends SearchAction {
 		
 		// Check the limits of the world
 		
-        if (row == 4) {
-            row = 0;
+        if (row == 4 || estadoPlanta.getEnergia()<1 || estadoPlanta.getZombiesQueVeo()!=0) {
+//            row = 0;
+			return null;
         } else {
             row = row + 1;
             
@@ -79,8 +80,9 @@ public class IrAbajo extends SearchAction {
 		
 		// Check the limits of the world
 		
-        if (row == 4) {
-            row = 0;
+        if (row == 4 || estadoPlanta.getEnergia()<1 || estadoPlanta.getZombiesQueVeo()!=0) {
+//            row = 0;
+			return null;
         } else {
             row = row + 1;
             

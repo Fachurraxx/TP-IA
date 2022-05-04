@@ -22,10 +22,14 @@ public class PlantaGoal extends GoalTest {
 //	@Override
 	public boolean isGoalIntermedio(AgentState agentState) {
 		
-		if( ((PlantaState) agentState).getEnergia() < 1 ) {
-			return true;
-		}
-		else if (((PlantaState) agentState).getZombiesQueVeo()==0) {
+//		if( ((PlantaState) agentState).getEnergia() < 1 ) {//TODO isnt it >=1?
+//			return true;
+//		}
+//		else if (((PlantaState) agentState).getZombiesQueVeo()==0) {
+//			return true;
+//		}
+
+		if (((PlantaState) agentState).getEnergia() >= 1 && ((PlantaState) agentState).getZombiesQueVeo()==0) {
 			return true;
 		}
 		

@@ -22,9 +22,10 @@ public class IrArriba extends SearchAction {
 			String posicionPlantaValor = estadoPlanta.getTableroEnPosicion(row, col);//p or p-12
 			
 			// Check the limits of the world
-	        if (row == 0) {
-	            row = 4;
-	            prevRow = 0;
+	        if (row == 0 || estadoPlanta.getEnergia()<1 || estadoPlanta.getZombiesQueVeo()!=0) {
+//	            row = 4;
+//	            prevRow = 0;
+				return null;
 	        } else {
 	        	prevRow = row;
 	            row = row - 1;
@@ -87,8 +88,9 @@ public class IrArriba extends SearchAction {
 			String posicionPlantaValor = estadoPlanta.getTableroEnPosicion(row, col);//p or p-12
 			
 			// Check the limits of the world
-	        if (row == 0) {
-	            row = 4;
+	        if (row == 0|| estadoPlanta.getEnergia()<1 || estadoPlanta.getZombiesQueVeo()!=0) {
+//	            row = 4;
+				return null;
 	        } else {
 	            row = row - 1;
 	            

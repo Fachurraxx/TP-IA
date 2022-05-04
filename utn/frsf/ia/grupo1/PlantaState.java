@@ -258,7 +258,7 @@ public class PlantaState extends SearchBasedAgentState {
 		this.zombiesQueVeo = zombiesQueVeo;
 	}
 
-	public void setZombiesQueVeo() {
+	public void setZombiesQueVeo() {//TODO make it for all not only row and column
 		this.zombiesQueVeo = 0;
 		
 		for (int row = 0; row < 5; row++) {	

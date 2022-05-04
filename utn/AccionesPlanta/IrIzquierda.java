@@ -19,6 +19,10 @@ public class IrIzquierda extends SearchAction {
 		int row = estadoPlanta.getPosicionPlantaFila();
 		int col = estadoPlanta.getPosicionPlantaColumna();
 		int prevCol = col;
+		if (col==0 || estadoPlanta.getEnergia()<1){
+			return null;
+		}
+
 		String posicionPlantaValor = estadoPlanta.getTableroEnPosicion(row, col);
     
 //		if (col != 0) { 
@@ -76,7 +80,9 @@ public class IrIzquierda extends SearchAction {
 		int prevCol = col;
 		String posicionPlantaValor = estadoPlanta.getTableroEnPosicion(row, col);
         String tableroValor = estadoAmbiente.getTableroEnPosicion(row, col);
-        
+		if (col==0 || estadoPlanta.getEnergia()<1){
+			return null;
+		}
 //        if (col != 0) { 
 	        if (tableroValor == PlantaPerception.EMPTY_PERCEPTION || tableroValor == PlantaPerception.UNKNOWN_PERCEPTION ) {
 	        	//seteamos estado del ambiente y de la planta 

@@ -21,8 +21,9 @@ public class IrDerecha extends SearchAction {
 		String posicionPlantaValor = estadoPlanta.getTableroEnPosicion(row, col);
 
 		// Check the limits of the world
-		if (col == 8) {
-			col = 0;
+		if (col == 8 || estadoPlanta.getEnergia()<1) {
+//			col = 0;
+			return null;
 		} else {
 			col = col + 1;
 		}
@@ -79,8 +80,9 @@ public class IrDerecha extends SearchAction {
 		String posicionPlantaValor = estadoPlanta.getTableroEnPosicion(row, col);
 
 		// Check the limits of the world
-		if (col == 8) {
-			col = 0;
+		if (col == 8 || estadoPlanta.getEnergia()<1) {
+//			col = 0;
+			return null;
 		} else {
 			col = col + 1;
 		}

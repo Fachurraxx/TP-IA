@@ -17,9 +17,15 @@ public class Recargar extends SearchAction {
 
         int posFila = estadoPlanta.getPosicionPlantaFila();
         int posColumna = estadoPlanta.getPosicionPlantaColumna();
+        if ( estadoPlanta.getEnergia()<1){
+            return null;
+        }
 
         /* La planta puede recargar si hay un numero entero al lado */
-        
+        if (estadoPlanta.getEnergia() >10){
+            return null;
+        }
+
         if ( posFila > 0 && estadoPlanta.getTablero()[posFila-1][posColumna].matches("[+-]?\\d*(\\.\\d+)?") ) {
         	
         	Integer cantSoles = Integer.parseInt(estadoPlanta.getTablero()[posFila-1][posColumna]);	        	    	
@@ -63,9 +69,14 @@ public class Recargar extends SearchAction {
         int posFila = estadoAmbiente.getPosicionPlantaFila();
         int posColumna = estadoAmbiente.getPosicionPlantaFila();
 
-        /* La planta puede pelear si hay un zombie al lado y si tiene mas soles de los que necesita para pelear*/
-       
-        
+        if ( estadoPlanta.getEnergia()<1){
+            return null;
+        }
+
+        /* La planta puede recargar si hay un numero entero al lado */
+        if (estadoPlanta.getEnergia() >10){
+            return null;
+        }
         if ( posFila > 0 && estadoAmbiente.getTablero()[posFila-1][posColumna].matches("[+-]?\\d*(\\.\\d+)?") ) {
         	
         	Integer cantSoles = Integer.parseInt(estadoAmbiente.getTablero()[posFila-1][posColumna]);	        	    	
