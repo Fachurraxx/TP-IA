@@ -41,13 +41,14 @@ public class Planta extends SearchBasedAgent {
 
 		// Create the operators
 		Vector<SearchAction> operators = new Vector<SearchAction>();
+		operators.addElement(new Plantar());
+		operators.addElement(new Recargar());
 		operators.addElement(new Pelear());
 		operators.addElement(new IrDerecha());
 		operators.addElement(new IrArriba());
 		operators.addElement(new IrAbajo());	
 		operators.addElement(new IrIzquierda());
-		operators.addElement(new Plantar());
-		operators.addElement(new Recargar());
+
 
 
 		// Create the Problem which the Planta will resolve
@@ -74,7 +75,7 @@ public class Planta extends SearchBasedAgent {
 		
 //		IEstimatedCostFunction heuristic = new HeuristicaPlanta();
 //		GreedySearch strategy = new GreedySearch(heuristic);
-		
+//		
 		/**
 		 * Another search strategy examples:
 		 * 
@@ -111,7 +112,7 @@ public class Planta extends SearchBasedAgent {
 		try {
 	
 			if(this.plantaState.getZombiesQueVeo() == 0) {
-				selectedAction = this.getProblem().getActions().elementAt(2);
+				selectedAction = this.getProblem().getActions().elementAt(4);
 			}else {
 				selectedAction = this.getSolver().solve(new Object[] { this.getProblem() });
 			}

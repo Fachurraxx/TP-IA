@@ -161,8 +161,13 @@ public class EstadoAmbiente extends EnvironmentState {
 			for (int col = 0; col < 9; col++) {
 				// basically if we dont have a zombie, the plant or empty then we have a
 				// girasol(integer number)
-
-				if (tablero[row][col] != "e" && tablero[row][col] != "p" && !tablero[row][col].contains("z")
+				if(tablero[row][col].contains("p-")) {
+					
+					int numeroDeSoles = Character.getNumericValue(tablero[row][col].charAt(2));
+					int nuevosSoles = getRandomNumber(1, 3);
+					tablero[row][col] = "p-" + Integer.toString(numeroDeSoles + nuevosSoles);
+				}
+				else if (tablero[row][col] != "e" && tablero[row][col] != "p" && !tablero[row][col].contains("z")
 						&& tablero[row][col] != "x") {
 
 					int numeroDeSoles = Integer.parseInt(tablero[row][col]);
@@ -171,6 +176,7 @@ public class EstadoAmbiente extends EnvironmentState {
 					tablero[row][col] = Integer.toString(numeroDeSoles + nuevosSoles);
 
 				}
+				
 			}
 		}
 	}

@@ -71,7 +71,7 @@ public class Pelear extends SearchAction {
         	    	
         	if (cantSoles < estadoPlanta.getEnergia()) {
         		estadoPlanta.setEnergia(estadoPlanta.getEnergia() - cantSoles);
-        		estadoPlanta.setTotalZombies(estadoPlanta.getTotalZombies()+1);
+        		estadoPlanta.setTotalZombies(estadoPlanta.getTotalZombies()-1);
         		estadoPlanta.setTableroEnPosicion(posFila, posColumna+1, PlantaPerception.EMPTY_PERCEPTION);
         		estadoPlanta.setZombiesEnTablero(estadoPlanta.getZombiesEnTablero()-1);
         		estadoPlanta.setZombiesQueVeo(estadoPlanta.getZombiesQueVeo()-1);
@@ -108,8 +108,8 @@ public class Pelear extends SearchAction {
         		estadoAmbiente.setZombiesQueVeo(estadoPlanta.getZombiesQueVeo()-1);
         		estadoPlanta.setZombiesQueVeo(estadoPlanta.getZombiesQueVeo()-1);
         		estadoPlanta.setZombiesEnTablero(estadoPlanta.getZombiesEnTablero()-1);
-        		estadoPlanta.setEnergia(estadoAmbiente.getEnergiaPlanta() - cantSoles);
-        		estadoPlanta.setTotalZombies(estadoAmbiente.getTotalZombies()-1);
+        		estadoPlanta.setEnergia(estadoPlanta.getEnergia() - cantSoles);
+        		estadoPlanta.setTotalZombies(estadoPlanta.getTotalZombies()-1);
         		estadoPlanta.setTableroEnPosicion(posFila-1, posColumna, PlantaPerception.EMPTY_PERCEPTION);
 
 			}
@@ -128,8 +128,8 @@ public class Pelear extends SearchAction {
         		estadoAmbiente.setZombiesQueVeo(estadoPlanta.getZombiesQueVeo()-1);
         		estadoPlanta.setZombiesQueVeo(estadoPlanta.getZombiesQueVeo()-1);
         		estadoPlanta.setZombiesEnTablero(estadoPlanta.getZombiesEnTablero()-1);
-        		estadoPlanta.setEnergia(estadoAmbiente.getEnergiaPlanta() - cantSoles);
-        		estadoPlanta.setTotalZombies(estadoAmbiente.getTotalZombies()-1);
+        		estadoPlanta.setEnergia(estadoPlanta.getEnergia() - cantSoles);
+        		estadoPlanta.setTotalZombies(estadoPlanta.getTotalZombies()-1);
         		estadoPlanta.setTableroEnPosicion(posFila+1, posColumna, PlantaPerception.EMPTY_PERCEPTION);
 
 			}
@@ -148,8 +148,8 @@ public class Pelear extends SearchAction {
         		estadoAmbiente.setZombiesQueVeo(estadoPlanta.getZombiesQueVeo()-1);
         		estadoPlanta.setZombiesQueVeo(estadoPlanta.getZombiesQueVeo()-1);
         		estadoPlanta.setZombiesEnTablero(estadoPlanta.getZombiesEnTablero()-1);
-        		estadoPlanta.setEnergia(estadoAmbiente.getEnergiaPlanta() - cantSoles);
-        		estadoPlanta.setTotalZombies(estadoAmbiente.getTotalZombies()-1);
+        		estadoPlanta.setEnergia(estadoPlanta.getEnergia() - cantSoles);
+        		estadoPlanta.setTotalZombies(estadoPlanta.getTotalZombies()-1);
         		estadoPlanta.setTableroEnPosicion(posFila+1, posColumna-1, PlantaPerception.EMPTY_PERCEPTION);
 
 			}
@@ -168,8 +168,8 @@ public class Pelear extends SearchAction {
         		estadoAmbiente.setZombiesQueVeo(estadoPlanta.getZombiesQueVeo()-1);
         		estadoPlanta.setZombiesQueVeo(estadoPlanta.getZombiesQueVeo()-1);
         		estadoPlanta.setZombiesEnTablero(estadoPlanta.getZombiesEnTablero()-1);
-        		estadoPlanta.setEnergia(estadoAmbiente.getEnergiaPlanta() - cantSoles);
-        		estadoPlanta.setTotalZombies(estadoAmbiente.getTotalZombies()-1);
+        		estadoPlanta.setEnergia(estadoPlanta.getEnergia() - cantSoles);
+        		estadoPlanta.setTotalZombies(estadoPlanta.getTotalZombies()-1);
         		estadoPlanta.setTableroEnPosicion(posFila, posColumna+1, PlantaPerception.EMPTY_PERCEPTION);
 
 			}
