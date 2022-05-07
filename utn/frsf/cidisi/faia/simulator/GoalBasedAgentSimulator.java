@@ -94,8 +94,12 @@ public abstract class GoalBasedAgentSimulator extends Simulator {
         // Check what happened, if agent has reached the goal or not.
         if (this.agentSucceeded(action)) {
             System.out.println("Agent has reached the goal!");
+            System.out.println("Agent State: " + agent.getAgentState());
+            System.out.println("Environment: " + environment);
         } else {
             System.out.println("ERROR: The simulation has finished, but the agent has not reached his goal.");
+            System.out.println("Agent State: " + agent.getAgentState());
+            System.out.println("Environment: " + environment);
         }
 
         // Leave a blank line

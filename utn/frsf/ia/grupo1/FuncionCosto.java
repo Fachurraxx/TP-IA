@@ -10,8 +10,6 @@ public class FuncionCosto implements IStepCostFunction {
      */
     @Override
     public double calculateCost(NTree node) {
-    	
-    	System.out.println("COSTO:  " + ((PlantaState) node.getAgentState()).getCantidadAccionesRealizadas());
         return ((PlantaState) node.getAgentState()).getCantidadAccionesRealizadas();
         
     }

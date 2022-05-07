@@ -27,5 +27,8 @@
 	</classpathentry>
 	<classpathentry combineaccessrules="false" kind="src" path="/faia"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/examples"/>
+	<classpathentry kind="lib" path="lib/CopyLibs/org-netbeans-modules-java-j2seproject-copylibstask.jar"/>
+	<classpathentry kind="lib" path="lib/jmathlink.jar"/>
+	<classpathentry kind="lib" path="lib/jpl.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
