@@ -409,13 +409,13 @@ public class EstadoAmbiente extends EnvironmentState {
 		}
 		str = str + " \n";
 
-		for (int row = 0; row < 5; row++) {
-			str = str + "[ ";
-			for (int col = 0; col < 9; col++) {
-				str = str + posicionZombies[row][col] + " ";
-			}
-			str = str + " ]\n";
-		}
+//		for (int row = 0; row < 5; row++) {
+//			str = str + "[ ";
+//			for (int col = 0; col < 9; col++) {
+//				str = str + posicionZombies[row][col] + " ";
+//			}
+//			str = str + " ]\n";
+//		}
 
 		return str;
 	}
