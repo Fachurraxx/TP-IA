@@ -246,6 +246,7 @@ public class EstadoAmbiente extends EnvironmentState {
 				int tipoZombie = getTipoZombie(zombie);
 				int newEnergiaPlanta = energiaPlanta - tipoZombie * 2;
 				this.setEnergiaPlanta(newEnergiaPlanta);
+				this.setTotalZombies(this.getTotalZombies()-1);
 				if(newEnergiaPlanta < 1) {
 					setTableroEnPosicion(row, col - 1, "p-".concat(zombie));
 				}
