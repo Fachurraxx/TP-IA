@@ -105,7 +105,7 @@ public class Pelear extends SearchAction {
         		estadoAmbiente.setTotalZombies(estadoAmbiente.getTotalZombies()-1);
         		estadoAmbiente.setTableroEnPosicion(posFila-1, posColumna, PlantaPerception.EMPTY_PERCEPTION);
         		estadoAmbiente.setZombiesEnTablero(estadoAmbiente.getZombiesEnTablero()-1);
-        		estadoAmbiente.setZombiesQueVeo(estadoPlanta.getZombiesQueVeo()-1);
+        		estadoAmbiente.setZombiesQueVeo(estadoAmbiente.getZombiesQueVeo()-1);
         		estadoPlanta.setZombiesQueVeo(estadoPlanta.getZombiesQueVeo()-1);
         		estadoPlanta.setZombiesEnTablero(estadoPlanta.getZombiesEnTablero()-1);
         		estadoPlanta.setEnergia(estadoPlanta.getEnergia() - cantSoles);
@@ -125,7 +125,7 @@ public class Pelear extends SearchAction {
         		estadoAmbiente.setTotalZombies(estadoAmbiente.getTotalZombies()-1);
         		estadoAmbiente.setTableroEnPosicion(posFila+1, posColumna, PlantaPerception.EMPTY_PERCEPTION);
         		estadoAmbiente.setZombiesEnTablero(estadoAmbiente.getZombiesEnTablero()-1);
-        		estadoAmbiente.setZombiesQueVeo(estadoPlanta.getZombiesQueVeo()-1);
+        		estadoAmbiente.setZombiesQueVeo(estadoAmbiente.getZombiesQueVeo()-1);
         		estadoPlanta.setZombiesQueVeo(estadoPlanta.getZombiesQueVeo()-1);
         		estadoPlanta.setZombiesEnTablero(estadoPlanta.getZombiesEnTablero()-1);
         		estadoPlanta.setEnergia(estadoPlanta.getEnergia() - cantSoles);
@@ -145,7 +145,7 @@ public class Pelear extends SearchAction {
         		estadoAmbiente.setTotalZombies(estadoAmbiente.getTotalZombies()-1);
         		estadoAmbiente.setTableroEnPosicion(posFila+1, posColumna-1, PlantaPerception.EMPTY_PERCEPTION);
         		estadoAmbiente.setZombiesEnTablero(estadoAmbiente.getZombiesEnTablero()-1);
-        		estadoAmbiente.setZombiesQueVeo(estadoPlanta.getZombiesQueVeo()-1);
+        		estadoAmbiente.setZombiesQueVeo(estadoAmbiente.getZombiesQueVeo()-1);
         		estadoPlanta.setZombiesQueVeo(estadoPlanta.getZombiesQueVeo()-1);
         		estadoPlanta.setZombiesEnTablero(estadoPlanta.getZombiesEnTablero()-1);
         		estadoPlanta.setEnergia(estadoPlanta.getEnergia() - cantSoles);
@@ -165,7 +165,7 @@ public class Pelear extends SearchAction {
         		estadoAmbiente.setTotalZombies(estadoAmbiente.getTotalZombies()-1);
         		estadoAmbiente.setTableroEnPosicion(posFila, posColumna+1, PlantaPerception.EMPTY_PERCEPTION);
         		estadoAmbiente.setZombiesEnTablero(estadoAmbiente.getZombiesEnTablero()-1);
-        		estadoAmbiente.setZombiesQueVeo(estadoPlanta.getZombiesQueVeo()-1);
+        		estadoAmbiente.setZombiesQueVeo(estadoAmbiente.getZombiesQueVeo()-1);
         		estadoPlanta.setZombiesQueVeo(estadoPlanta.getZombiesQueVeo()-1);
         		estadoPlanta.setZombiesEnTablero(estadoPlanta.getZombiesEnTablero()-1);
         		estadoPlanta.setEnergia(estadoPlanta.getEnergia() - cantSoles);
