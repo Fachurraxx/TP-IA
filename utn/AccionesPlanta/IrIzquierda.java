@@ -32,6 +32,7 @@ public class IrIzquierda extends SearchAction {
 	        }
 	        else{
 	        	 if(!tableroValor.contains("z")) {//p-12 
+	        		//HAY GIRASOL
 	        		 estadoPlanta.setTableroEnPosicion(row, col,
 	             			PlantaPerception.PLANTA_PERCEPTION.concat("-").concat(tableroValor));
 	        	 }
@@ -49,6 +50,7 @@ public class IrIzquierda extends SearchAction {
 	        	 }
 	        }
 	        
+	        //Nos fijamos si en la celda anterior habia algo
 	        if(posicionPlantaValor.contains("-")) {
         		posicionPlantaValor = posicionPlantaValor.split("-")[1];
         		estadoPlanta.setTableroEnPosicion(row, prevCol, posicionPlantaValor);

@@ -28,15 +28,7 @@ public class Plantar extends SearchAction {
 	        				
 	        				col= 10;
 	        				row=6;
-	        			}
-	        			else if(estadoPlanta.getTablero()[row][col] == "p") {
-		        			
-	        				estadoPlanta.setEnergia(estadoPlanta.getEnergia() -1 );
-	        				estadoPlanta.setTableroEnPosicion(row, col, "p-" + PlantaPerception.GIRASOLES_PERCEPTION);
-	        				
-	        				col= 10;
-	        				row=6;
-	        			}   
+	        			}  
 	        		}
 	        	}	
 	        	estadoPlanta.setCantidadAccionesRealizadas(this.getCost());
@@ -64,16 +56,7 @@ public class Plantar extends SearchAction {
 	        				estadoPlanta.setTableroEnPosicion(row, col, PlantaPerception.GIRASOLES_PERCEPTION);
 	        				col= 10;
 	        				row=6;
-	        			}
-	        			else if(estadoAmbiente.getTablero()[row][col] == "p") {
-		        			
-	        				estadoAmbiente.setEnergiaPlanta(estadoPlanta.getEnergia() -1 );
-	        				estadoAmbiente.setTableroEnPosicion(row, col, "p-" + PlantaPerception.GIRASOLES_PERCEPTION);
-	        				estadoPlanta.setEnergia(estadoPlanta.getEnergia() -1 );
-	        				estadoPlanta.setTableroEnPosicion(row, col, "p-" + PlantaPerception.GIRASOLES_PERCEPTION);
-	        				col= 10;
-	        				row=6;
-	        			}   
+	        			} 
 	        		}
 	        	}
 	        	estadoPlanta.setCantidadAccionesRealizadas(this.getCost());
