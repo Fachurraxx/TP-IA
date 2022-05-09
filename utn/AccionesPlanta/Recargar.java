@@ -22,10 +22,6 @@ public class Recargar extends SearchAction {
         }
 
         /* La planta puede recargar si hay un numero entero al lado */
-        if (estadoPlanta.getEnergia() >10){
-            return null;
-        }
-
         if ( posFila > 0 && estadoPlanta.getTablero()[posFila-1][posColumna].matches("[+-]?\\d*(\\.\\d+)?") ) {
         	
         	Integer cantSoles = Integer.parseInt(estadoPlanta.getTablero()[posFila-1][posColumna]);	        	    	
@@ -72,11 +68,7 @@ public class Recargar extends SearchAction {
         if ( estadoPlanta.getEnergia()<1){
             return null;
         }
-
         /* La planta puede recargar si hay un numero entero al lado */
-        if (estadoPlanta.getEnergia() >10){
-            return null;
-        }
         if ( posFila > 0 && estadoAmbiente.getTablero()[posFila-1][posColumna].matches("[+-]?\\d*(\\.\\d+)?") ) {
         	
         	Integer cantSoles = Integer.parseInt(estadoAmbiente.getTablero()[posFila-1][posColumna]);	        	    	

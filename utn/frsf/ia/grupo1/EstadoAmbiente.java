@@ -23,9 +23,6 @@ public class EstadoAmbiente extends EnvironmentState {
 		tablero = new String[5][9]; 
 		posicionZombies = new int[5][9];
 		this.initState();
-		System.out.println("EstadoAmbiente()");
-		System.out.println(this.toString());
-		System.out.println("---------------------------");
 	}
 
 	@Override
@@ -57,7 +54,7 @@ public class EstadoAmbiente extends EnvironmentState {
 		int totalZombies = getRandomNumber(5, 20);
 		this.setTotalZombies(totalZombies);
 
-		int zombiesInicio = getRandomNumber(1, 3);//TODO less at the begining
+		int zombiesInicio = getRandomNumber(1, 5);
 		this.agregarZombiesAlTablero(zombiesInicio);
 
 		int missingZombies = totalZombies - zombiesInicio;
@@ -69,9 +66,6 @@ public class EstadoAmbiente extends EnvironmentState {
 		this.setZombieEnCasa(false);
 		this.setZombiesEnTablero();
 		this.setZombiesQueVeo();
-
-		
-
 	}
 
 	public void agregarZombiesAlTablero(int zombiesInicio) {

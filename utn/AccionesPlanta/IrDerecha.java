@@ -22,13 +22,11 @@ public class IrDerecha extends SearchAction {
 
 		// Check the limits of the world
 		if (col == 8 || estadoPlanta.getEnergia()<1) {
-//			col = 0;
 			return null;
 		} else {
 			col = col + 1;
 		}
 
-//		if (col != 8) {
 		String tableroValor = estadoPlanta.getTableroEnPosicion(row, col);
 		if (tableroValor == PlantaPerception.EMPTY_PERCEPTION || tableroValor == PlantaPerception.UNKNOWN_PERCEPTION) {
 
@@ -36,10 +34,12 @@ public class IrDerecha extends SearchAction {
 
 			
 		} else {
+			// Hay girasol
 			if (!tableroValor.contains("z")) {// p-12
 				estadoPlanta.setTableroEnPosicion(row, col,
 						PlantaPerception.PLANTA_PERCEPTION.concat("-").concat(tableroValor));
 			} else {
+				//Hay un Zombie y le conlleva el doble de energia matarlo
 				int tipoZombie = estadoPlanta.getTipoZombie(tableroValor);
 				estadoPlanta.setEnergia(estadoPlanta.getEnergia() - (2 * tipoZombie));
 
@@ -81,13 +81,11 @@ public class IrDerecha extends SearchAction {
 
 		// Check the limits of the world
 		if (col == 8 || estadoPlanta.getEnergia()<1) {
-//			col = 0;
 			return null;
 		} else {
 			col = col + 1;
 		}
 
-//		if (col != 8) {
 		String tableroValor = estadoAmbiente.getTableroEnPosicion(row, col);
 		if (tableroValor == PlantaPerception.EMPTY_PERCEPTION || tableroValor == PlantaPerception.UNKNOWN_PERCEPTION) {
 			// seteamos estado del ambiente y de la planta
@@ -97,11 +95,13 @@ public class IrDerecha extends SearchAction {
 			
 		} else {
 			if (!tableroValor.contains("z")) {// p-12
+				//Hay girasol
 				estadoAmbiente.setTableroEnPosicion(row, col,
 						PlantaPerception.PLANTA_PERCEPTION.concat("-").concat(tableroValor));
 				estadoPlanta.setTableroEnPosicion(row, col,
 						PlantaPerception.PLANTA_PERCEPTION.concat("-").concat(tableroValor));
 			} else {
+				//Hay un Zombie y le conlleva el doble de energia matarlo
 				int tipoZombie = estadoAmbiente.getTipoZombie(tableroValor);
 				estadoAmbiente.setEnergiaPlanta(estadoAmbiente.getEnergiaPlanta() - (2 * tipoZombie));
 				estadoPlanta.setEnergia(estadoPlanta.getEnergia() - (2 * tipoZombie));
@@ -139,7 +139,7 @@ public class IrDerecha extends SearchAction {
 
 	@Override
 	public Double getCost() {
-		return 1.0;
+		return 4.0;
 	}
 
 	/**

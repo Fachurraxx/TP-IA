@@ -18,16 +18,13 @@ public class IrArriba extends SearchAction {
 			
 			int row = estadoPlanta.getPosicionPlantaFila();
 			int col = estadoPlanta.getPosicionPlantaColumna();
-			int prevRow = 0;
+			int prevRow = row;
 			String posicionPlantaValor = estadoPlanta.getTableroEnPosicion(row, col);//p or p-12
 			
 			// Check the limits of the world
-	        if (row == 0 || estadoPlanta.getEnergia()<1 || estadoPlanta.getZombiesQueVeo()!=0) {
-//	            row = 4;
-//	            prevRow = 0;
+	        if (row == 0 || estadoPlanta.getEnergia()<1) {
 				return null;
 	        } else {
-	        	prevRow = row;
 	            row = row - 1;
 	            
 	        }
@@ -44,10 +41,12 @@ public class IrArriba extends SearchAction {
 	        }
 	        else{
 	        	 if(!tableroValor.contains("z")) {//p-12 
+	        		 //Hay girasol
 	        		 estadoPlanta.setTableroEnPosicion(row, col,
 	             			PlantaPerception.PLANTA_PERCEPTION.concat("-").concat(tableroValor));
 	        	 }
 	        	 else {
+	        		//Hay un Zombie y le conlleva el doble de energia matarlo
 	        		 int tipoZombie = estadoPlanta.getTipoZombie(tableroValor);
 	        		 estadoPlanta.setEnergia(estadoPlanta.getEnergia() - (2 * tipoZombie));
 	        		 
@@ -88,12 +87,10 @@ public class IrArriba extends SearchAction {
 			String posicionPlantaValor = estadoPlanta.getTableroEnPosicion(row, col);//p or p-12
 			
 			// Check the limits of the world
-	        if (row == 0|| estadoPlanta.getEnergia()<1 || estadoPlanta.getZombiesQueVeo()!=0) {
-//	            row = 4;
+	        if (row == 0|| estadoPlanta.getEnergia()<1) {
 				return null;
 	        } else {
 	            row = row - 1;
-	            
 	        }
 
 	        String tableroValor = estadoAmbiente.getTableroEnPosicion(row, col);
@@ -106,12 +103,14 @@ public class IrArriba extends SearchAction {
 	        }
 	        else{
 	        	 if(!tableroValor.contains("z")) {//p-12 
+	        		 //Hay girasol
 	        		 estadoAmbiente.setTableroEnPosicion(row, col,
 	             			PlantaPerception.PLANTA_PERCEPTION.concat("-").concat(tableroValor));
 	        		 estadoPlanta.setTableroEnPosicion(row, col,
 	              			PlantaPerception.PLANTA_PERCEPTION.concat("-").concat(tableroValor));
 	        	 }
 	        	 else {
+	        		//Hay un Zombie y le conlleva el doble de energia matarlo
 	        		 int tipoZombie = estadoAmbiente.getTipoZombie(tableroValor);
 	        		 estadoAmbiente.setEnergiaPlanta(estadoAmbiente.getEnergiaPlanta() - (2 * tipoZombie));
 	        		 estadoPlanta.setEnergia(estadoPlanta.getEnergia() - (2 * tipoZombie));
@@ -150,7 +149,7 @@ public class IrArriba extends SearchAction {
     
 		   @Override
 		    public Double getCost() {
-		        return 1.0;
+		        return 4.0;
 		    }
 
     /**

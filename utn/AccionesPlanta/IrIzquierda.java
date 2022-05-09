@@ -25,7 +25,6 @@ public class IrIzquierda extends SearchAction {
 
 		String posicionPlantaValor = estadoPlanta.getTableroEnPosicion(row, col);
     
-//		if (col != 0) { 
 	        String tableroValor = estadoPlanta.getTableroEnPosicion(row, col);
 	        if (tableroValor == PlantaPerception.EMPTY_PERCEPTION || tableroValor == PlantaPerception.UNKNOWN_PERCEPTION ) {
 	
@@ -35,10 +34,12 @@ public class IrIzquierda extends SearchAction {
 	        }
 	        else{
 	        	 if(!tableroValor.contains("z")) {//p-12 
+	        		 //Hay girasol
 	        		 estadoPlanta.setTableroEnPosicion(row, col,
 	             			PlantaPerception.PLANTA_PERCEPTION.concat("-").concat(tableroValor));
 	        	 }
 	        	 else {
+	        		//Hay un Zombie y le conlleva el doble de energia matarlo
 	        		 int tipoZombie = estadoPlanta.getTipoZombie(tableroValor);
 	        		 estadoPlanta.setEnergia(estadoPlanta.getEnergia() - (2 * tipoZombie));
 	        		 
@@ -139,7 +140,7 @@ public class IrIzquierda extends SearchAction {
 	
 	   @Override
 	    public Double getCost() {
-	        return 1.0;
+	        return 4.0;
 	    }
 
     /**

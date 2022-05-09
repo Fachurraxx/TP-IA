@@ -16,7 +16,7 @@ package frsf.ia.grupo1;
 	    @Override
 	    public double getEstimatedCost(NTree node) {
 	        PlantaState plantaState = (PlantaState) node.getAgentState();	        
-	        return (plantaState.getZombiesQueVeo());
+	        return (plantaState.getTotalZombies());
 	    }
 	}
 

@@ -20,8 +20,6 @@ public class Ambiente extends Environment {
 	public Perception getPercept() {
 
 		PlantaPerception perception = new PlantaPerception();
-
-//		perception.initPerception(null, this);
 		
 		this.getEnvironmentState().setSoles();
 		this.getEnvironmentState().updateZombies();	
