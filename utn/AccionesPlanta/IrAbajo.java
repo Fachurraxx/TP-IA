@@ -140,7 +140,7 @@ public class IrAbajo extends SearchAction {
 
 	   @Override
 	    public Double getCost() {
-	        return 1.0;
+	        return 4.0;
 	    }
 
 	@Override

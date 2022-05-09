@@ -16,12 +16,8 @@ package frsf.ia.grupo1;
 	    @Override
 	    public double getEstimatedCost(NTree node) {
 	        PlantaState plantaState = (PlantaState) node.getAgentState();
-//	        
-//	        System.out.println("ENERGIA: " + plantaState.getEnergia());
-//	        Float energia =  (float) ( 1.0 /( (float) plantaState.getEnergia()));
-//	        System.out.println("HEURISTICA:  " + plantaState.getZombiesQueVeo() + " ENERGIA:  " + energia);
-//	        
-	        return (plantaState.getZombiesQueVeo());// + energia);
+      
+	        return (plantaState.getTotalZombies());
 	    }
 	}
 

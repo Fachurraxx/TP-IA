@@ -41,15 +41,14 @@ public class Planta extends SearchBasedAgent {
 
 		// Create the operators
 		Vector<SearchAction> operators = new Vector<SearchAction>();
-		operators.addElement(new Plantar());
-		operators.addElement(new Recargar());
+
 		operators.addElement(new Pelear());
 		operators.addElement(new IrDerecha());
-		operators.addElement(new IrArriba());
 		operators.addElement(new IrAbajo());	
 		operators.addElement(new IrIzquierda());
-
-
+		operators.addElement(new IrArriba());
+		operators.addElement(new Plantar());
+		operators.addElement(new Recargar());
 
 		// Create the Problem which the Planta will resolve
 		Problem problem = new Problem(goal, plantaState, operators);
