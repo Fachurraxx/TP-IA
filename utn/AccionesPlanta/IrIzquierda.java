@@ -21,6 +21,8 @@ public class IrIzquierda extends SearchAction {
 		int prevCol = col;
 		if (col==0 || estadoPlanta.getEnergia()<1){
 			return null;
+		}else {
+			col = col - 1;
 		}
 
 		String posicionPlantaValor = estadoPlanta.getTableroEnPosicion(row, col);
@@ -83,8 +85,10 @@ public class IrIzquierda extends SearchAction {
         String tableroValor = estadoAmbiente.getTableroEnPosicion(row, col);
 		if (col==0 || estadoPlanta.getEnergia()<1){
 			return null;
+		}else {
+			col = col - 1;
 		}
-//        if (col != 0) { 
+		
 	        if (tableroValor == PlantaPerception.EMPTY_PERCEPTION || tableroValor == PlantaPerception.UNKNOWN_PERCEPTION ) {
 	        	//seteamos estado del ambiente y de la planta 
 	        	estadoAmbiente.setTableroEnPosicion(row, col, PlantaPerception.PLANTA_PERCEPTION);
@@ -133,7 +137,7 @@ public class IrIzquierda extends SearchAction {
 	        estadoPlanta.setPosicionPlantaColumna(col);
 	        estadoAmbiente.setPosicionPlantaColumna(col);
 	        estadoPlanta.setCantidadAccionesRealizadas(this.getCost());   
-//        }
+
         return estadoAmbiente;
 	}
 	

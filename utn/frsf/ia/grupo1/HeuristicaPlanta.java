@@ -10,9 +10,6 @@ package frsf.ia.grupo1;
 	 */
 	public class HeuristicaPlanta  implements IEstimatedCostFunction {
 
-	    /**
-	     * It returns the estimated cost to reach the goal from a NTree node.
-	     */
 	    @Override
 	    public double getEstimatedCost(NTree node) {
 	        PlantaState plantaState = (PlantaState) node.getAgentState();	        
