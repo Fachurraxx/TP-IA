@@ -110,11 +110,7 @@ public class Planta extends SearchBasedAgent {
 
 		try {
 	
-			if(this.plantaState.getZombiesQueVeo() == 0) {
-				selectedAction = this.getProblem().getActions().elementAt(4);
-			}else {
-				selectedAction = this.getSolver().solve(new Object[] { this.getProblem() });
-			}
+			selectedAction = this.getSolver().solve(new Object[] { this.getProblem() });
 
 		} catch (Exception ex) {
 			Logger.getLogger(Planta.class.getName()).log(Level.SEVERE, null, ex);

@@ -23,9 +23,6 @@ public class EstadoAmbiente extends EnvironmentState {
 		tablero = new String[5][9]; 
 		posicionZombies = new int[5][9];
 		this.initState();
-		System.out.println("EstadoAmbiente()");
-		System.out.println(this.toString());
-		System.out.println("---------------------------");
 	}
 
 	@Override
@@ -54,38 +51,22 @@ public class EstadoAmbiente extends EnvironmentState {
 			}
 		}
 
-		int totalZombies = getRandomNumber(2, 4);
+		int totalZombies = getRandomNumber(2, 20);
 		this.setTotalZombies(totalZombies);
 
-		int zombiesInicio = getRandomNumber(1, 2);
+		int zombiesInicio = getRandomNumber(1, 5);
 		this.agregarZombiesAlTablero(zombiesInicio);
 
 		int missingZombies = totalZombies - zombiesInicio;
 		this.setMissingZombies(missingZombies);
 
-//        En el inicio la planta recibe una cantidad aleatoria de entre 2 y 20 soles. 
+//      En el inicio la planta recibe una cantidad aleatoria de entre 2 y 20 soles. 
 		this.setEnergiaPlanta(getRandomNumber(2, 20));
 
 		this.setZombieEnCasa(false);
 		this.setZombiesEnTablero();
 		this.setZombiesQueVeo();
 		
-//		TEST
-		//Set some girasoles
-//		setTableroEnPosicion(1,0, PlantaPerception.GIRASOLES_PERCEPTION);
-//		setTableroEnPosicion(2,5, PlantaPerception.GIRASOLES_PERCEPTION);
-//		setTableroEnPosicion(2,2, PlantaPerception.GIRASOLES_PERCEPTION);
-//		setTableroEnPosicion(1,3, PlantaPerception.GIRASOLES_PERCEPTION);
-//		setTableroEnPosicion(3,3, PlantaPerception.GIRASOLES_PERCEPTION);
-//		
-//		//set energia planta
-//		//this.setEnergiaPlanta(12);
-//		
-//		setTableroEnPosicion(2,3, PlantaPerception.PLANTA_PERCEPTION);
-//		this.setPosicionPlantaFila(2);
-//		this.setPosicionPlantaColumna(3);
-		
-
 	}
 
 	public void agregarZombiesAlTablero(int zombiesInicio) {
@@ -422,14 +403,6 @@ public class EstadoAmbiente extends EnvironmentState {
 			str = str + " ]\n";
 		}
 		str = str + " \n";
-
-		for (int row = 0; row < 5; row++) {
-			str = str + "[ ";
-			for (int col = 0; col < 9; col++) {
-				str = str + posicionZombies[row][col] + " ";
-			}
-			str = str + " ]\n";
-		}
 
 		return str;
 	}

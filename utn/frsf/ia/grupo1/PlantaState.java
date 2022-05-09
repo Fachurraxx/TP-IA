@@ -71,8 +71,6 @@ public class PlantaState extends SearchBasedAgentState {
 
 		PlantaState newState = new PlantaState(newWorld, this.getPosicionPlantaFila(), this.getPosicionPlantaColumna(),
 				this.getEnergia(), this.getTotalZombies(), this.getZombiesEnTablero(), this.getZombiesQueVeo());
-
-//		System.out.println("Nuevo nodo" );
 		
 		return newState;
 	}
